@@ -7,7 +7,7 @@ The **LCR** instruments of the APK.audio bench, as one thing: 1 models, their co
 | | |
 |---|---|
 | **Is** | **inputs** — takes signals in — its connectors are inputs a patch can land on<br>**metering** — measures — its readings are numbers with units |
-| **Inputs** | each model's BIM part: /api/bim/parts?full=1&id=<part> — ports where side is "input" and domain is not "power" |
+| **Inputs and outputs** | every model's inputs and outputs — its connectors (from its BIM part), its commands' arguments and returns, and its bus topics — are on its SDK page: Documentation/🧩Manual and Artifacts/SDK/<Model>.md |
 | **Recipe** | none — data, not a container: read in place by the stacks that bake `INSTRUMENTS` |
 | **Source** | this repository (https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.LCR.git), a submodule of [APK.plugin.instruments.VISA](https://github.com/LikeDotAudio/APK.plugin.instruments.VISA) at `INSTRUMENT.LCR/` |
 | **Family name** | `LCR` — the device type, the topic segment and the `manifest.json` key; the `INSTRUMENT.` prefix belongs to the folder only |

@@ -1,5 +1,5 @@
 {
-  "_note": "What this instrument family IS on the bench. Authored; family_sdk_docs.py and the touch panel read it. Inputs are not listed here: each box's connectors come from its BIM part (DATABASE.server.BIM, /api/bim/parts — ports with side \"input\").",
+  "_note": "What this instrument family IS on the bench. Authored; family_sdk_docs.py and the touch panel read it. Connectors are not listed here: each box's come from its BIM part (DATABASE.server.BIM) and are written onto its SDK page.",
   "family": "LCR",
   "folder": "INSTRUMENT.LCR",
   "roles": [
@@ -7,6 +7,6 @@
     "metering"
   ],
   "about": "LCR meters: component impedance.",
-  "inputs": "each model's BIM part: /api/bim/parts?full=1&id=<part> — ports where side is \"input\" and domain is not \"power\"",
+  "io": "every model's inputs and outputs — its connectors (from its BIM part), its commands' arguments and returns, and its bus topics — are on its SDK page: Documentation/🧩Manual and Artifacts/SDK/<Model>.md",
   "repository": "https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.LCR.git"
 }
