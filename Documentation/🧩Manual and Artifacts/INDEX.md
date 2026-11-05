@@ -5,5 +5,9 @@ How to use it and how it is built.
 ← [Wiki home](../README.md)
 
 <!-- wiki:index -->
-_Nothing filed here yet._
+| Page | What |
+|---|---|
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Architecture — INSTRUMENT.LCR |
+| [SDK.md](SDK.md) | SDK — INSTRUMENT.LCR |
+| [SDK/](SDK/) | folder |
 <!-- /wiki:index -->
