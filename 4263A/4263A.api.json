@@ -72,10 +72,10 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 39,
+    "total_commands": 40,
     "get_count": 6,
     "set_count": 27,
-    "nab_count": 6,
+    "nab_count": 7,
     "rig_count": 0,
     "do_count": 6
   },
@@ -1087,6 +1087,43 @@
             "command": "Read_Measurement"
           },
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Measurement",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "lcr_reading": {
+        "command": "lcr_reading",
+        "verb": "nab",
+        "description": "What the meter is measuring, and its last measurement, together.",
+        "scpi": ":SENSe:FUNCtion?;:FETCh?",
+        "scpi_fast": ":SENS:FUNC?;:FETC?",
+        "subsystem": "MEASure",
+        "group": "Readback Queries",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 2,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "function",
+              "type": "CRD"
+            },
+            {
+              "name": "measurement",
+              "type": "AARD"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/lcr_reading",
+          "direction": "in",
+          "payload_format": {
+            "command": "lcr_reading"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/lcr_reading",
           "reading_direction": "out"
         },
         "unverified": true
