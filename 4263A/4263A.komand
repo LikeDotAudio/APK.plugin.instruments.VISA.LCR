@@ -496,7 +496,7 @@
       "description": "Queries the next entry in the error queue.",
       "returns": {
         "count": 1,
-        "type": "NR2"
+        "type": "ERROR"
       },
       "subsystem": "SYSTem",
       "unverified": true

@@ -224,7 +224,7 @@
         },
         "returns": {
           "count": 1,
-          "type": "NR2"
+          "type": "ERROR"
         },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/LCR/Get_Error_Queue",
@@ -1142,7 +1142,7 @@
         },
         "returns": {
           "count": 1,
-          "type": "NR2"
+          "type": "ERROR"
         },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/LCR/Get_Error_Queue",
