@@ -20,3 +20,7 @@ The manual shows these commands do not exist. Each entry stays in the table with
 - `nab/Get_Meas_Curr` — Owner decision 2026-10-31: no HP 4263A manual was obtainable, and MEAS:ALL?/CURR?/POW?/VOLT? are the electronic-load measurement set (Electronic Load Family Programming Manual 06060-90005 p. 51), authored here from a panel literal — an LCR meter measures impedance, not load current/power
 - `nab/Get_Meas_Pow` — Owner decision 2026-10-31: no HP 4263A manual was obtainable, and MEAS:ALL?/CURR?/POW?/VOLT? are the electronic-load measurement set (Electronic Load Family Programming Manual 06060-90005 p. 51), authored here from a panel literal — an LCR meter measures impedance, not load current/power
 - `nab/Get_Meas_Volt` — Owner decision 2026-10-31: no HP 4263A manual was obtainable, and MEAS:ALL?/CURR?/POW?/VOLT? are the electronic-load measurement set (Electronic Load Family Programming Manual 06060-90005 p. 51), authored here from a panel literal — an LCR meter measures impedance, not load current/power
+
+## Retired on the bench (2026-11-07)
+
+- `nab/Measure` — Bench 2026-11-07 03:13 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: `:MEASure?` answered -113,"Undefined header" then -420,"Query UNTERMINATED" — the unit has no bare MEASure query; read with `:READ?` (trigger + fetch) or `:FETCh?`

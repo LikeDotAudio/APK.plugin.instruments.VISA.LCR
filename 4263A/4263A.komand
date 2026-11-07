@@ -456,7 +456,9 @@
         "count": 1
       },
       "subsystem": "MEASure",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "Bench 2026-11-07 03:13 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: `:MEASure?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\" — the unit has no bare MEASure query; read with `:READ?` (trigger + fetch) or `:FETCh?`"
     },
     "Read_Measurement": {
       "scpi": ":READ?",

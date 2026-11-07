@@ -16,7 +16,6 @@ Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the ta
 - `RES` — **SET** `Set_Res` · `<value>` · numeric (Ohm) · per-instance: `value` · †<br>Authored from a panel literal in LCR.json; never executed before.
 - `VOLT` — **SET** `Set_Volt` · `<value>` · numeric (V) · per-instance: `value` · †<br>Authored from a panel literal in LCR.json; never executed before.
 - `FETCh?` — **NAB** `Fetch_Existing` · → 1 value · †<br>Retrieves the most recent measurement data.
-- `MEASure?` — **NAB** `Measure` · → 1 value · †<br>Executes a complete measurement and retrieves data.
 - `READ?` — **NAB** `Read_Measurement` · → 1 value · †<br>Triggers a measurement and retrieves the results.
 - `TRIGger` — **DO** `Trigger_Immediate` · †<br>Manually triggers a measurement.
 - **`CALCulate`**

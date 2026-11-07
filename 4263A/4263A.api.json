@@ -159,32 +159,6 @@
         },
         "unverified": true
       },
-      "Measure": {
-        "command": "Measure",
-        "verb": "get",
-        "description": "Executes a complete measurement and retrieves data.",
-        "scpi": ":MEASure?",
-        "scpi_fast": ":MEAS?",
-        "subsystem": "MEASure",
-        "group": "MEASure",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Measure",
-          "direction": "in",
-          "payload_format": {
-            "command": "Measure"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Measure",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Read_Measurement": {
         "command": "Read_Measurement",
         "verb": "get",
@@ -1036,32 +1010,6 @@
             "command": "Fetch_Existing"
           },
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Fetch_Existing",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Measure": {
-        "command": "Measure",
-        "verb": "nab",
-        "description": "Executes a complete measurement and retrieves data.",
-        "scpi": ":MEASure?",
-        "scpi_fast": ":MEAS?",
-        "subsystem": "MEASure",
-        "group": "MEASure",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Measure",
-          "direction": "in",
-          "payload_format": {
-            "command": "Measure"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Measure",
           "reading_direction": "out"
         },
         "unverified": true
