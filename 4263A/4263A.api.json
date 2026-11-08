@@ -72,10 +72,10 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 40,
-    "get_count": 6,
+    "total_commands": 39,
+    "get_count": 5,
     "set_count": 27,
-    "nab_count": 7,
+    "nab_count": 6,
     "rig_count": 0,
     "do_count": 6
   },
