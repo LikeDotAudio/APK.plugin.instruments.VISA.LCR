@@ -20,15 +20,15 @@
           "Es": "Medida de impedancia"
         },
         "fields": {
-          "Fetch_Existing": {
+          "Measure_Reading": {
             "type": "_GuiActuator",
             "label": {
               "inactive": {
                 "text": {
-                  "En": "FETCH READING (:FETCh?)",
-                  "Fr": "LIRE LA MESURE (:FETCh?)",
-                  "De": "MESSWERT LESEN (:FETCh?)",
-                  "Es": "LEER MEDIDA (:FETCh?)"
+                  "En": "FETCH READING (*TRG;:FETCh?)",
+                  "Fr": "LIRE LA MESURE (*TRG;:FETCh?)",
+                  "De": "MESSWERT LESEN (*TRG;:FETCh?)",
+                  "Es": "LEER MEDIDA (*TRG;:FETCh?)"
                 },
                 "text_size": 12,
                 "text_color": "#cccccc"
@@ -59,7 +59,7 @@
               "enable": true,
               "komand_type": "nab",
               "sub_path": "LCR",
-              "command": "Fetch_Existing"
+              "command": "Measure_Reading"
             }
           },
           "Reading_Readout": {

@@ -1857,6 +1857,47 @@
         },
         "unverified": false
       },
+      "Measure_Reading": {
+        "command": "Measure_Reading",
+        "verb": "nab",
+        "description": "Triggers one measurement on the present setup and reads it: status, primary, secondary.",
+        "scpi": "*TRG;*WAI;:FETCh?",
+        "scpi_fast": "*TRG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "MEASure",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "primary",
+              "type": "NR3"
+            },
+            {
+              "name": "secondary",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Measure_Reading",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Reading"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Measure_Reading",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
       "Nab_All_C": {
         "command": "Nab_All_C",
         "verb": "nab",
@@ -2183,47 +2224,6 @@
         },
         "unverified": false
       },
-      "Fetch_Existing": {
-        "command": "Fetch_Existing",
-        "verb": "nab",
-        "description": "Retrieves the most recent measurement data.",
-        "scpi": ":FETCh?",
-        "scpi_fast": ":FETC?",
-        "subsystem": "MEASure",
-        "group": "MEASure",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 3,
-          "separator": ",",
-          "fields": [
-            {
-              "name": "status",
-              "type": "NR1"
-            },
-            {
-              "name": "primary",
-              "type": "NR3"
-            },
-            {
-              "name": "secondary",
-              "type": "NR3"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Fetch_Existing",
-          "direction": "in",
-          "payload_format": {
-            "command": "Fetch_Existing"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Fetch_Existing",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
       "Get_Init_Continuous": {
         "command": "Get_Init_Continuous",
         "verb": "nab",
@@ -2428,8 +2428,8 @@
       "GRAB": {
         "command": "GRAB",
         "verb": "nab",
-        "description": "GRAB \u2014 all 9 queries this model answered alone on the bench, stacked; the answers come back `;`-separated in the order of grab.commands",
-        "scpi": ":CALC1:FORM?;:CALC2:FORM?;:FETC?;:INIT:CONT?;:SENS:FUNC?;:SOUR:FREQ?;:SOUR:VOLT?;:TRIG:SOUR?;*IDN?",
+        "description": "GRAB \u2014 all 8 queries this model answered alone on the bench, stacked; the answers come back `;`-separated in the order of grab.commands",
+        "scpi": ":CALC1:FORM?;:CALC2:FORM?;:INIT:CONT?;:SENS:FUNC?;:SOUR:FREQ?;:SOUR:VOLT?;:TRIG:SOUR?;*IDN?",
         "subsystem": "GRAB",
         "group": "GRAB",
         "args": [],
@@ -2437,7 +2437,7 @@
           "kind": "none"
         },
         "returns": {
-          "count": 9,
+          "count": 8,
           "type": "LIST"
         },
         "mqtt": {
@@ -2454,7 +2454,6 @@
           "commands": [
             "Get_Primary_Parameter",
             "Get_Secondary_Parameter",
-            "Fetch_Existing",
             "Get_Init_Continuous",
             "Get_Measurement_Function",
             "Get_Test_Frequency",
@@ -2465,7 +2464,6 @@
           "queries": [
             ":CALC1:FORM?",
             ":CALC2:FORM?",
-            ":FETC?",
             ":INIT:CONT?",
             ":SENS:FUNC?",
             ":SOUR:FREQ?",
