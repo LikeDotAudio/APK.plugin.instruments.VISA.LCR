@@ -91,3 +91,7 @@ From the page's certificate book on 3145J01840: `:READ?` **failed 3/3** with -11
 ## Retired commands removed (owner, 2026-11-12)
 
 Every `retired` entry left the table on the owner's word; the reasons stay above. Removed (15): set/Correction_Open_State `:SENSe:CORRection:OPEN:STATe <state>`, set/Correction_Short_State `:SENSe:CORRection:SHORt:STATe <state>`, set/Impedance_Type `:SENSe:FUNCtion:IMPedance:TYPE <type>`, set/Set_Test_Current `:SOURce:CURRent <level>`, nab/Get_Meas_All `MEAS:ALL?`, nab/Get_Meas_Curr `MEAS:CURR?`, nab/Get_Meas_Pow `MEAS:POW?`, nab/Get_Meas_Volt `MEAS:VOLT?`, nab/Measure_Impedance `:MEASure:IMPedance?`, nab/Measure `:MEASure?`, nab/Read_Measurement `:READ?`, nab/Get_Correction_Open_State `:SENSe:CORRection:OPEN:STATe?`, nab/Get_Correction_Short_State `:SENSe:CORRection:SHORt:STATe?`, nab/Get_Impedance_Type `:SENSe:FUNCtion:IMPedance:TYPE?`, nab/Get_Test_Current `:SOURce:CURRent?`. The family panel `gui/LCR.json` (its electronic-load `DC_Load_Station` block) still names `Get_Meas_Volt/Curr/Pow/All` — those meters now bind to nothing.
+
+## All L / All C / All R (owner, 2026-11-12)
+
+Friends, by name and group: `Rig_All_<X>` once at the beginning — `:TRIG:SOUR BUS;:CALC1:FORM <p>;:CALC2:FORM <s>;:SOUR:FREQ <freq>;:SOUR:VOLT <level>` — then `Nab_All_<X>` (`*TRG;*WAI;:FETC?`) over and over, each one reading (status, primary, secondary). L = LS/Q, C = CP/D, R = REAL/IMAG (R/X; spelling recalled from the 4263B guide, unconfirmed). All unverified until Certify tries them.

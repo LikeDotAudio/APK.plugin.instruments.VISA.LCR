@@ -72,11 +72,11 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 51,
+    "total_commands": 46,
     "get_count": 12,
-    "set_count": 30,
-    "nab_count": 15,
-    "rig_count": 0,
+    "set_count": 19,
+    "nab_count": 18,
+    "rig_count": 3,
     "do_count": 6
   },
   "endpoints": {
@@ -431,38 +431,12 @@
         },
         "unverified": true
       },
-      "Secondary_Parameter": {
-        "command": "Secondary_Parameter",
-        "verb": "set",
-        "description": "Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
-        "scpi": ":CALCulate2:FORMat <param>",
-        "scpi_fast": ":CALC2:FORM <param>",
-        "subsystem": "CALCulate",
-        "group": "CALCulate",
-        "args": [
-          "param"
-        ],
-        "arg": {
-          "kind": "enum"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter",
-          "direction": "in",
-          "payload_format": {
-            "command": "Secondary_Parameter",
-            "value": "<value>",
-            "input_name": "param"
-          }
-        },
-        "unverified": true
-      },
       "Limit_Lower": {
         "command": "Limit_Lower",
         "verb": "set",
         "description": "Sets the lower limit for the comparator.",
-        "scpi": ":CALCulate:LIMit:LOWer <limit>",
-        "scpi_fast": ":CALC:LIM:LOW <limit>",
+        "scpi": ":CALCulate1:LIMit:LOWer <limit>",
+        "scpi_fast": ":CALC1:LIM:LOW <limit>",
         "subsystem": "CALCulate",
         "group": "CALCulate",
         "args": [
@@ -487,8 +461,8 @@
         "command": "Limit_State",
         "verb": "set",
         "description": "Enables or disables the comparator function.",
-        "scpi": ":CALCulate:LIMit:STATe <state>",
-        "scpi_fast": ":CALC:LIM:STAT <state>",
+        "scpi": ":CALCulate1:LIMit:STATe <state>",
+        "scpi_fast": ":CALC1:LIM:STAT <state>",
         "subsystem": "CALCulate",
         "group": "CALCulate",
         "args": [
@@ -517,8 +491,8 @@
         "command": "Limit_Upper",
         "verb": "set",
         "description": "Sets the higher limit for the comparator.",
-        "scpi": ":CALCulate:LIMit:UPPer <limit>",
-        "scpi_fast": ":CALC:LIM:UPP <limit>",
+        "scpi": ":CALCulate1:LIMit:UPPer <limit>",
+        "scpi_fast": ":CALC1:LIM:UPP <limit>",
         "subsystem": "CALCulate",
         "group": "CALCulate",
         "args": [
@@ -539,102 +513,28 @@
         },
         "unverified": true
       },
-      "Set_Curr": {
-        "command": "Set_Curr",
+      "Secondary_Parameter": {
+        "command": "Secondary_Parameter",
         "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "CURR <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
+        "description": "Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+        "scpi": ":CALCulate2:FORMat <param>",
+        "scpi_fast": ":CALC2:FORM <param>",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [
+          "param"
+        ],
         "arg": {
-          "kind": "numeric",
-          "unit": "A",
-          "limits": "query"
+          "kind": "enum"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Curr",
+          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter",
           "direction": "in",
           "payload_format": {
-            "command": "Set_Curr",
+            "command": "Secondary_Parameter",
             "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Curr_Lev": {
-        "command": "Set_Curr_Lev",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "CURR:LEV <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "numeric",
-          "unit": "A",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Curr_Lev",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Curr_Lev",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Curr_Slew": {
-        "command": "Set_Curr_Slew",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "CURR:SLEW <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "numeric",
-          "unit": "A/s",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Curr_Slew",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Curr_Slew",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Curr_Tlev": {
-        "command": "Set_Curr_Tlev",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "CURR:TLEV <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "numeric",
-          "unit": "A",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Curr_Tlev",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Curr_Tlev",
-            "value": "<value>",
-            "input_name": "value"
+            "input_name": "param"
           }
         },
         "unverified": true
@@ -699,81 +599,6 @@
         },
         "unverified": true
       },
-      "Set_Inp": {
-        "command": "Set_Inp",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "INP <state>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Inp",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Inp",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Mode": {
-        "command": "Set_Mode",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "MODE <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Mode",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Mode",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Res": {
-        "command": "Set_Res",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "RES <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "numeric",
-          "unit": "Ohm",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Res",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Res",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Average_Count": {
         "command": "Average_Count",
         "verb": "set",
@@ -800,12 +625,42 @@
         },
         "unverified": true
       },
+      "Voltage_Range_Auto": {
+        "command": "Voltage_Range_Auto",
+        "verb": "set",
+        "description": "Turns impedance auto-ranging ON or OFF (OFF = hold range); the name is kept for the panels that bind it.",
+        "scpi": ":SENSe:FIMPedance:RANGe:AUTO <state>",
+        "scpi_fast": ":SENS:FIMP:RANG:AUTO <state>",
+        "subsystem": "SENSe",
+        "group": "SENSe",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Voltage_Range_Auto",
+          "direction": "in",
+          "payload_format": {
+            "command": "Voltage_Range_Auto",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": true
+      },
       "Current_Range": {
         "command": "Current_Range",
         "verb": "set",
-        "description": "Sets the current measurement range.",
-        "scpi": ":SENSe:CURRent:RANGe <range>",
-        "scpi_fast": ":SENS:CURR:RANG <range>",
+        "description": "Sets the impedance measurement range in ohms (0.1 to 1M, or UP/DOWN); the name is kept for the panels that bind it.",
+        "scpi": ":SENSe:FIMPedance:RANGe:UPPer <range>",
+        "scpi_fast": ":SENS:FIMP:RANG:UPP <range>",
         "subsystem": "SENSe",
         "group": "SENSe",
         "args": [
@@ -848,93 +703,6 @@
             "command": "Measurement_Function",
             "value": "<value>",
             "input_name": "function"
-          }
-        },
-        "unverified": true
-      },
-      "Voltage_Range_Auto": {
-        "command": "Voltage_Range_Auto",
-        "verb": "set",
-        "description": "Enables or disables auto-ranging.",
-        "scpi": ":SENSe:VOLTage:RANGe:AUTO <state>",
-        "scpi_fast": ":SENS:VOLT:RANG:AUTO <state>",
-        "subsystem": "SENSe",
-        "group": "SENSe",
-        "args": [
-          "state"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Voltage_Range_Auto",
-          "direction": "in",
-          "payload_format": {
-            "command": "Voltage_Range_Auto",
-            "value": "<value>",
-            "input_name": "state"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Bias_State": {
-        "command": "Set_Bias_State",
-        "verb": "set",
-        "description": "Turns the DC bias ON or OFF.",
-        "scpi": ":SOURce:BIAS:STATe <state>",
-        "scpi_fast": ":SOUR:BIAS:STAT <state>",
-        "subsystem": "SOURce",
-        "group": "SOURce",
-        "args": [
-          "state"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Bias_State",
-            "value": "<value>",
-            "input_name": "state"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Bias_Voltage": {
-        "command": "Set_Bias_Voltage",
-        "verb": "set",
-        "description": "Sets the internal DC bias voltage level.",
-        "scpi": ":SOURce:BIAS:VOLTage <volt>",
-        "scpi_fast": ":SOUR:BIAS:VOLT <volt>",
-        "subsystem": "SOURce",
-        "group": "SOURce",
-        "args": [
-          "volt"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "V"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_Voltage",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Bias_Voltage",
-            "value": "<value>",
-            "input_name": "volt"
           }
         },
         "unverified": true
@@ -989,6 +757,63 @@
             "command": "Set_Test_Level",
             "value": "<value>",
             "input_name": "level"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Bias_Voltage": {
+        "command": "Set_Bias_Voltage",
+        "verb": "set",
+        "description": "Sets the internal DC bias voltage level.",
+        "scpi": ":SOURce:VOLTage:OFFSet <volt>",
+        "scpi_fast": ":SOUR:VOLT:OFFS <volt>",
+        "subsystem": "SOURce",
+        "group": "SOURce",
+        "args": [
+          "volt"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Bias_Voltage",
+            "value": "<value>",
+            "input_name": "volt"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Bias_State": {
+        "command": "Set_Bias_State",
+        "verb": "set",
+        "description": "Turns the DC bias ON or OFF.",
+        "scpi": ":SOURce:VOLTage:OFFSet:STATe <state>",
+        "scpi_fast": ":SOUR:VOLT:OFFS:STAT <state>",
+        "subsystem": "SOURce",
+        "group": "SOURce",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Bias_State",
+            "value": "<value>",
+            "input_name": "state"
           }
         },
         "unverified": true
@@ -1053,83 +878,6 @@
         },
         "unverified": true
       },
-      "Set_Tran_Dcyc": {
-        "command": "Set_Tran_Dcyc",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "TRAN:DCYC <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "numeric",
-          "unit": "%",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Tran_Dcyc",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Tran_Dcyc",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Tran_Freq": {
-        "command": "Set_Tran_Freq",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "TRAN:FREQ <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "numeric",
-          "unit": "Hz",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Tran_Freq",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Tran_Freq",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Tran_Stat": {
-        "command": "Set_Tran_Stat",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "TRAN:STAT <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Tran_Stat",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Tran_Stat",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Trigger_Delay": {
         "command": "Trigger_Delay",
         "verb": "set",
@@ -1179,31 +927,6 @@
             "command": "Trigger_Source",
             "value": "<value>",
             "input_name": "source"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Volt": {
-        "command": "Set_Volt",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "VOLT <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "numeric",
-          "unit": "V",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Volt",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Volt",
-            "value": "<value>",
-            "input_name": "value"
           }
         },
         "unverified": true
@@ -1287,6 +1010,129 @@
           "reading_direction": "out"
         },
         "unverified": false
+      },
+      "Nab_All_C": {
+        "command": "Nab_All_C",
+        "verb": "nab",
+        "description": "One C reading on the rigged setup: triggers and reads status, CP, D.",
+        "scpi": "*TRG;*WAI;:FETCh?",
+        "scpi_fast": "*TRG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "All C",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "cp",
+              "type": "NR3"
+            },
+            {
+              "name": "d",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_C",
+          "direction": "in",
+          "payload_format": {
+            "command": "Nab_All_C"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_C",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Nab_All_L": {
+        "command": "Nab_All_L",
+        "verb": "nab",
+        "description": "One L reading on the rigged setup: triggers and reads status, LS, Q.",
+        "scpi": "*TRG;*WAI;:FETCh?",
+        "scpi_fast": "*TRG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "All L",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "ls",
+              "type": "NR3"
+            },
+            {
+              "name": "q",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_L",
+          "direction": "in",
+          "payload_format": {
+            "command": "Nab_All_L"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_L",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Nab_All_R": {
+        "command": "Nab_All_R",
+        "verb": "nab",
+        "description": "One R reading on the rigged setup: triggers and reads status, REAL, IMAG.",
+        "scpi": "*TRG;*WAI;:FETCh?",
+        "scpi_fast": "*TRG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "All R",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "r",
+              "type": "NR3"
+            },
+            {
+              "name": "x",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_R",
+          "direction": "in",
+          "payload_format": {
+            "command": "Nab_All_R"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_R",
+          "reading_direction": "out"
+        },
+        "unverified": true
       },
       "Self_Test": {
         "command": "Self_Test",
@@ -1670,7 +1516,89 @@
         }
       }
     },
-    "rig": {},
+    "rig": {
+      "Rig_All_C": {
+        "command": "Rig_All_C",
+        "verb": "rig",
+        "description": "Sets the meter up to measure capacitance (parallel C and its D): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+        "scpi": ":TRIGger:SOURce BUS;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+        "scpi_fast": ":TRIG:SOUR BUS;:CALC1:FORM CP;:CALC2:FORM D;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+        "subsystem": "CALCulate",
+        "group": "All C",
+        "args": [
+          "freq",
+          "level"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Rig_All_C",
+          "direction": "in",
+          "payload_format": {
+            "command": "Rig_All_C",
+            "freq": "<freq>",
+            "level": "<level>"
+          }
+        },
+        "unverified": true
+      },
+      "Rig_All_L": {
+        "command": "Rig_All_L",
+        "verb": "rig",
+        "description": "Sets the meter up to measure inductance (series L and its Q): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+        "scpi": ":TRIGger:SOURce BUS;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+        "scpi_fast": ":TRIG:SOUR BUS;:CALC1:FORM LS;:CALC2:FORM Q;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+        "subsystem": "CALCulate",
+        "group": "All L",
+        "args": [
+          "freq",
+          "level"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Rig_All_L",
+          "direction": "in",
+          "payload_format": {
+            "command": "Rig_All_L",
+            "freq": "<freq>",
+            "level": "<level>"
+          }
+        },
+        "unverified": true
+      },
+      "Rig_All_R": {
+        "command": "Rig_All_R",
+        "verb": "rig",
+        "description": "Sets the meter up to measure resistance (R and its reactance X): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+        "scpi": ":TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+        "scpi_fast": ":TRIG:SOUR BUS;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+        "subsystem": "CALCulate",
+        "group": "All R",
+        "args": [
+          "freq",
+          "level"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Rig_All_R",
+          "direction": "in",
+          "payload_format": {
+            "command": "Rig_All_R",
+            "freq": "<freq>",
+            "level": "<level>"
+          }
+        },
+        "unverified": true
+      }
+    },
     "do": {
       "Clear_Status": {
         "command": "Clear_Status",
@@ -1739,8 +1667,8 @@
         "command": "Correction_Open",
         "verb": "do",
         "description": "Executes the OPEN correction.",
-        "scpi": ":SENSe:CORRection:OPEN",
-        "scpi_fast": ":SENS:CORR:OPEN",
+        "scpi": ":SENSe:CORRection:COLLect STANdard1",
+        "scpi_fast": ":SENS:CORR:COLL STAN1",
         "subsystem": "SENSe",
         "group": "SENSe",
         "args": [],
@@ -1761,8 +1689,8 @@
         "command": "Correction_Short",
         "verb": "do",
         "description": "Executes the SHORT correction.",
-        "scpi": ":SENSe:CORRection:SHORt",
-        "scpi_fast": ":SENS:CORR:SHOR",
+        "scpi": ":SENSe:CORRection:COLLect STANdard2",
+        "scpi_fast": ":SENS:CORR:COLL STAN2",
         "subsystem": "SENSe",
         "group": "SENSe",
         "args": [],

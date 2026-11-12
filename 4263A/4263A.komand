@@ -16,23 +16,9 @@
       "unverified": true,
       "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed; path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
-    "Secondary_Parameter": {
-      "scpi": ":CALCulate2:FORMat <param>",
-      "scpiFast": ":CALC2:FORM <param>",
-      "description": "Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
-      "arg": {
-        "kind": "enum"
-      },
-      "args": [
-        "param"
-      ],
-      "subsystem": "CALCulate",
-      "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed; path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
-    },
     "Limit_Lower": {
-      "scpi": ":CALCulate:LIMit:LOWer <limit>",
-      "scpiFast": ":CALC:LIM:LOW <limit>",
+      "scpi": ":CALCulate1:LIMit:LOWer <limit>",
+      "scpiFast": ":CALC1:LIM:LOW <limit>",
       "description": "Sets the lower limit for the comparator.",
       "arg": {
         "kind": "numeric"
@@ -41,11 +27,12 @@
         "limit"
       ],
       "subsystem": "CALCulate",
-      "unverified": true
+      "unverified": true,
+      "notes": "Path fixed 2026-11-11 (was `:CALCulate:LIMit:LOWer <limit>`): 4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-10: `:CALCulate{1|2}:LIMit:LOWer[:DATA]` — the comparator limit belongs to CALCulate1 (primary) or 2; the bare CALCulate meant suffix 1, now written out as the unit's own *LRN? (bench 2026-11-12 03:07 UTC, 3145J01840 fw 02.00) answers `:CALC1:LIM:STAT 0`. Never sent in this form, so still unverified"
     },
     "Limit_State": {
-      "scpi": ":CALCulate:LIMit:STATe <state>",
-      "scpiFast": ":CALC:LIM:STAT <state>",
+      "scpi": ":CALCulate1:LIMit:STATe <state>",
+      "scpiFast": ":CALC1:LIM:STAT <state>",
       "description": "Enables or disables the comparator function.",
       "arg": {
         "kind": "bool",
@@ -59,11 +46,11 @@
       ],
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
+      "notes": "Path fixed 2026-11-11 (was `:CALCulate:LIMit:STATe <state>`): 4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-10: `:CALCulate{1|2}:LIMit:STATe`; the unit's own *LRN? (bench 2026-11-12 03:07 UTC, 3145J01840 fw 02.00) answers `:CALC1:LIM:STAT 0`. Never sent in this form, so still unverified"
     },
     "Limit_Upper": {
-      "scpi": ":CALCulate:LIMit:UPPer <limit>",
-      "scpiFast": ":CALC:LIM:UPP <limit>",
+      "scpi": ":CALCulate1:LIMit:UPPer <limit>",
+      "scpiFast": ":CALC1:LIM:UPP <limit>",
       "description": "Sets the higher limit for the comparator.",
       "arg": {
         "kind": "numeric"
@@ -72,51 +59,22 @@
         "limit"
       ],
       "subsystem": "CALCulate",
-      "unverified": true
-    },
-    "Set_Curr": {
-      "scpi": "CURR <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
       "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "A",
-        "limits": "query"
-      },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `CURR <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
+      "notes": "Path fixed 2026-11-11 (was `:CALCulate:LIMit:UPPer <limit>`): 4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-11: `:CALCulate{1|2}:LIMit:UPPer[:DATA]`; suffix 1 written out as the unit's own *LRN? (bench 2026-11-12 03:07 UTC, 3145J01840 fw 02.00) answers `:CALC1:LIM:STAT 0`. Never sent in this form, so still unverified"
     },
-    "Set_Curr_Lev": {
-      "scpi": "CURR:LEV <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
+    "Secondary_Parameter": {
+      "scpi": ":CALCulate2:FORMat <param>",
+      "scpiFast": ":CALC2:FORM <param>",
+      "description": "Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
       "arg": {
-        "kind": "numeric",
-        "unit": "A",
-        "limits": "query"
+        "kind": "enum"
       },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `CURR:LEV <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
-    },
-    "Set_Curr_Slew": {
-      "scpi": "CURR:SLEW <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "args": [
+        "param"
+      ],
+      "subsystem": "CALCulate",
       "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "A/s",
-        "limits": "query"
-      },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `CURR:SLEW <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
-    },
-    "Set_Curr_Tlev": {
-      "scpi": "CURR:TLEV <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "A",
-        "limits": "query"
-      },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `CURR:TLEV <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed; path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Display_State": {
       "scpi": ":DISPlay:STATe <state>",
@@ -133,7 +91,8 @@
         "state"
       ],
       "subsystem": "DISPlay",
-      "unverified": true
+      "unverified": true,
+      "notes": "4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-19: `:DISPlay[:WINDow][:STATe]` — the path is right. Certify 2026-11-12 03:02 UTC: OFF read back 0 and ON read back 1 (both agreed); the first error query after OFF read -113 and the next two read +0 — the -113 is not shown to come from this header (the tries just before were the load commands CURR:TLEV?, each -113). Still unverified"
     },
     "Init_Continuous": {
       "scpi": ":INITiate:CONTinuous <state>",
@@ -153,36 +112,6 @@
       "unverified": true,
       "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
-    "Set_Inp": {
-      "scpi": "INP <state>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `INP <state>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
-    },
-    "Set_Mode": {
-      "scpi": "MODE <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `MODE <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
-    },
-    "Set_Res": {
-      "scpi": "RES <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "Ohm",
-        "limits": "query"
-      },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `RES <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
-    },
     "Average_Count": {
       "scpi": ":SENSe:AVERage:COUNt <count>",
       "scpiFast": ":SENS:AVER:COUN <count>",
@@ -197,10 +126,28 @@
       "unverified": true,
       "notes": "path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
+    "Voltage_Range_Auto": {
+      "scpi": ":SENSe:FIMPedance:RANGe:AUTO <state>",
+      "scpiFast": ":SENS:FIMP:RANG:AUTO <state>",
+      "description": "Turns impedance auto-ranging ON or OFF (OFF = hold range); the name is kept for the panels that bind it.",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "args": [
+        "state"
+      ],
+      "subsystem": "SENSe",
+      "unverified": true,
+      "notes": "Path fixed 2026-11-11 (was `:SENSe:VOLTage:RANGe:AUTO <state>`): 4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-26: no SENSe:VOLTage subsystem — auto range is `[:SENSe]:FIMPedance:RANGe:AUTO`; the unit's own *LRN? (bench 2026-11-12 03:07 UTC, 3145J01840 fw 02.00) answers `:FIMP:APER +6.5E-02;RANG:AUTO 1`. Never sent in this form, so still unverified"
+    },
     "Current_Range": {
-      "scpi": ":SENSe:CURRent:RANGe <range>",
-      "scpiFast": ":SENS:CURR:RANG <range>",
-      "description": "Sets the current measurement range.",
+      "scpi": ":SENSe:FIMPedance:RANGe:UPPer <range>",
+      "scpiFast": ":SENS:FIMP:RANG:UPP <range>",
+      "description": "Sets the impedance measurement range in ohms (0.1 to 1M, or UP/DOWN); the name is kept for the panels that bind it.",
       "arg": {
         "kind": "numeric"
       },
@@ -208,7 +155,8 @@
         "range"
       ],
       "subsystem": "SENSe",
-      "unverified": true
+      "unverified": true,
+      "notes": "Path fixed 2026-11-11 (was `:SENSe:CURRent:RANGe <range>`): 4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-27: the 4263B has no SENSe:CURRent subsystem — its one measurement range is the impedance range `[:SENSe]:FIMPedance:RANGe[:UPPer] <ohms>` (0.1, 1, 10, 100, 1k, 10k, 100k, 1M; MIN/MAX/UP/DOWN); the unit's own *LRN? (bench 2026-11-12 03:07 UTC, 3145J01840 fw 02.00) answers `:FIMP:APER …;RANG:AUTO 1`. Never sent in this form, so still unverified"
     },
     "Measurement_Function": {
       "scpi": ":SENSe:FUNCtion <function>",
@@ -223,55 +171,6 @@
       "subsystem": "SENSe",
       "unverified": true,
       "notes": "The 4263B's SENSe:FUNCtion selects the measurement (impedance or the transformer option); the parameter pair is CALCulate1/2:FORMat (Primary_Parameter / Secondary_Parameter); path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
-    },
-    "Voltage_Range_Auto": {
-      "scpi": ":SENSe:VOLTage:RANGe:AUTO <state>",
-      "scpiFast": ":SENS:VOLT:RANG:AUTO <state>",
-      "description": "Enables or disables auto-ranging.",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "args": [
-        "state"
-      ],
-      "subsystem": "SENSe",
-      "unverified": true,
-      "notes": "The unit's *LRN? (bench 2026-11-12) lists autorange as RANG:AUTO under :FIMP (i.e. :SENSe:FIMPedance:RANGe:AUTO), not under VOLTage — this header is probably wrong; left until asked"
-    },
-    "Set_Bias_State": {
-      "scpi": ":SOURce:BIAS:STATe <state>",
-      "scpiFast": ":SOUR:BIAS:STAT <state>",
-      "description": "Turns the DC bias ON or OFF.",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "args": [
-        "state"
-      ],
-      "subsystem": "SOURce",
-      "unverified": true
-    },
-    "Set_Bias_Voltage": {
-      "scpi": ":SOURce:BIAS:VOLTage <volt>",
-      "scpiFast": ":SOUR:BIAS:VOLT <volt>",
-      "description": "Sets the internal DC bias voltage level.",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V"
-      },
-      "args": [
-        "volt"
-      ],
-      "subsystem": "SOURce",
-      "unverified": true
     },
     "Set_Test_Frequency": {
       "scpi": ":SOURce:FREQuency <freq>",
@@ -302,6 +201,39 @@
       "subsystem": "SOURce",
       "unverified": true,
       "notes": "path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
+    },
+    "Set_Bias_Voltage": {
+      "scpi": ":SOURce:VOLTage:OFFSet <volt>",
+      "scpiFast": ":SOUR:VOLT:OFFS <volt>",
+      "description": "Sets the internal DC bias voltage level.",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V"
+      },
+      "args": [
+        "volt"
+      ],
+      "subsystem": "SOURce",
+      "unverified": true,
+      "notes": "Path fixed 2026-11-11 (was `:SOURce:BIAS:VOLTage <volt>`): 4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-29: `:SOURce:VOLTage[:LEVel][:IMMediate]:OFFSet <numeric value>[MV|V]` (the bracketed default nodes left out); no SOURce:BIAS subsystem. Never sent in this form, so still unverified"
+    },
+    "Set_Bias_State": {
+      "scpi": ":SOURce:VOLTage:OFFSet:STATe <state>",
+      "scpiFast": ":SOUR:VOLT:OFFS:STAT <state>",
+      "description": "Turns the DC bias ON or OFF.",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "args": [
+        "state"
+      ],
+      "subsystem": "SOURce",
+      "unverified": true,
+      "notes": "Path fixed 2026-11-11 (was `:SOURce:BIAS:STATe <state>`): 4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-30: no SOURce:BIAS subsystem — the DC bias is the voltage offset `:SOURce:VOLTage[:LEVel][:IMMediate]:OFFSet:STATe`; the unit's own *LRN? (bench 2026-11-12 03:07 UTC, 3145J01840 fw 02.00) answers `:SOUR:FREQ …;VOLT …;VOLT:OFFS:STAT 0`. ON applies DC bias to the DUT. Never sent in this form, so still unverified"
     },
     "Set_Beeper": {
       "scpi": ":SYSTem:BEEPer:STATe <state>",
@@ -337,41 +269,6 @@
       "subsystem": "SYSTem",
       "unverified": true
     },
-    "Set_Tran_Dcyc": {
-      "scpi": "TRAN:DCYC <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "%",
-        "limits": "query"
-      },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `TRAN:DCYC <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
-    },
-    "Set_Tran_Freq": {
-      "scpi": "TRAN:FREQ <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "Hz",
-        "limits": "query"
-      },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `TRAN:FREQ <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
-    },
-    "Set_Tran_Stat": {
-      "scpi": "TRAN:STAT <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `TRAN:STAT <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
-    },
     "Trigger_Delay": {
       "scpi": ":TRIGger:DELay <seconds>",
       "scpiFast": ":TRIG:DEL <seconds>",
@@ -400,17 +297,6 @@
       "subsystem": "TRIGger",
       "unverified": true,
       "notes": "path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
-    },
-    "Set_Volt": {
-      "scpi": "VOLT <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "limits": "query"
-      },
-      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `VOLT <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     }
   },
   "do": {
@@ -433,18 +319,20 @@
       "notes": "Bench 2026-11-12 02:55 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed"
     },
     "Correction_Open": {
-      "scpi": ":SENSe:CORRection:OPEN",
-      "scpiFast": ":SENS:CORR:OPEN",
+      "scpi": ":SENSe:CORRection:COLLect STANdard1",
+      "scpiFast": ":SENS:CORR:COLL STAN1",
       "description": "Executes the OPEN correction.",
       "subsystem": "SENSe",
-      "unverified": true
+      "unverified": true,
+      "notes": "Path fixed 2026-11-11 (was `:SENSe:CORRection:OPEN`): 4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-25: there is no CORRection:OPEN node — `[:SENSe]:CORRection:COLLect[:ACQuire] STANdard1` performs the OPEN correction (manual example p. 4-8 `:SENS:CORR:COLL STAN1` then *OPC?); it also turns CORRection[:STATe] ON. Never sent in this form, so still unverified"
     },
     "Correction_Short": {
-      "scpi": ":SENSe:CORRection:SHORt",
-      "scpiFast": ":SENS:CORR:SHOR",
+      "scpi": ":SENSe:CORRection:COLLect STANdard2",
+      "scpiFast": ":SENS:CORR:COLL STAN2",
       "description": "Executes the SHORT correction.",
       "subsystem": "SENSe",
-      "unverified": true
+      "unverified": true,
+      "notes": "Path fixed 2026-11-11 (was `:SENSe:CORRection:SHORt`): 4263B Operation Manual 04263-90041 (Agilent, ch. 5 GPIB Reference: Subsystem Command List p. 5-2/5-3 and Command Reference p. 5-8 on; the 4263A's own manual is not obtainable) p. 5-25: `[:SENSe]:CORRection:COLLect[:ACQuire] STANdard2` performs the SHORT correction (example p. 4-8 `:SENS:CORR:COLL STAN2`). Never sent in this form, so still unverified"
     },
     "Trigger_Immediate": {
       "scpi": ":TRIGger",
@@ -484,6 +372,87 @@
       },
       "subsystem": "Common",
       "notes": "Bench 2026-11-07 03:12 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed, answered 1"
+    },
+    "Nab_All_C": {
+      "scpi": "*TRG;*WAI;:FETCh?",
+      "scpiFast": "*TRG;*WAI;:FETC?",
+      "description": "One C reading on the rigged setup: triggers and reads status, CP, D.",
+      "group": "All C",
+      "subsystem": "MEASure",
+      "unverified": true,
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "cp",
+            "type": "NR3"
+          },
+          {
+            "name": "d",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "Friends: Rig_All_C once at the beginning (function, trigger from the bus, frequency, level), then Nab_All_C as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench; run Rig_All_C first — the reading is whatever the meter is set to"
+    },
+    "Nab_All_L": {
+      "scpi": "*TRG;*WAI;:FETCh?",
+      "scpiFast": "*TRG;*WAI;:FETC?",
+      "description": "One L reading on the rigged setup: triggers and reads status, LS, Q.",
+      "group": "All L",
+      "subsystem": "MEASure",
+      "unverified": true,
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "ls",
+            "type": "NR3"
+          },
+          {
+            "name": "q",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "Friends: Rig_All_L once at the beginning (function, trigger from the bus, frequency, level), then Nab_All_L as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench; run Rig_All_L first — the reading is whatever the meter is set to"
+    },
+    "Nab_All_R": {
+      "scpi": "*TRG;*WAI;:FETCh?",
+      "scpiFast": "*TRG;*WAI;:FETC?",
+      "description": "One R reading on the rigged setup: triggers and reads status, REAL, IMAG.",
+      "group": "All R",
+      "subsystem": "MEASure",
+      "unverified": true,
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "r",
+            "type": "NR3"
+          },
+          {
+            "name": "x",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "Friends: Rig_All_R once at the beginning (function, trigger from the bus, frequency, level), then Nab_All_R as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench; REAL/IMAG as the R and X spellings are recalled from the 4263B guide, not confirmed (the unit's *LRN? shows only CP and D); run Rig_All_R first — the reading is whatever the meter is set to"
     },
     "Self_Test": {
       "scpi": "*TST?",
@@ -640,5 +609,54 @@
       "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:TRIGger:SOURce?` answered INT"
     }
   },
-  "rig": {}
+  "rig": {
+    "Rig_All_C": {
+      "scpi": ":TRIGger:SOURce BUS;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+      "scpiFast": ":TRIG:SOUR BUS;:CALC1:FORM CP;:CALC2:FORM D;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+      "description": "Sets the meter up to measure capacitance (parallel C and its D): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+      "arg": {
+        "kind": "numeric"
+      },
+      "args": [
+        "freq",
+        "level"
+      ],
+      "group": "All C",
+      "subsystem": "CALCulate",
+      "unverified": true,
+      "notes": "Friends: Rig_All_C once at the beginning (function, trigger from the bus, frequency, level), then Nab_All_C as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench"
+    },
+    "Rig_All_L": {
+      "scpi": ":TRIGger:SOURce BUS;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+      "scpiFast": ":TRIG:SOUR BUS;:CALC1:FORM LS;:CALC2:FORM Q;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+      "description": "Sets the meter up to measure inductance (series L and its Q): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+      "arg": {
+        "kind": "numeric"
+      },
+      "args": [
+        "freq",
+        "level"
+      ],
+      "group": "All L",
+      "subsystem": "CALCulate",
+      "unverified": true,
+      "notes": "Friends: Rig_All_L once at the beginning (function, trigger from the bus, frequency, level), then Nab_All_L as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench"
+    },
+    "Rig_All_R": {
+      "scpi": ":TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+      "scpiFast": ":TRIG:SOUR BUS;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+      "description": "Sets the meter up to measure resistance (R and its reactance X): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+      "arg": {
+        "kind": "numeric"
+      },
+      "args": [
+        "freq",
+        "level"
+      ],
+      "group": "All R",
+      "subsystem": "CALCulate",
+      "unverified": true,
+      "notes": "Friends: Rig_All_R once at the beginning (function, trigger from the bus, frequency, level), then Nab_All_R as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench; REAL/IMAG as the R and X spellings are recalled from the 4263B guide, not confirmed (the unit's *LRN? shows only CP and D)"
+    }
+  }
 }
