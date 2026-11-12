@@ -72,10 +72,10 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 59,
-    "get_count": 18,
-    "set_count": 34,
-    "nab_count": 19,
+    "total_commands": 52,
+    "get_count": 14,
+    "set_count": 30,
+    "nab_count": 16,
     "rig_count": 0,
     "do_count": 6
   },
@@ -105,7 +105,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_IDN",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Learn_Settings": {
         "command": "Learn_Settings",
@@ -131,7 +131,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Learn_Settings",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Operation_Complete": {
         "command": "Get_Operation_Complete",
@@ -210,7 +210,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Primary_Parameter",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Secondary_Parameter": {
         "command": "Get_Secondary_Parameter",
@@ -237,7 +237,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Secondary_Parameter",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Fetch_Existing": {
         "command": "Fetch_Existing",
@@ -290,7 +290,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Init_Continuous",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Read_Measurement": {
         "command": "Read_Measurement",
@@ -313,87 +313,6 @@
             "command": "Read_Measurement"
           },
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Measurement",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Correction_Open_State": {
-        "command": "Get_Correction_Open_State",
-        "verb": "get",
-        "description": "Reads whether OPEN compensation is on.",
-        "scpi": ":SENSe:CORRection:OPEN:STATe?",
-        "scpi_fast": ":SENS:CORR:OPEN:STAT?",
-        "subsystem": "SENSe",
-        "group": "Readback Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Correction_Open_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Correction_Open_State"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Correction_Open_State",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Correction_Short_State": {
-        "command": "Get_Correction_Short_State",
-        "verb": "get",
-        "description": "Reads whether SHORT compensation is on.",
-        "scpi": ":SENSe:CORRection:SHORt:STATe?",
-        "scpi_fast": ":SENS:CORR:SHOR:STAT?",
-        "subsystem": "SENSe",
-        "group": "Readback Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Correction_Short_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Correction_Short_State"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Correction_Short_State",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Impedance_Type": {
-        "command": "Get_Impedance_Type",
-        "verb": "get",
-        "description": "Reads the measurement parameter pair.",
-        "scpi": ":SENSe:FUNCtion:IMPedance:TYPE?",
-        "scpi_fast": ":SENS:FUNC:IMP:TYPE?",
-        "subsystem": "SENSe",
-        "group": "Readback Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "CRD"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Impedance_Type",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Impedance_Type"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Impedance_Type",
           "reading_direction": "out"
         },
         "unverified": true
@@ -423,35 +342,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measurement_Function",
           "reading_direction": "out"
         },
-        "unverified": true
-      },
-      "Get_Test_Current": {
-        "command": "Get_Test_Current",
-        "verb": "get",
-        "description": "Reads the test signal current level.",
-        "scpi": ":SOURce:CURRent?",
-        "scpi_fast": ":SOUR:CURR?",
-        "subsystem": "SOURce",
-        "group": "Readback Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR3",
-          "unit": "A"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Test_Current",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Test_Current"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Test_Current",
-          "reading_direction": "out"
-        },
-        "unverified": true
+        "unverified": false
       },
       "Get_Test_Frequency": {
         "command": "Get_Test_Frequency",
@@ -479,7 +370,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Test_Frequency",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Test_Level": {
         "command": "Get_Test_Level",
@@ -507,7 +398,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Test_Level",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Error_Queue": {
         "command": "Get_Error_Queue",
@@ -534,7 +425,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Error_Queue",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Trigger_Source": {
         "command": "Get_Trigger_Source",
@@ -561,7 +452,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Source",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       }
     },
     "set": {
@@ -960,66 +851,6 @@
         },
         "unverified": true
       },
-      "Correction_Open_State": {
-        "command": "Correction_Open_State",
-        "verb": "set",
-        "description": "Turns the OPEN fixture compensation ON or OFF.",
-        "scpi": ":SENSe:CORRection:OPEN:STATe <state>",
-        "scpi_fast": ":SENS:CORR:OPEN:STAT <state>",
-        "subsystem": "SENSe",
-        "group": "SENSe",
-        "args": [
-          "state"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Correction_Open_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Correction_Open_State",
-            "value": "<value>",
-            "input_name": "state"
-          }
-        },
-        "unverified": true
-      },
-      "Correction_Short_State": {
-        "command": "Correction_Short_State",
-        "verb": "set",
-        "description": "Turns the SHORT fixture compensation ON or OFF.",
-        "scpi": ":SENSe:CORRection:SHORt:STATe <state>",
-        "scpi_fast": ":SENS:CORR:SHOR:STAT <state>",
-        "subsystem": "SENSe",
-        "group": "SENSe",
-        "args": [
-          "state"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Correction_Short_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Correction_Short_State",
-            "value": "<value>",
-            "input_name": "state"
-          }
-        },
-        "unverified": true
-      },
       "Current_Range": {
         "command": "Current_Range",
         "verb": "set",
@@ -1068,42 +899,6 @@
             "command": "Measurement_Function",
             "value": "<value>",
             "input_name": "function"
-          }
-        },
-        "unverified": true
-      },
-      "Impedance_Type": {
-        "command": "Impedance_Type",
-        "verb": "set",
-        "description": "Selects the measurement parameter pair.",
-        "scpi": ":SENSe:FUNCtion:IMPedance:TYPE <type>",
-        "scpi_fast": ":SENS:FUNC:IMP:TYPE <type>",
-        "subsystem": "SENSe",
-        "group": "SENSe",
-        "args": [
-          "type"
-        ],
-        "arg": {
-          "kind": "enum",
-          "values": [
-            "RX",
-            "ZTD",
-            "CPQ",
-            "CSQ",
-            "CSD",
-            "LPQ",
-            "LSQ",
-            "LSD"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Impedance_Type",
-          "direction": "in",
-          "payload_format": {
-            "command": "Impedance_Type",
-            "value": "<value>",
-            "input_name": "type"
           }
         },
         "unverified": true
@@ -1191,33 +986,6 @@
             "command": "Set_Bias_Voltage",
             "value": "<value>",
             "input_name": "volt"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Test_Current": {
-        "command": "Set_Test_Current",
-        "verb": "set",
-        "description": "Sets the test signal level as a current.",
-        "scpi": ":SOURce:CURRent <level>",
-        "scpi_fast": ":SOUR:CURR <level>",
-        "subsystem": "SOURce",
-        "group": "SOURce",
-        "args": [
-          "level"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "A"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Test_Current",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Test_Current",
-            "value": "<value>",
-            "input_name": "level"
           }
         },
         "unverified": true
@@ -1517,7 +1285,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_IDN",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Learn_Settings": {
         "command": "Learn_Settings",
@@ -1543,7 +1311,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Learn_Settings",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Operation_Complete": {
         "command": "Get_Operation_Complete",
@@ -1622,7 +1390,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Primary_Parameter",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Secondary_Parameter": {
         "command": "Get_Secondary_Parameter",
@@ -1649,7 +1417,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Secondary_Parameter",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Fetch_Existing": {
         "command": "Fetch_Existing",
@@ -1702,7 +1470,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Init_Continuous",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Read_Measurement": {
         "command": "Read_Measurement",
@@ -1725,87 +1493,6 @@
             "command": "Read_Measurement"
           },
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Measurement",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Correction_Open_State": {
-        "command": "Get_Correction_Open_State",
-        "verb": "nab",
-        "description": "Reads whether OPEN compensation is on.",
-        "scpi": ":SENSe:CORRection:OPEN:STATe?",
-        "scpi_fast": ":SENS:CORR:OPEN:STAT?",
-        "subsystem": "SENSe",
-        "group": "Readback Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Correction_Open_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Correction_Open_State"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Correction_Open_State",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Correction_Short_State": {
-        "command": "Get_Correction_Short_State",
-        "verb": "nab",
-        "description": "Reads whether SHORT compensation is on.",
-        "scpi": ":SENSe:CORRection:SHORt:STATe?",
-        "scpi_fast": ":SENS:CORR:SHOR:STAT?",
-        "subsystem": "SENSe",
-        "group": "Readback Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Correction_Short_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Correction_Short_State"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Correction_Short_State",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Impedance_Type": {
-        "command": "Get_Impedance_Type",
-        "verb": "nab",
-        "description": "Reads the measurement parameter pair.",
-        "scpi": ":SENSe:FUNCtion:IMPedance:TYPE?",
-        "scpi_fast": ":SENS:FUNC:IMP:TYPE?",
-        "subsystem": "SENSe",
-        "group": "Readback Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "CRD"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Impedance_Type",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Impedance_Type"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Impedance_Type",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1835,7 +1522,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measurement_Function",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "lcr_reading": {
         "command": "lcr_reading",
@@ -1874,34 +1561,6 @@
         },
         "unverified": true
       },
-      "Get_Test_Current": {
-        "command": "Get_Test_Current",
-        "verb": "nab",
-        "description": "Reads the test signal current level.",
-        "scpi": ":SOURce:CURRent?",
-        "scpi_fast": ":SOUR:CURR?",
-        "subsystem": "SOURce",
-        "group": "Readback Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR3",
-          "unit": "A"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Test_Current",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Test_Current"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Test_Current",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Test_Frequency": {
         "command": "Get_Test_Frequency",
         "verb": "nab",
@@ -1928,7 +1587,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Test_Frequency",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Test_Level": {
         "command": "Get_Test_Level",
@@ -1956,7 +1615,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Test_Level",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Error_Queue": {
         "command": "Get_Error_Queue",
@@ -1983,7 +1642,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Error_Queue",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Trigger_Source": {
         "command": "Get_Trigger_Source",
@@ -2010,7 +1669,66 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Source",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
+      },
+      "GRAB": {
+        "command": "GRAB",
+        "verb": "nab",
+        "description": "GRAB \u2014 all 9 queries this model answered alone on the bench, stacked; the answers come back `;`-separated in the order of grab.commands",
+        "scpi": ":CALC1:FORM?;:CALC2:FORM?;:FETC?;:INIT:CONT?;:SENS:FUNC?;:SOUR:FREQ?;:SOUR:VOLT?;:TRIG:SOUR?;*IDN?",
+        "subsystem": "GRAB",
+        "group": "GRAB",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 9,
+          "type": "LIST"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/GRAB",
+          "direction": "in",
+          "payload_format": {
+            "command": "GRAB"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/GRAB",
+          "reading_direction": "out"
+        },
+        "unverified": false,
+        "grab": {
+          "commands": [
+            "Get_Primary_Parameter",
+            "Get_Secondary_Parameter",
+            "Fetch_Existing",
+            "Get_Init_Continuous",
+            "Get_Measurement_Function",
+            "Get_Test_Frequency",
+            "Get_Test_Level",
+            "Get_Trigger_Source",
+            "Read_IDN"
+          ],
+          "queries": [
+            ":CALC1:FORM?",
+            ":CALC2:FORM?",
+            ":FETC?",
+            ":INIT:CONT?",
+            ":SENS:FUNC?",
+            ":SOUR:FREQ?",
+            ":SOUR:VOLT?",
+            ":TRIG:SOUR?",
+            "*IDN?"
+          ],
+          "chunks": [],
+          "max_command_bytes": 240,
+          "qualified": {
+            "compiled": "2026-11-12T03:09:45Z",
+            "units": [
+              "visa/LCR/4263A/Dev711"
+            ],
+            "source": "4263A.qualified.json"
+          }
+        }
       }
     },
     "rig": {},

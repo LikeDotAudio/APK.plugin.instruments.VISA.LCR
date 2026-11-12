@@ -1,0 +1,121 @@
+{
+  "model": "4263A",
+  "family": "LCR",
+  "compiled": "2026-11-12T03:09:45Z",
+  "source": "WEB.OsApi /api/os/captures/qualified (Nabber nab_known) + the 2026-11-12 03:07 UTC probe through /api/instrument/send \u2014 each query asked alone, SYST:ERR? +0 after",
+  "units": [
+    "visa/LCR/4263A/Dev711"
+  ],
+  "commands": [
+    {
+      "endpoint": "Read_IDN",
+      "query": "*IDN?",
+      "units": [
+        "visa/LCR/4263A/Dev711"
+      ],
+      "first": 1794452839
+    },
+    {
+      "endpoint": "Get_Primary_Parameter",
+      "query": ":CALC1:FORM?",
+      "units": [
+        "visa/LCR/4263A/Dev711"
+      ],
+      "first": 1794452839
+    },
+    {
+      "endpoint": "Get_Secondary_Parameter",
+      "query": ":CALC2:FORM?",
+      "units": [
+        "visa/LCR/4263A/Dev711"
+      ],
+      "first": 1794452839
+    },
+    {
+      "endpoint": "Fetch_Existing",
+      "query": ":FETC?",
+      "units": [
+        "visa/LCR/4263A/Dev711"
+      ],
+      "first": 1794197550.0411284
+    },
+    {
+      "endpoint": "Get_Init_Continuous",
+      "query": ":INIT:CONT?",
+      "units": [
+        "visa/LCR/4263A/Dev711"
+      ],
+      "first": 1794452839
+    },
+    {
+      "endpoint": "Get_Measurement_Function",
+      "query": ":SENS:FUNC?",
+      "units": [
+        "visa/LCR/4263A/Dev711"
+      ],
+      "first": 1794021660.231736
+    },
+    {
+      "endpoint": "Get_Test_Frequency",
+      "query": ":SOUR:FREQ?",
+      "units": [
+        "visa/LCR/4263A/Dev711"
+      ],
+      "first": 1794452839
+    },
+    {
+      "endpoint": "Get_Test_Level",
+      "query": ":SOUR:VOLT?",
+      "units": [
+        "visa/LCR/4263A/Dev711"
+      ],
+      "first": 1794452839
+    },
+    {
+      "endpoint": "Get_Trigger_Source",
+      "query": ":TRIG:SOUR?",
+      "units": [
+        "visa/LCR/4263A/Dev711"
+      ],
+      "first": 1794452839
+    }
+  ],
+  "refused": [
+    {
+      "query": ":MEAS?",
+      "why": "refused: -113,\"Undefined header\" | -420,\"Query UNTERMINATED\""
+    },
+    {
+      "query": ":SENS:FUNC:IMP:TYPE?",
+      "why": "refused: -113,\"Undefined header\" | -420,\"Query UNTERMINATED\" (bench 2026-11-12)"
+    },
+    {
+      "query": ":SOUR:CURR?",
+      "why": "refused: -113,\"Undefined header\" | -420,\"Query UNTERMINATED\" (bench 2026-11-12)"
+    },
+    {
+      "query": ":SENS:CORR:OPEN:STAT?",
+      "why": "refused: -113,\"Undefined header\" | -420,\"Query UNTERMINATED\" (bench 2026-11-12)"
+    },
+    {
+      "query": ":SENS:CORR:SHOR:STAT?",
+      "why": "refused: -113,\"Undefined header\" | -420,\"Query UNTERMINATED\" (bench 2026-11-12)"
+    }
+  ],
+  "grab_qualified": [
+    {
+      "unit": "visa/LCR/4263A/Dev711",
+      "when": "2026-11-12T03:09:57Z",
+      "ok": true,
+      "parts": [
+        {
+          "part": "GRAB",
+          "expected": 9,
+          "answered": 9,
+          "ok": true,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

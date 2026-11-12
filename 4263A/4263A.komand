@@ -14,7 +14,7 @@
       ],
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed; path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Secondary_Parameter": {
       "scpi": ":CALCulate2:FORMat <param>",
@@ -28,7 +28,7 @@
       ],
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed; path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Limit_Lower": {
       "scpi": ":CALCulate:LIMit:LOWer <limit>",
@@ -58,7 +58,8 @@
         "state"
       ],
       "subsystem": "CALCulate",
-      "unverified": true
+      "unverified": true,
+      "notes": "path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Limit_Upper": {
       "scpi": ":CALCulate:LIMit:UPPer <limit>",
@@ -150,7 +151,7 @@
       ],
       "subsystem": "INITiate",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Set_Inp": {
       "scpi": "INP <state>",
@@ -193,7 +194,8 @@
         "count"
       ],
       "subsystem": "SENSe",
-      "unverified": true
+      "unverified": true,
+      "notes": "path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Correction_Open_State": {
       "scpi": ":SENSe:CORRection:OPEN:STATe <state>",
@@ -211,7 +213,9 @@
       ],
       "subsystem": "SENSe",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)",
+      "retired": true,
+      "retired_because": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send): `:SENS:CORR:OPEN:STAT?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\" — the unit has no such header"
     },
     "Correction_Short_State": {
       "scpi": ":SENSe:CORRection:SHORt:STATe <state>",
@@ -229,7 +233,9 @@
       ],
       "subsystem": "SENSe",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)",
+      "retired": true,
+      "retired_because": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send): `:SENS:CORR:SHOR:STAT?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\" — the unit has no such header"
     },
     "Current_Range": {
       "scpi": ":SENSe:CURRent:RANGe <range>",
@@ -256,7 +262,7 @@
       ],
       "subsystem": "SENSe",
       "unverified": true,
-      "notes": "The 4263B's SENSe:FUNCtion selects the measurement (impedance or the transformer option); the parameter pair is CALCulate1/2:FORMat (Primary_Parameter / Secondary_Parameter)"
+      "notes": "The 4263B's SENSe:FUNCtion selects the measurement (impedance or the transformer option); the parameter pair is CALCulate1/2:FORMat (Primary_Parameter / Secondary_Parameter); path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Impedance_Type": {
       "scpi": ":SENSe:FUNCtion:IMPedance:TYPE <type>",
@@ -280,7 +286,9 @@
       ],
       "subsystem": "SENSe",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); 4284A/E4980A-style header (FUNCtion:IMPedance:*); the 4263B tree selects the pair with CALCulate1/2:FORMat, so this may answer -113 on the 4263A — kept until the bench says"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); 4284A/E4980A-style header (FUNCtion:IMPedance:*); the 4263B tree selects the pair with CALCulate1/2:FORMat, so this may answer -113 on the 4263A — kept until the bench says",
+      "retired": true,
+      "retired_because": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send): `:SENS:FUNC:IMP:TYPE?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\" — the unit has no such header"
     },
     "Voltage_Range_Auto": {
       "scpi": ":SENSe:VOLTage:RANGe:AUTO <state>",
@@ -297,7 +305,8 @@
         "state"
       ],
       "subsystem": "SENSe",
-      "unverified": true
+      "unverified": true,
+      "notes": "The unit's *LRN? (bench 2026-11-12) lists autorange as RANG:AUTO under :FIMP (i.e. :SENSe:FIMPedance:RANGe:AUTO), not under VOLTage — this header is probably wrong; left until asked"
     },
     "Set_Bias_State": {
       "scpi": ":SOURce:BIAS:STATe <state>",
@@ -343,7 +352,9 @@
       ],
       "subsystem": "SOURce",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)",
+      "retired": true,
+      "retired_because": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send): `:SOUR:CURR?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\" — the unit has no such header"
     },
     "Set_Test_Frequency": {
       "scpi": ":SOURce:FREQuency <freq>",
@@ -358,7 +369,7 @@
       ],
       "subsystem": "SOURce",
       "unverified": true,
-      "notes": "Was `:SENSe:FREQuency`: the test oscillator's frequency is a SOURce setting on the 4263 (4263B 04263-90040 ch. 8 :SOURce:FREQuency[:CW]); changed 2026-11-11, unverified on the bench"
+      "notes": "Was `:SENSe:FREQuency`: the test oscillator's frequency is a SOURce setting on the 4263 (4263B 04263-90040 ch. 8 :SOURce:FREQuency[:CW]); changed 2026-11-11, unverified on the bench; path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Set_Test_Level": {
       "scpi": ":SOURce:VOLTage <level>",
@@ -372,7 +383,8 @@
         "level"
       ],
       "subsystem": "SOURce",
-      "unverified": true
+      "unverified": true,
+      "notes": "path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Set_Beeper": {
       "scpi": ":SYSTem:BEEPer:STATe <state>",
@@ -455,7 +467,8 @@
         "seconds"
       ],
       "subsystem": "TRIGger",
-      "unverified": true
+      "unverified": true,
+      "notes": "path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Trigger_Source": {
       "scpi": ":TRIGger:SOURce <source>",
@@ -468,7 +481,8 @@
         "source"
       ],
       "subsystem": "TRIGger",
-      "unverified": true
+      "unverified": true,
+      "notes": "path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified"
     },
     "Set_Volt": {
       "scpi": "VOLT <value>",
@@ -532,7 +546,7 @@
         "type": "AARD"
       },
       "subsystem": "Common",
-      "unverified": true
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `*IDN?` answered HEWLETT-PACKARD,4263A,3145J01840,02.00"
     },
     "Learn_Settings": {
       "scpi": "*LRN?",
@@ -542,8 +556,7 @@
         "type": "AARD"
       },
       "subsystem": "Common",
-      "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); an unsupported query on HP SCPI answers nothing (-113 then a timeout), never a VISA error — ask it alone first; if it answers, it is the whole-state nab"
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `*LRN?` answered 18 `;`-separated settings: :FUNC:CONC 0;:FUNC \"FADM\";:CAL:CABL +0;:SOUR:FREQ +1.00000E+03;VOLT +1.00000E+00;VOLT:OFFS:STAT 0;:AVER 1;:AVER:COUN +1;:FIMP:APER +6.50000E-02;RANG:AUTO 1;:FIMP:CONT:VER 0;:TRIG:DEL +0.00000E+00;SOUR INT;:CALC1:FORM CP;:CALC2:FORM D;:CALC1:MATH:STAT 0;:CALC2:MATH:STAT 0;:CALC1:LIM:STAT 0 — the whole-state nab; it answers many values, so it is never stacked into the GRAB"
     },
     "Get_Operation_Complete": {
       "scpi": "*OPC?",
@@ -576,8 +589,7 @@
       },
       "group": "Readback Queries",
       "subsystem": "CALCulate",
-      "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed"
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:CALCulate1:FORMat?` answered CP"
     },
     "Get_Secondary_Parameter": {
       "scpi": ":CALCulate2:FORMat?",
@@ -589,8 +601,7 @@
       },
       "group": "Readback Queries",
       "subsystem": "CALCulate",
-      "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed"
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:CALCulate2:FORMat?` answered D"
     },
     "Fetch_Existing": {
       "scpi": ":FETCh?",
@@ -612,8 +623,7 @@
       },
       "group": "Readback Queries",
       "subsystem": "INITiate",
-      "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:INITiate:CONTinuous?` answered 1"
     },
     "Get_Meas_All": {
       "scpi": "MEAS:ALL?",
@@ -687,7 +697,9 @@
       "group": "Readback Queries",
       "subsystem": "SENSe",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)",
+      "retired": true,
+      "retired_because": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send): `:SENS:CORR:OPEN:STAT?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\" — the unit has no such header"
     },
     "Get_Correction_Short_State": {
       "scpi": ":SENSe:CORRection:SHORt:STATe?",
@@ -700,7 +712,9 @@
       "group": "Readback Queries",
       "subsystem": "SENSe",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)",
+      "retired": true,
+      "retired_because": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send): `:SENS:CORR:SHOR:STAT?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\" — the unit has no such header"
     },
     "Get_Impedance_Type": {
       "scpi": ":SENSe:FUNCtion:IMPedance:TYPE?",
@@ -713,7 +727,9 @@
       "group": "Readback Queries",
       "subsystem": "SENSe",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); 4284A/E4980A-style header (FUNCtion:IMPedance:*); the 4263B tree selects the pair with CALCulate1/2:FORMat, so this may answer -113 on the 4263A — kept until the bench says"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); 4284A/E4980A-style header (FUNCtion:IMPedance:*); the 4263B tree selects the pair with CALCulate1/2:FORMat, so this may answer -113 on the 4263A — kept until the bench says",
+      "retired": true,
+      "retired_because": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send): `:SENS:FUNC:IMP:TYPE?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\" — the unit has no such header"
     },
     "Get_Measurement_Function": {
       "scpi": ":SENSe:FUNCtion?",
@@ -725,8 +741,7 @@
       },
       "group": "Readback Queries",
       "subsystem": "SENSe",
-      "unverified": true,
-      "notes": "The 4263B's SENSe:FUNCtion selects the measurement (impedance or the transformer option); the parameter pair is CALCulate1/2:FORMat (Primary_Parameter / Secondary_Parameter)"
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:SENSe:FUNCtion?` answered \"FADM\" (*LRN? also lists :FUNC:CONC 0)"
     },
     "lcr_reading": {
       "scpi": ":SENSe:FUNCtion?;:FETCh?",
@@ -763,7 +778,9 @@
       "group": "Readback Queries",
       "subsystem": "SOURce",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)",
+      "retired": true,
+      "retired_because": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send): `:SOUR:CURR?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\" — the unit has no such header"
     },
     "Get_Test_Frequency": {
       "scpi": ":SOURce:FREQuency?",
@@ -776,8 +793,7 @@
       },
       "group": "Readback Queries",
       "subsystem": "SOURce",
-      "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:SOURce:FREQuency?` answered +1.00000E+03"
     },
     "Get_Test_Level": {
       "scpi": ":SOURce:VOLTage?",
@@ -790,8 +806,7 @@
       },
       "group": "Readback Queries",
       "subsystem": "SOURce",
-      "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:SOURce:VOLTage?` answered +1.00000E+00"
     },
     "Get_Error_Queue": {
       "scpi": ":SYSTem:ERRor?",
@@ -802,7 +817,7 @@
         "type": "ERROR"
       },
       "subsystem": "SYSTem",
-      "unverified": true
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:SYSTem:ERRor?` answered -410,\"Query INTERRUPTED\" (left from an earlier asker), then +0,\"No error\""
     },
     "Get_Trigger_Source": {
       "scpi": ":TRIGger:SOURce?",
@@ -814,8 +829,7 @@
       },
       "group": "Readback Queries",
       "subsystem": "TRIGger",
-      "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual)"
+      "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:TRIGger:SOURce?` answered INT"
     }
   },
   "rig": {}

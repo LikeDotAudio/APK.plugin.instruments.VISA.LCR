@@ -61,3 +61,25 @@ Added from the owner's pasted list of expected LCR commands and a pasted pyvisa 
 | `nab/Measure_Impedance` | added **retired** `:MEASure:IMPedance?` | bench 2026-11-07: MEASure answers -113 and is no root in `4263A.scpi.json`; read with `:READ?` / `:FETCh?` |
 
 Not added: `FUNCtion:IMPedance:AUTO` (no such header on either family; autorange is a RANGe:AUTO), bare `FREQ`/`VOLT` (ambiguous; the SOURce forms above). The panel's electronic-load bindings (`unresolved` in `4263A.scpi.json`) are untouched.
+
+## Bench check (2026-11-12 03:07–03:08 UTC)
+
+HP 4263A 3145J01840 fw 02.00 on gpib7,11. Each query asked alone through `/api/instrument/send` (the recorder's one-exchange gate), `SYST:ERR?` after each. Only queries were sent; no setting was changed.
+
+| Query | Answer | Table |
+|---|---|---|
+| `:SENS:FUNC?` | `"FADM"` | `Get_Measurement_Function` verified |
+| `:CALC1:FORM?` / `:CALC2:FORM?` | `CP` / `D` | `Get_Primary_Parameter` / `Get_Secondary_Parameter` verified |
+| `:SOUR:FREQ?` | `+1.00000E+03` | `Get_Test_Frequency` verified (so the SOURce move was right) |
+| `:SOUR:VOLT?` | `+1.00000E+00` | `Get_Test_Level` verified |
+| `:TRIG:SOUR?` | `INT` | `Get_Trigger_Source` verified |
+| `:INIT:CONT?` | `1` | `Get_Init_Continuous` verified |
+| `*LRN?` | 18 settings, `;`-separated | `Learn_Settings` verified — the whole-state nab, never stacked |
+| `*IDN?` | `HEWLETT-PACKARD,4263A,3145J01840,02.00` | `Read_IDN` verified (the Nabber had it refused: no answer ×3) |
+| `:SENS:FUNC:IMP:TYPE?` | -113 / -420 | `Impedance_Type` + `Get_` retired |
+| `:SOUR:CURR?` | -113 / -420 | `Set_Test_Current` + `Get_` retired |
+| `:SENS:CORR:OPEN:STAT?`, `:SENS:CORR:SHOR:STAT?` | -113 / -420 | the two `Correction_*_State` + `Get_` retired |
+
+The unit's own `*LRN?` (its settings as headers): `:FUNC:CONC 0;:FUNC "FADM";:CAL:CABL +0;:SOUR:FREQ +1.00000E+03;VOLT +1.00000E+00;VOLT:OFFS:STAT 0;:AVER 1;:AVER:COUN +1;:FIMP:APER +6.50000E-02;RANG:AUTO 1;:FIMP:CONT:VER 0;:TRIG:DEL +0.00000E+00;SOUR INT;:CALC1:FORM CP;:CALC2:FORM D;:CALC1:MATH:STAT 0;:CALC2:MATH:STAT 0;:CALC1:LIM:STAT 0`. Autorange is `:SENS:FIMP:RANG:AUTO`, so `Voltage_Range_Auto` (`:SENS:VOLT:RANG:AUTO`) is probably wrong — noted, not changed.
+
+GRAB compiled from `4263A.qualified.json` (Nabber evidence + this probe): `:CALC1:FORM?;:CALC2:FORM?;:FETC?;:INIT:CONT?;:SENS:FUNC?;:SOUR:FREQ?;:SOUR:VOLT?;:TRIG:SOUR?;*IDN?` — `qualify_grab.py --model 4263A`: Dev711 9/9 ok.
