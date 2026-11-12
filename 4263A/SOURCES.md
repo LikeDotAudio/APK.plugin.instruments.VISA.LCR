@@ -95,3 +95,27 @@ Every `retired` entry left the table on the owner's word; the reasons stay above
 ## All L / All C / All R (owner, 2026-11-12)
 
 Friends, by name and group: `Rig_All_<X>` once at the beginning — `:TRIG:SOUR BUS;:CALC1:FORM <p>;:CALC2:FORM <s>;:SOUR:FREQ <freq>;:SOUR:VOLT <level>` — then `Nab_All_<X>` (`*TRG;*WAI;:FETC?`) over and over, each one reading (status, primary, secondary). L = LS/Q, C = CP/D, R = REAL/IMAG (R/X; spelling recalled from the 4263B guide, unconfirmed). All unverified until Certify tries them.
+
+## Paths against the 4263B Operation Manual (2026-11-11, nothing sent)
+
+Source: Agilent 4263B LCR Meter Operation Manual (04263-90041), ch. 5 *GPIB Reference* — Subsystem Command List p. 5-2/5-3, Command Reference p. 5-8 on (xdevs.com copy). Cross-check: the unit's own `*LRN?` (2026-11-12 03:07 UTC, 3145J01840 fw 02.00) answers in exactly this tree — `:FUNC:CONC 0;:FUNC "FADM";:CAL:CABL +0;:SOUR:FREQ …;VOLT …;VOLT:OFFS:STAT 0;:AVER 1;:AVER:COUN +1;:FIMP:APER …;RANG:AUTO 1;:FIMP:CONT:VER 0;:TRIG:DEL …;SOUR INT;:CALC1:FORM CP;:CALC2:FORM D;…;:CALC1:LIM:STAT 0`. The tree has no READ, MEASure, MEMory, SOURce:BIAS, SOURce:CURRent, SENSe:CURRent, SENSe:VOLTage or CORRection:OPEN/SHORt nodes.
+
+| Command | Was | Now | Manual |
+|---|---|---|---|
+| `set/Limit_Lower` | `:CALCulate:LIMit:LOWer` | `:CALCulate1:LIMit:LOWer` | p. 5-10 `:CALCulate{1\|2}:LIMit:LOWer[:DATA]`; suffix 1 written out (*LRN?: `:CALC1:LIM:STAT`) |
+| `set/Limit_Upper` | `:CALCulate:LIMit:UPPer` | `:CALCulate1:LIMit:UPPer` | p. 5-11 |
+| `set/Limit_State` | `:CALCulate:LIMit:STATe` | `:CALCulate1:LIMit:STATe` | p. 5-10 |
+| `set/Current_Range` | `:SENSe:CURRent:RANGe` | `:SENSe:FIMPedance:RANGe:UPPer` | p. 5-27 — the one range is the impedance range, in ohms |
+| `set/Voltage_Range_Auto` | `:SENSe:VOLTage:RANGe:AUTO` | `:SENSe:FIMPedance:RANGe:AUTO` | p. 5-26 |
+| `set/Set_Bias_State` | `:SOURce:BIAS:STATe` | `:SOURce:VOLTage:OFFSet:STATe` | p. 5-30 — DC bias is the voltage offset |
+| `set/Set_Bias_Voltage` | `:SOURce:BIAS:VOLTage` | `:SOURce:VOLTage:OFFSet` | p. 5-29 |
+| `do/Correction_Open` | `:SENSe:CORRection:OPEN` | `:SENSe:CORRection:COLLect STANdard1` | p. 5-25, example p. 4-8 |
+| `do/Correction_Short` | `:SENSe:CORRection:SHORt` | `:SENSe:CORRection:COLLect STANdard2` | p. 5-25 |
+| `set/Display_State` | — | unchanged | p. 5-19 `:DISPlay[:WINDow][:STATe]`; Certify 03:02 UTC read OFF→0, ON→1 |
+| `set/Init_Continuous`, `Average_Count`, `Measurement_Function`, `Set_Test_Frequency`, `Set_Test_Level`, `Set_Beeper`, `Key_Lock`, `Trigger_Delay`, `Trigger_Source`, `Primary/Secondary_Parameter` | — | unchanged | each in the list as written (`SOURce:FREQuency[:CW]`, `SOURce:VOLTage[:LEVel]…`, `[SENSe]:FUNCtion[:ON]` with `'FIMPedance'`/`'FADMittance'`, TRIGger:SOURce `BUS\|EXTernal\|MANual\|INTernal`); CALC1:FORMat `REAL\|MLINear\|CP\|CS\|LP\|LS`, CALC2:FORMat `IMAGinary\|PHASe\|D\|Q\|REAL\|LP\|RP\|INV` (p. 5-9) |
+
+`4263A.scpi.json`: roots now the manual's list (CALibration added; MEMory and READ dropped); its 11 `unresolved` entries are gone with the commands.
+
+**Electronic-load commands removed.** `set/Set_Curr`, `Set_Curr_Lev`, `Set_Curr_Slew`, `Set_Curr_Tlev`, `Set_Inp`, `Set_Mode`, `Set_Res`, `Set_Tran_Dcyc`, `Set_Tran_Freq`, `Set_Tran_Stat`, `Set_Volt` (`CURR…`, `INP`, `MODE`, `RES`, `TRAN:…`, bare `VOLT`) are the HP electronic-load set (06060-90005), none in the 4263B tree; the owner's Certify of 2026-11-12 02:46–03:01 UTC had every readback (`CURR?`, `CURR:LEV?`, `CURR:SLEW?`, `CURR:TLEV?`, `INP?`) answer -113 "Undefined header". They came from `gui/LCR.json`, whose `LCR_Instrument` bin was one block `DC_Load_Station` ("Energy Dissipation Interface": LOAD ACTIVE (SINKING) button, input-volts / sink-current / dissipation meters, Drain Timeline, operating mode, current/voltage/resistance knobs, pulse mode) — the electronic-load panel that `INSTRUMENT.Load/gui/Load.json` carries split over `Load_Instrument`/`Load_Settings`/`Pulse`, copied into the LCR family before the 2026-10-17 folder rename. That block is gone; the bin now holds `LCR_Measurement` (FETCH READING → `Fetch_Existing`, verified, with its readout).
+
+**The leading colon is not the fault.** Every header the 4263A has answered with +0 starts with ':' (`:FETCh?`, `:CALCulate1:FORMat?`, `:CALCulate2:FORMat?`, `:INITiate:CONTinuous?`, `:SENSe:FUNCtion?`, `:SOURce:FREQuency?`, `:SOURce:VOLTage?`, `:TRIGger:SOURce?`, `:SYSTem:ERRor?`, `:DISPlay:STATe`), the unit's own `*LRN?` writes leading colons, and the colon-less load headers (`CURR?`, `INP?`, `MODE?`, `RES?`, `TRAN:…?`, `VOLT?`) fail exactly like the colon ones that do not exist (`:READ?`, `:MEASure?`): -113 then -420. The manual (p. 5-4) makes a leading ':' mean "start at the root". No per-model colon field is needed.
