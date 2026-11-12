@@ -137,10 +137,6 @@ The owner asked that every command be tried ("let's be complete"). Bench work on
 
 ## UTOPIA: the pinnacle of simultaneous capture (owner, 2026-11-12)
 
-Measure_Reading carries `"utopia": "reading"`, which makes it the 4263A's fresh reading: it asks for a measurement (`:TRIGger`, whatever the trigger source) and reads it. `_komand/generate_device_apis.py` compiles the nab **UTOPIA** from that mark and `4263A.qualified.json`: the reading first, then every query the bench answered alone, in one 113-byte message (`*IDN?` last):
+UTOPIA is the data the unit **measures**, never its settings (owner: "it should not be about its settings… it should be about the data the device is measuring"). Every nab the table marks `"utopia": "reading"` asks for fresh data and reads it. `_komand/generate_device_apis.py` stacks them into the nab **UTOPIA**, one message, so the data comes from one instant. The 4263A measures one thing per trigger: status, primary and secondary of its current parameter pair. So its UTOPIA is Measure_Reading alone, `:TRIGger;*WAI;:FETCh?`. `utopia.ladder` (10, 5, 3, 2, 1, 0) is the owner's unchanged rule for whoever schedules it.
 
-`:TRIGger;*WAI;:FETCh?;:CALC1:FORM?;:CALC2:FORM?;:INIT:CONT?;:SENS:FUNC?;:SOUR:FREQ?;:SOUR:VOLT?;:TRIG:SOUR?;*IDN?`
-
-So the reading and every setting it was taken under come back from one instant. Its `utopia.ladder` (10, 5, 3, 2, 1, 0) is the owner's unchanged rule for whoever schedules it.
-
-**Bench, 2026-11-12 ~07:20 UTC** (after the gpib7 bus came back), sent once over VXI-11 while Plugin-VISA held no link: answered in 0.10 s, 9 `;`-parts — `+0,+4.57002E-06,+1.23244E-01;CP;D;1;"FADM";+1.00000E+03;+1.00000E+00;INT;HEWLETT-PACKARD,4263A,3145J01840,02.00`. The queue held -211 "Trigger ignored" (TRIG:SOUR INT: the :TRIGger is understood, the reading is the free-running one). Then Plugin-VISA reconnected and locked the link, so it has not yet been through Certify.
+Bench, 2026-11-12 ~07:20 UTC: `:TRIGger;*WAI;:FETCh?` answered one reading under BUS, under INT (-211, understood) and with INIT:CONT OFF. A first, settings-carrying UTOPIA (9 parts in 0.10 s) was dropped on the owner's word.

@@ -2454,8 +2454,8 @@
       "UTOPIA": {
         "command": "UTOPIA",
         "verb": "nab",
-        "description": "UTOPIA \u2014 the pinnacle of simultaneous capture: asks for a fresh reading and reads it (Measure_Reading), then reads all 8 settings this model answered alone, in one message; the answers come back `;`-separated in the order of utopia.commands",
-        "scpi": ":TRIGger;*WAI;:FETCh?;:CALC1:FORM?;:CALC2:FORM?;:INIT:CONT?;:SENS:FUNC?;:SOUR:FREQ?;:SOUR:VOLT?;:TRIG:SOUR?;*IDN?",
+        "description": "UTOPIA \u2014 the pinnacle of simultaneous capture: the data this unit measures, 1 reading(s) (Measure_Reading), each asked for fresh and read, in one message",
+        "scpi": ":TRIGger;*WAI;:FETCh?",
         "subsystem": "UTOPIA",
         "group": "UTOPIA",
         "args": [],
@@ -2463,26 +2463,28 @@
           "kind": "none"
         },
         "returns": {
-          "count": 9,
+          "count": 1,
           "type": "LIST",
           "separator": ";",
-          "first": {
-            "command": "Measure_Reading",
-            "fields": [
-              {
-                "name": "status",
-                "type": "NR1"
-              },
-              {
-                "name": "primary",
-                "type": "NR3"
-              },
-              {
-                "name": "secondary",
-                "type": "NR3"
-              }
-            ]
-          }
+          "readings": [
+            {
+              "command": "Measure_Reading",
+              "fields": [
+                {
+                  "name": "status",
+                  "type": "NR1"
+                },
+                {
+                  "name": "primary",
+                  "type": "NR3"
+                },
+                {
+                  "name": "secondary",
+                  "type": "NR3"
+                }
+              ]
+            }
+          ]
         },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/LCR/UTOPIA",
@@ -2495,29 +2497,11 @@
         },
         "unverified": true,
         "utopia": {
-          "reading": "Measure_Reading",
-          "ask": ":TRIGger;*WAI;:FETCh?",
-          "commands": [
-            "Measure_Reading",
-            "Get_Primary_Parameter",
-            "Get_Secondary_Parameter",
-            "Get_Init_Continuous",
-            "Get_Measurement_Function",
-            "Get_Test_Frequency",
-            "Get_Test_Level",
-            "Get_Trigger_Source",
-            "Read_IDN"
+          "readings": [
+            "Measure_Reading"
           ],
-          "queries": [
-            ":TRIGger;*WAI;:FETCh?",
-            ":CALC1:FORM?",
-            ":CALC2:FORM?",
-            ":INIT:CONT?",
-            ":SENS:FUNC?",
-            ":SOUR:FREQ?",
-            ":SOUR:VOLT?",
-            ":TRIG:SOUR?",
-            "*IDN?"
+          "asks": [
+            ":TRIGger;*WAI;:FETCh?"
           ],
           "left_out": [],
           "ladder": [
@@ -2528,14 +2512,7 @@
             1,
             0
           ],
-          "max_command_bytes": 240,
-          "qualified": {
-            "compiled": "2026-11-12T03:09:45Z",
-            "units": [
-              "visa/LCR/4263A/Dev711"
-            ],
-            "source": "4263A.qualified.json"
-          }
+          "max_command_bytes": 240
         }
       }
     },
