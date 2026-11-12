@@ -8,6 +8,13 @@ Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the ta
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
+## Compound commands
+
+Several statements in one message, so they hang off no single branch. Every statement after the first carries a leading colon — without it the parser reads it relative to the previous header's path and the instrument answers `-113`.
+
+- **NAB** `lcr_reading` · → function, measurement · †<br>What the meter is measuring, and its last measurement, together.
+  - `:SENSe:FUNCtion?;:FETCh?`
+
 ## Tree
 
 - `CURR` — **SET** `Set_Curr` · `<value>` · numeric (A) · per-instance: `value` · †<br>Authored from a panel literal in LCR.json; never executed before.
@@ -49,7 +56,7 @@ Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the ta
     - `VOLTage` — **SET** `Set_Bias_Voltage` · `<volt>` · args: `volt` · numeric (V) · †<br>Sets the internal DC bias voltage level.
 - **`SYSTem`**
   - `KLOCk` — **SET** `Key_Lock` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Locks or unlocks the front-panel keys.
-  - `ERRor?` — **NAB** `Get_Error_Queue` · → NR2 · †<br>Queries the next entry in the error queue.
+  - `ERRor?` — **NAB** `Get_Error_Queue` · → ERROR · †<br>Queries the next entry in the error queue.
   - **`BEEPer`**
     - `STATe` — **SET** `Set_Beeper` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Turns the front-panel beeper ON or OFF.
 - **`TRAN`**

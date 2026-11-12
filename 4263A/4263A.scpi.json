@@ -1,0 +1,34 @@
+{
+  "model": "4263A",
+  "manual": "no 4263A manual obtainable (SOURCES.md); roots from the successor 4263B User's Guide 04263-90040, Chapter 8 SCPI Command Reference",
+  "roots": [
+    "ABORt",
+    "CALCulate",
+    "DATA",
+    "DISPlay",
+    "FETCh",
+    "FORMat",
+    "INITiate",
+    "MEMory",
+    "READ",
+    "SENSe",
+    "SOURce",
+    "STATus",
+    "SYSTem",
+    "TRIGger"
+  ],
+  "optional": [],
+  "unresolved": {
+    "set/Set_Curr": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Curr_Lev": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Curr_Slew": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Curr_Tlev": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Inp": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Mode": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Res": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Tran_Dcyc": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Tran_Freq": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Tran_Stat": "the electronic-load command set on an LCR meter (06060-90005); bound by INSTRUMENT.LCR/gui/LCR.json, so kept unverified until a person decides",
+    "set/Set_Volt": "bare VOLT: on an LCR meter the test level is :SOURce:VOLTage (Set_Test_Level) and the bias :SOURce:BIAS:VOLTage (Set_Bias_Voltage) — which one is not recorded, and no 4263A manual says whether SOURce may be left out"
+  }
+}

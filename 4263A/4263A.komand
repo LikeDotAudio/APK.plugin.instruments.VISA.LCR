@@ -53,7 +53,8 @@
         "kind": "numeric",
         "unit": "A",
         "limits": "query"
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `CURR <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Set_Curr_Lev": {
       "scpi": "CURR:LEV <value>",
@@ -63,7 +64,8 @@
         "kind": "numeric",
         "unit": "A",
         "limits": "query"
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `CURR:LEV <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Set_Curr_Slew": {
       "scpi": "CURR:SLEW <value>",
@@ -73,7 +75,8 @@
         "kind": "numeric",
         "unit": "A/s",
         "limits": "query"
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `CURR:SLEW <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Set_Curr_Tlev": {
       "scpi": "CURR:TLEV <value>",
@@ -83,7 +86,8 @@
         "kind": "numeric",
         "unit": "A",
         "limits": "query"
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `CURR:TLEV <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Display_State": {
       "scpi": ":DISPlay:STATe <state>",
@@ -112,12 +116,14 @@
           "OFF",
           "ON"
         ]
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `INP <state>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Set_Mode": {
       "scpi": "MODE <value>",
       "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `MODE <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Set_Res": {
       "scpi": "RES <value>",
@@ -127,7 +133,8 @@
         "kind": "numeric",
         "unit": "Ohm",
         "limits": "query"
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `RES <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Average_Count": {
       "scpi": ":SENSe:AVERage:COUNt <count>",
@@ -286,7 +293,8 @@
         "kind": "numeric",
         "unit": "%",
         "limits": "query"
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `TRAN:DCYC <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Set_Tran_Freq": {
       "scpi": "TRAN:FREQ <value>",
@@ -296,7 +304,8 @@
         "kind": "numeric",
         "unit": "Hz",
         "limits": "query"
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `TRAN:FREQ <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Set_Tran_Stat": {
       "scpi": "TRAN:STAT <value>",
@@ -308,7 +317,8 @@
           "OFF",
           "ON"
         ]
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `TRAN:STAT <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     },
     "Trigger_Delay": {
       "scpi": ":TRIGger:DELay <seconds>",
@@ -345,7 +355,8 @@
         "kind": "numeric",
         "unit": "V",
         "limits": "query"
-      }
+      },
+      "notes": "Unresolved (scpi_paths.py, 2026-11-11): `VOLT <value>` is the electronic-load command set (Electronic Load Family Programming Manual 06060-90005), not an LCR meter's — no 4263A manual was obtainable and the 4263B's tree has no such root. INSTRUMENT.LCR/gui/LCR.json binds it, so it stays, unverified, until a person decides."
     }
   },
   "do": {

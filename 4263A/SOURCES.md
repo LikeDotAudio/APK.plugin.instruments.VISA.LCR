@@ -24,3 +24,21 @@ The manual shows these commands do not exist. Each entry stays in the table with
 ## Retired on the bench (2026-11-07)
 
 - `nab/Measure` — Bench 2026-11-07 03:13 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: `:MEASure?` answered -113,"Undefined header" then -420,"Query UNTERMINATED" — the unit has no bare MEASure query; read with `:READ?` (trigger + fetch) or `:FETCh?`
+
+## SCPI paths — every header against the model's own tree (scpi_paths.py, 2026-11-11)
+
+The tree: `4263A.scpi.json`, read off no 4263A manual obtainable (SOURCES.md); roots from the successor 4263B User's Guide 04263-90040, Chapter 8 SCPI Command Reference. Each entry's `notes` / `retired_because` carries the full reason and page; the 33220A's Certify of 2026-11-11 (199 tries) and the GUI-certificate book are the bench evidence. Nothing was sent to verify.
+
+| Command | Change | Was |
+|---|---|---|
+| `set/Set_Curr` | left as is, unverified — unresolved |  |
+| `set/Set_Curr_Lev` | left as is, unverified — unresolved |  |
+| `set/Set_Curr_Slew` | left as is, unverified — unresolved |  |
+| `set/Set_Curr_Tlev` | left as is, unverified — unresolved |  |
+| `set/Set_Inp` | left as is, unverified — unresolved |  |
+| `set/Set_Mode` | left as is, unverified — unresolved |  |
+| `set/Set_Res` | left as is, unverified — unresolved |  |
+| `set/Set_Tran_Dcyc` | left as is, unverified — unresolved |  |
+| `set/Set_Tran_Freq` | left as is, unverified — unresolved |  |
+| `set/Set_Tran_Stat` | left as is, unverified — unresolved |  |
+| `set/Set_Volt` | left as is, unverified — unresolved |  |
