@@ -72,9 +72,9 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 85,
+    "total_commands": 83,
     "get_count": 12,
-    "set_count": 52,
+    "set_count": 50,
     "nab_count": 21,
     "rig_count": 6,
     "do_count": 6
@@ -433,7 +433,24 @@
             "LS": "series inductance",
             "REAL": "R under impedance FIMP, G under admittance FADM",
             "MLIN": "|Z| under FIMP, |Y| under FADM"
-          }
+          },
+          "needs": {
+            "CS": [
+              ":SENSe:FUNCtion \"FIMP\""
+            ],
+            "LS": [
+              ":SENSe:FUNCtion \"FIMP\""
+            ],
+            "CP": [
+              ":SENSe:FUNCtion \"FADM\""
+            ],
+            "LP": [
+              ":SENSe:FUNCtion \"FADM\""
+            ]
+          },
+          "couples": [
+            ":CALCulate2:FORMat"
+          ]
         },
         "returns": null,
         "mqtt": {
@@ -739,19 +756,18 @@
             "PHAS",
             "D",
             "Q",
-            "REAL",
-            "LP",
-            "RP"
+            "REAL"
           ],
           "labels": {
             "IMAG": "X under FIMP, B under FADM",
             "PHAS": "\u03b8",
             "D": "dissipation factor",
             "Q": "quality factor",
-            "REAL": "Rs/G",
-            "LP": "Lp",
-            "RP": "Rp"
-          }
+            "REAL": "R under FIMP, G under FADM"
+          },
+          "couples": [
+            ":CALCulate1:FORMat"
+          ]
         },
         "returns": null,
         "mqtt": {
@@ -813,30 +829,6 @@
         },
         "unverified": true
       },
-      "Secondary_Parameter_LP": {
-        "command": "Secondary_Parameter_LP",
-        "verb": "set",
-        "description": "Secondary_Parameter \u2192 LP (Lp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
-        "scpi": ":CALCulate2:FORMat LP",
-        "scpi_fast": ":CALC2:FORM LP",
-        "subsystem": "CALCulate",
-        "group": "CALCulate",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter_LP",
-          "direction": "in",
-          "payload_format": {
-            "command": "Secondary_Parameter_LP",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Secondary_Parameter_PHAS": {
         "command": "Secondary_Parameter_PHAS",
         "verb": "set",
@@ -888,7 +880,7 @@
       "Secondary_Parameter_REAL": {
         "command": "Secondary_Parameter_REAL",
         "verb": "set",
-        "description": "Secondary_Parameter \u2192 REAL (Rs/G). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+        "description": "Secondary_Parameter \u2192 REAL (R under FIMP, G under FADM). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
         "scpi": ":CALCulate2:FORMat REAL",
         "scpi_fast": ":CALC2:FORM REAL",
         "subsystem": "CALCulate",
@@ -903,30 +895,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Secondary_Parameter_REAL",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Secondary_Parameter_RP": {
-        "command": "Secondary_Parameter_RP",
-        "verb": "set",
-        "description": "Secondary_Parameter \u2192 RP (Rp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
-        "scpi": ":CALCulate2:FORMat RP",
-        "scpi_fast": ":CALC2:FORM RP",
-        "subsystem": "CALCulate",
-        "group": "CALCulate",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter_RP",
-          "direction": "in",
-          "payload_format": {
-            "command": "Secondary_Parameter_RP",
             "value": "<value>",
             "input_name": "value"
           }
@@ -1857,293 +1825,6 @@
         },
         "unverified": false
       },
-      "Measure_Reading": {
-        "command": "Measure_Reading",
-        "verb": "nab",
-        "description": "Triggers one measurement on the present setup and reads it: status, primary, secondary.",
-        "scpi": "*TRG;*WAI;:FETCh?",
-        "scpi_fast": "*TRG;*WAI;:FETC?",
-        "subsystem": "MEASure",
-        "group": "MEASure",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 3,
-          "separator": ",",
-          "fields": [
-            {
-              "name": "status",
-              "type": "NR1"
-            },
-            {
-              "name": "primary",
-              "type": "NR3"
-            },
-            {
-              "name": "secondary",
-              "type": "NR3"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Measure_Reading",
-          "direction": "in",
-          "payload_format": {
-            "command": "Measure_Reading"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Measure_Reading",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Nab_All_C": {
-        "command": "Nab_All_C",
-        "verb": "nab",
-        "description": "One C reading on the rigged setup: triggers and reads status, cp, d.",
-        "scpi": "*TRG;*WAI;:FETCh?",
-        "scpi_fast": "*TRG;*WAI;:FETC?",
-        "subsystem": "MEASure",
-        "group": "All C",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 3,
-          "separator": ",",
-          "fields": [
-            {
-              "name": "status",
-              "type": "NR1"
-            },
-            {
-              "name": "cp",
-              "type": "NR3"
-            },
-            {
-              "name": "d",
-              "type": "NR3"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_C",
-          "direction": "in",
-          "payload_format": {
-            "command": "Nab_All_C"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_C",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Nab_All_G": {
-        "command": "Nab_All_G",
-        "verb": "nab",
-        "description": "One G reading on the rigged setup: triggers and reads status, g, b.",
-        "scpi": "*TRG;*WAI;:FETCh?",
-        "scpi_fast": "*TRG;*WAI;:FETC?",
-        "subsystem": "MEASure",
-        "group": "All G",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 3,
-          "separator": ",",
-          "fields": [
-            {
-              "name": "status",
-              "type": "NR1"
-            },
-            {
-              "name": "g",
-              "type": "NR3"
-            },
-            {
-              "name": "b",
-              "type": "NR3"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_G",
-          "direction": "in",
-          "payload_format": {
-            "command": "Nab_All_G"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_G",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Nab_All_L": {
-        "command": "Nab_All_L",
-        "verb": "nab",
-        "description": "One L reading on the rigged setup: triggers and reads status, ls, q.",
-        "scpi": "*TRG;*WAI;:FETCh?",
-        "scpi_fast": "*TRG;*WAI;:FETC?",
-        "subsystem": "MEASure",
-        "group": "All L",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 3,
-          "separator": ",",
-          "fields": [
-            {
-              "name": "status",
-              "type": "NR1"
-            },
-            {
-              "name": "ls",
-              "type": "NR3"
-            },
-            {
-              "name": "q",
-              "type": "NR3"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_L",
-          "direction": "in",
-          "payload_format": {
-            "command": "Nab_All_L"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_L",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Nab_All_R": {
-        "command": "Nab_All_R",
-        "verb": "nab",
-        "description": "One R reading on the rigged setup: triggers and reads status, r, x.",
-        "scpi": "*TRG;*WAI;:FETCh?",
-        "scpi_fast": "*TRG;*WAI;:FETC?",
-        "subsystem": "MEASure",
-        "group": "All R",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 3,
-          "separator": ",",
-          "fields": [
-            {
-              "name": "status",
-              "type": "NR1"
-            },
-            {
-              "name": "r",
-              "type": "NR3"
-            },
-            {
-              "name": "x",
-              "type": "NR3"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_R",
-          "direction": "in",
-          "payload_format": {
-            "command": "Nab_All_R"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_R",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Nab_All_S": {
-        "command": "Nab_All_S",
-        "verb": "nab",
-        "description": "One S reading on the rigged setup: triggers and reads status, y, theta.",
-        "scpi": "*TRG;*WAI;:FETCh?",
-        "scpi_fast": "*TRG;*WAI;:FETC?",
-        "subsystem": "MEASure",
-        "group": "All S",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 3,
-          "separator": ",",
-          "fields": [
-            {
-              "name": "status",
-              "type": "NR1"
-            },
-            {
-              "name": "y",
-              "type": "NR3"
-            },
-            {
-              "name": "theta",
-              "type": "NR3"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_S",
-          "direction": "in",
-          "payload_format": {
-            "command": "Nab_All_S"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_S",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Nab_All_Z": {
-        "command": "Nab_All_Z",
-        "verb": "nab",
-        "description": "One Z reading on the rigged setup: triggers and reads status, z, theta.",
-        "scpi": "*TRG;*WAI;:FETCh?",
-        "scpi_fast": "*TRG;*WAI;:FETC?",
-        "subsystem": "MEASure",
-        "group": "All Z",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 3,
-          "separator": ",",
-          "fields": [
-            {
-              "name": "status",
-              "type": "NR1"
-            },
-            {
-              "name": "z",
-              "type": "NR3"
-            },
-            {
-              "name": "theta",
-              "type": "NR3"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_Z",
-          "direction": "in",
-          "payload_format": {
-            "command": "Nab_All_Z"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_Z",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Self_Test": {
         "command": "Self_Test",
         "verb": "nab",
@@ -2425,6 +2106,293 @@
         },
         "unverified": false
       },
+      "Measure_Reading": {
+        "command": "Measure_Reading",
+        "verb": "nab",
+        "description": "Triggers one measurement on the present setup (whatever the trigger source) and reads it: status, primary, secondary.",
+        "scpi": ":TRIGger;*WAI;:FETCh?",
+        "scpi_fast": ":TRIG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "MEASure",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "primary",
+              "type": "NR3"
+            },
+            {
+              "name": "secondary",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Measure_Reading",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Reading"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Measure_Reading",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Nab_All_C": {
+        "command": "Nab_All_C",
+        "verb": "nab",
+        "description": "One C reading on the rigged setup: triggers and reads status, cp, d.",
+        "scpi": ":TRIGger;*WAI;:FETCh?",
+        "scpi_fast": ":TRIG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "All C",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "cp",
+              "type": "NR3"
+            },
+            {
+              "name": "d",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_C",
+          "direction": "in",
+          "payload_format": {
+            "command": "Nab_All_C"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_C",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Nab_All_G": {
+        "command": "Nab_All_G",
+        "verb": "nab",
+        "description": "One G reading on the rigged setup: triggers and reads status, g, b.",
+        "scpi": ":TRIGger;*WAI;:FETCh?",
+        "scpi_fast": ":TRIG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "All G",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "g",
+              "type": "NR3"
+            },
+            {
+              "name": "b",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_G",
+          "direction": "in",
+          "payload_format": {
+            "command": "Nab_All_G"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_G",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Nab_All_L": {
+        "command": "Nab_All_L",
+        "verb": "nab",
+        "description": "One L reading on the rigged setup: triggers and reads status, ls, q.",
+        "scpi": ":TRIGger;*WAI;:FETCh?",
+        "scpi_fast": ":TRIG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "All L",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "ls",
+              "type": "NR3"
+            },
+            {
+              "name": "q",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_L",
+          "direction": "in",
+          "payload_format": {
+            "command": "Nab_All_L"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_L",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Nab_All_R": {
+        "command": "Nab_All_R",
+        "verb": "nab",
+        "description": "One R reading on the rigged setup: triggers and reads status, r, x.",
+        "scpi": ":TRIGger;*WAI;:FETCh?",
+        "scpi_fast": ":TRIG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "All R",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "r",
+              "type": "NR3"
+            },
+            {
+              "name": "x",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_R",
+          "direction": "in",
+          "payload_format": {
+            "command": "Nab_All_R"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_R",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Nab_All_S": {
+        "command": "Nab_All_S",
+        "verb": "nab",
+        "description": "One S reading on the rigged setup: triggers and reads status, y, theta.",
+        "scpi": ":TRIGger;*WAI;:FETCh?",
+        "scpi_fast": ":TRIG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "All S",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "y",
+              "type": "NR3"
+            },
+            {
+              "name": "theta",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_S",
+          "direction": "in",
+          "payload_format": {
+            "command": "Nab_All_S"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_S",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Nab_All_Z": {
+        "command": "Nab_All_Z",
+        "verb": "nab",
+        "description": "One Z reading on the rigged setup: triggers and reads status, z, theta.",
+        "scpi": ":TRIGger;*WAI;:FETCh?",
+        "scpi_fast": ":TRIG;*WAI;:FETC?",
+        "subsystem": "MEASure",
+        "group": "All Z",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "z",
+              "type": "NR3"
+            },
+            {
+              "name": "theta",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Nab_All_Z",
+          "direction": "in",
+          "payload_format": {
+            "command": "Nab_All_Z"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Nab_All_Z",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
       "GRAB": {
         "command": "GRAB",
         "verb": "nab",
@@ -2487,9 +2455,9 @@
       "Rig_All_C": {
         "command": "Rig_All_C",
         "verb": "rig",
-        "description": "Sets the meter up to measure capacitance (parallel C and its D): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
-        "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-        "scpi_fast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:CALC1:FORM CP;:CALC2:FORM D;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+        "description": "Sets the meter up to measure capacitance (parallel C and its D): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+        "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+        "scpi_fast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM CP;:CALC2:FORM D;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
         "subsystem": "CALCulate",
         "group": "All C",
         "args": [
@@ -2514,9 +2482,9 @@
       "Rig_All_S": {
         "command": "Rig_All_S",
         "verb": "rig",
-        "description": "Sets the meter up to measure admittance in siemens (|Y| and its phase \u03b8): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
-        "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-        "scpi_fast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:CALC1:FORM MLIN;:CALC2:FORM PHAS;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+        "description": "Sets the meter up to measure admittance in siemens (|Y| and its phase \u03b8): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+        "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+        "scpi_fast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM MLIN;:CALC2:FORM PHAS;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
         "subsystem": "CALCulate",
         "group": "All S",
         "args": [
@@ -2541,9 +2509,9 @@
       "Rig_All_G": {
         "command": "Rig_All_G",
         "verb": "rig",
-        "description": "Sets the meter up to measure conductance (G and its susceptance B): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
-        "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-        "scpi_fast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+        "description": "Sets the meter up to measure conductance (G and its susceptance B): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+        "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+        "scpi_fast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
         "subsystem": "CALCulate",
         "group": "All G",
         "args": [
@@ -2568,9 +2536,9 @@
       "Rig_All_L": {
         "command": "Rig_All_L",
         "verb": "rig",
-        "description": "Sets the meter up to measure inductance (series L and its Q): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
-        "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-        "scpi_fast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:CALC1:FORM LS;:CALC2:FORM Q;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+        "description": "Sets the meter up to measure inductance (series L and its Q): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+        "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+        "scpi_fast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM LS;:CALC2:FORM Q;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
         "subsystem": "CALCulate",
         "group": "All L",
         "args": [
@@ -2595,9 +2563,9 @@
       "Rig_All_Z": {
         "command": "Rig_All_Z",
         "verb": "rig",
-        "description": "Sets the meter up to measure impedance (|Z| and its phase \u03b8): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
-        "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-        "scpi_fast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:CALC1:FORM MLIN;:CALC2:FORM PHAS;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+        "description": "Sets the meter up to measure impedance (|Z| and its phase \u03b8): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+        "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+        "scpi_fast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM MLIN;:CALC2:FORM PHAS;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
         "subsystem": "CALCulate",
         "group": "All Z",
         "args": [
@@ -2622,9 +2590,9 @@
       "Rig_All_R": {
         "command": "Rig_All_R",
         "verb": "rig",
-        "description": "Sets the meter up to measure resistance (R and its reactance X): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
-        "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-        "scpi_fast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+        "description": "Sets the meter up to measure resistance (R and its reactance X): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+        "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+        "scpi_fast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
         "subsystem": "CALCulate",
         "group": "All R",
         "args": [

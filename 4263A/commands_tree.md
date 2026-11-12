@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**84 commands** — SET 52 · RIG 6 · NAB 20 · DO 6 · 66 unverified (78%)
+**82 commands** — SET 50 · RIG 6 · NAB 20 · DO 6 · 65 unverified (79%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -12,36 +12,37 @@ Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the ta
 
 Several statements in one message, so they hang off no single branch. Every statement after the first carries a leading colon — without it the parser reads it relative to the previous header's path and the instrument answers `-113`.
 
+- **NAB** `Measure_Reading` · → status, primary, secondary · †<br>Triggers one measurement on the present setup (whatever the trigger source) and reads it: status, primary, secondary.
+  - `:TRIGger;*WAI;:FETCh?`
 - **NAB** `Nab_All_C` · → status, cp, d · †<br>One C reading on the rigged setup: triggers and reads status, cp, d.
-  - `*TRG;*WAI;:FETCh?`
+  - `:TRIGger;*WAI;:FETCh?`
 - **NAB** `Nab_All_G` · → status, g, b · †<br>One G reading on the rigged setup: triggers and reads status, g, b.
-  - `*TRG;*WAI;:FETCh?`
+  - `:TRIGger;*WAI;:FETCh?`
 - **NAB** `Nab_All_L` · → status, ls, q · †<br>One L reading on the rigged setup: triggers and reads status, ls, q.
-  - `*TRG;*WAI;:FETCh?`
+  - `:TRIGger;*WAI;:FETCh?`
 - **NAB** `Nab_All_R` · → status, r, x · †<br>One R reading on the rigged setup: triggers and reads status, r, x.
-  - `*TRG;*WAI;:FETCh?`
+  - `:TRIGger;*WAI;:FETCh?`
 - **NAB** `Nab_All_S` · → status, y, theta · †<br>One S reading on the rigged setup: triggers and reads status, y, theta.
-  - `*TRG;*WAI;:FETCh?`
+  - `:TRIGger;*WAI;:FETCh?`
 - **NAB** `Nab_All_Z` · → status, z, theta · †<br>One Z reading on the rigged setup: triggers and reads status, z, theta.
-  - `*TRG;*WAI;:FETCh?`
-- **RIG** `Rig_All_C` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure capacitance (parallel C and its D): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
-  - `:SENSe:FUNCtion "FADM";:TRIGger:SOURce BUS;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
-- **RIG** `Rig_All_G` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure conductance (G and its susceptance B): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
-  - `:SENSe:FUNCtion "FADM";:TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
-- **RIG** `Rig_All_L` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure inductance (series L and its Q): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
-  - `:SENSe:FUNCtion "FIMP";:TRIGger:SOURce BUS;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
-- **RIG** `Rig_All_R` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure resistance (R and its reactance X): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
-  - `:SENSe:FUNCtion "FIMP";:TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
-- **RIG** `Rig_All_S` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure admittance in siemens (|Y| and its phase θ): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
-  - `:SENSe:FUNCtion "FADM";:TRIGger:SOURce BUS;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
-- **RIG** `Rig_All_Z` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure impedance (|Z| and its phase θ): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
-  - `:SENSe:FUNCtion "FIMP";:TRIGger:SOURce BUS;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+  - `:TRIGger;*WAI;:FETCh?`
+- **RIG** `Rig_All_C` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure capacitance (parallel C and its D): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
+  - `:SENSe:FUNCtion "FADM";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+- **RIG** `Rig_All_G` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure conductance (G and its susceptance B): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
+  - `:SENSe:FUNCtion "FADM";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+- **RIG** `Rig_All_L` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure inductance (series L and its Q): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
+  - `:SENSe:FUNCtion "FIMP";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+- **RIG** `Rig_All_R` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure resistance (R and its reactance X): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
+  - `:SENSe:FUNCtion "FIMP";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+- **RIG** `Rig_All_S` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure admittance in siemens (|Y| and its phase θ): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
+  - `:SENSe:FUNCtion "FADM";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+- **RIG** `Rig_All_Z` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure impedance (|Z| and its phase θ): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
+  - `:SENSe:FUNCtion "FIMP";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
 - **NAB** `lcr_reading` · → function, measurement<br>What the meter is measuring, and its last measurement, together.
   - `:SENSe:FUNCtion?;:FETCh?`
 
 ## Tree
 
-- `FETCh?` — **NAB** `Fetch_Existing` · → status, primary, secondary<br>Retrieves the most recent measurement data.
 - `TRIGger` — **DO** `Trigger_Immediate`<br>Manually triggers a measurement.
 - **`CALCulate1`**
   - `FORMat` — **SET** `Primary_Parameter` · `<param>` · args: `param` · enum: `CP` | `CS` | `LP` | `LS` | `REAL` | `MLIN` · †<br>Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).
@@ -59,14 +60,12 @@ Several statements in one message, so they hang off no single branch. Every stat
     - `STATe` — **SET** `Limit_State_ON` · `ON` · †<br>Limit_State → ON. Enables or disables the comparator function.
     - `UPPer` — **SET** `Limit_Upper` · `<limit>` · args: `limit` · numeric · †<br>Sets the higher limit for the comparator.
 - **`CALCulate2`**
-  - `FORMat` — **SET** `Secondary_Parameter` · `<param>` · args: `param` · enum: `IMAG` | `PHAS` | `D` | `Q` | `REAL` | `LP` | `RP` · †<br>Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter` · `<param>` · args: `param` · enum: `IMAG` | `PHAS` | `D` | `Q` | `REAL` · †<br>Selects the secondary measurement parameter (e.g. D, Q, X, theta).
   - `FORMat` — **SET** `Secondary_Parameter_D` · `D` · †<br>Secondary_Parameter → D (dissipation factor). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
   - `FORMat` — **SET** `Secondary_Parameter_IMAG` · `IMAG` · †<br>Secondary_Parameter → IMAG (X under FIMP, B under FADM). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
-  - `FORMat` — **SET** `Secondary_Parameter_LP` · `LP` · †<br>Secondary_Parameter → LP (Lp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
   - `FORMat` — **SET** `Secondary_Parameter_PHAS` · `PHAS` · †<br>Secondary_Parameter → PHAS (θ). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
   - `FORMat` — **SET** `Secondary_Parameter_Q` · `Q` · †<br>Secondary_Parameter → Q (quality factor). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
-  - `FORMat` — **SET** `Secondary_Parameter_REAL` · `REAL` · †<br>Secondary_Parameter → REAL (Rs/G). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
-  - `FORMat` — **SET** `Secondary_Parameter_RP` · `RP` · †<br>Secondary_Parameter → RP (Rp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter_REAL` · `REAL` · †<br>Secondary_Parameter → REAL (R under FIMP, G under FADM). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
   - `FORMat?` — **NAB** `Get_Secondary_Parameter` · → CRD<br>Reads the secondary measurement parameter.
 - **`DISPlay`**
   - `STATe` — **SET** `Display_State` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Turns the display ON or OFF.

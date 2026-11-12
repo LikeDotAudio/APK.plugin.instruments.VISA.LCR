@@ -23,14 +23,31 @@
           "LS": "series inductance",
           "REAL": "R under impedance FIMP, G under admittance FADM",
           "MLIN": "|Z| under FIMP, |Y| under FADM"
-        }
+        },
+        "needs": {
+          "CS": [
+            ":SENSe:FUNCtion \"FIMP\""
+          ],
+          "LS": [
+            ":SENSe:FUNCtion \"FIMP\""
+          ],
+          "CP": [
+            ":SENSe:FUNCtion \"FADM\""
+          ],
+          "LP": [
+            ":SENSe:FUNCtion \"FADM\""
+          ]
+        },
+        "couples": [
+          ":CALCulate2:FORMat"
+        ]
       },
       "args": [
         "param"
       ],
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "4263B Operation Manual 04263-90041 p. 5-9: CALCulate1:FORMat REAL|MLINear|CP|CS|LP|LS; path confirmed by its query / the unit's *LRN? (`:CALC1:FORM CP`, bench 2026-11-12); options listed 2026-11-11 so each is also its own SET (owner: selector AND individuals); the setting itself never sent, so still unverified"
+      "notes": "4263B Operation Manual 04263-90041 p. 5-9: CALCulate1:FORMat REAL|MLINear|CP|CS|LP|LS; path confirmed by its query / the unit's *LRN? (`:CALC1:FORM CP`, bench 2026-11-12); options listed 2026-11-11 so each is also its own SET (owner: selector AND individuals); the setting itself never sent, so still unverified; bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: CS and LS are taken only under :SENS:FUNC \"FIMP\", CP and LP only under \"FADM\" (-141 \"Invalid character data\" otherwise, the readback unchanged); REAL and MLIN under either — so arg.needs makes the function first, and Certify puts it back. Switching the function moves the primary to its own kind (CP↔CS, LP↔LS)."
     },
     "Primary_Parameter_CP": {
       "scpi": ":CALCulate1:FORMat CP",
@@ -153,26 +170,25 @@
           "PHAS",
           "D",
           "Q",
-          "REAL",
-          "LP",
-          "RP"
+          "REAL"
         ],
         "labels": {
           "IMAG": "X under FIMP, B under FADM",
           "PHAS": "θ",
           "D": "dissipation factor",
           "Q": "quality factor",
-          "REAL": "Rs/G",
-          "LP": "Lp",
-          "RP": "Rp"
-        }
+          "REAL": "R under FIMP, G under FADM"
+        },
+        "couples": [
+          ":CALCulate1:FORMat"
+        ]
       },
       "args": [
         "param"
       ],
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed; path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified; options 2026-11-11 from the 4263B Operation Manual p. 5-9 (CALCulate2:FORMat IMAGinary|PHASe|D|Q|REAL|LP|RP; INV left out, its meaning unstated)"
+      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); header recalled from the 4263B User's Guide 04263-90040 ch. 8, not confirmed; path confirmed by its query / the unit's *LRN? (bench 2026-11-12); the setting itself never sent, so still unverified; options 2026-11-11 from the 4263B Operation Manual p. 5-9 (CALCulate2:FORMat IMAGinary|PHASe|D|Q|REAL|LP|RP; INV left out, its meaning unstated); bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: LP and RP dropped — refused (-141) under every primary in both functions, the 4263B's options this unit does not have; D, Q, REAL, IMAG and PHAS taken under every primary. COUPLED (arg.couples): IMAG takes the primary to REAL and PHAS to MLIN; D/Q/REAL from REAL or MLIN take it back to C or L of the function's kind — so Certify holds :CALCulate1:FORMat and puts it back after."
     },
     "Secondary_Parameter_D": {
       "scpi": ":CALCulate2:FORMat D",
@@ -189,14 +205,6 @@
       "subsystem": "CALCulate",
       "unverified": true,
       "notes": "Individual of selector Secondary_Parameter = IMAG — written by _komand/expand_selectors.py from the selector; edit the selector (its arg.values / arg.labels), not this. Unverified until the bench sends this option."
-    },
-    "Secondary_Parameter_LP": {
-      "scpi": ":CALCulate2:FORMat LP",
-      "scpiFast": ":CALC2:FORM LP",
-      "description": "Secondary_Parameter → LP (Lp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
-      "subsystem": "CALCulate",
-      "unverified": true,
-      "notes": "Individual of selector Secondary_Parameter = LP — written by _komand/expand_selectors.py from the selector; edit the selector (its arg.values / arg.labels), not this. Unverified until the bench sends this option."
     },
     "Secondary_Parameter_PHAS": {
       "scpi": ":CALCulate2:FORMat PHAS",
@@ -217,18 +225,10 @@
     "Secondary_Parameter_REAL": {
       "scpi": ":CALCulate2:FORMat REAL",
       "scpiFast": ":CALC2:FORM REAL",
-      "description": "Secondary_Parameter → REAL (Rs/G). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+      "description": "Secondary_Parameter → REAL (R under FIMP, G under FADM). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
       "subsystem": "CALCulate",
       "unverified": true,
       "notes": "Individual of selector Secondary_Parameter = REAL — written by _komand/expand_selectors.py from the selector; edit the selector (its arg.values / arg.labels), not this. Unverified until the bench sends this option."
-    },
-    "Secondary_Parameter_RP": {
-      "scpi": ":CALCulate2:FORMat RP",
-      "scpiFast": ":CALC2:FORM RP",
-      "description": "Secondary_Parameter → RP (Rp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
-      "subsystem": "CALCulate",
-      "unverified": true,
-      "notes": "Individual of selector Secondary_Parameter = RP — written by _komand/expand_selectors.py from the selector; edit the selector (its arg.values / arg.labels), not this. Unverified until the bench sends this option."
     },
     "Display_State": {
       "scpi": ":DISPlay:STATe <state>",
@@ -691,168 +691,6 @@
       "subsystem": "Common",
       "notes": "Bench 2026-11-07 03:12 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed, answered 1"
     },
-    "Nab_All_C": {
-      "scpi": "*TRG;*WAI;:FETCh?",
-      "scpiFast": "*TRG;*WAI;:FETC?",
-      "description": "One C reading on the rigged setup: triggers and reads status, cp, d.",
-      "group": "All C",
-      "subsystem": "MEASure",
-      "unverified": true,
-      "returns": {
-        "count": 3,
-        "separator": ",",
-        "fields": [
-          {
-            "name": "status",
-            "type": "NR1"
-          },
-          {
-            "name": "cp",
-            "type": "NR3"
-          },
-          {
-            "name": "d",
-            "type": "NR3"
-          }
-        ]
-      },
-      "notes": "Friends: Rig_All_C once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_C as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the CP/D spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_C first — the reading is whatever the meter is set to"
-    },
-    "Nab_All_G": {
-      "scpi": "*TRG;*WAI;:FETCh?",
-      "scpiFast": "*TRG;*WAI;:FETC?",
-      "description": "One G reading on the rigged setup: triggers and reads status, g, b.",
-      "group": "All G",
-      "subsystem": "MEASure",
-      "unverified": true,
-      "returns": {
-        "count": 3,
-        "separator": ",",
-        "fields": [
-          {
-            "name": "status",
-            "type": "NR1"
-          },
-          {
-            "name": "g",
-            "type": "NR3"
-          },
-          {
-            "name": "b",
-            "type": "NR3"
-          }
-        ]
-      },
-      "notes": "Friends: Rig_All_G once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_G as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the REAL/IMAG spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_G first — the reading is whatever the meter is set to"
-    },
-    "Nab_All_L": {
-      "scpi": "*TRG;*WAI;:FETCh?",
-      "scpiFast": "*TRG;*WAI;:FETC?",
-      "description": "One L reading on the rigged setup: triggers and reads status, ls, q.",
-      "group": "All L",
-      "subsystem": "MEASure",
-      "unverified": true,
-      "returns": {
-        "count": 3,
-        "separator": ",",
-        "fields": [
-          {
-            "name": "status",
-            "type": "NR1"
-          },
-          {
-            "name": "ls",
-            "type": "NR3"
-          },
-          {
-            "name": "q",
-            "type": "NR3"
-          }
-        ]
-      },
-      "notes": "Friends: Rig_All_L once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_L as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the LS/Q spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_L first — the reading is whatever the meter is set to"
-    },
-    "Nab_All_R": {
-      "scpi": "*TRG;*WAI;:FETCh?",
-      "scpiFast": "*TRG;*WAI;:FETC?",
-      "description": "One R reading on the rigged setup: triggers and reads status, r, x.",
-      "group": "All R",
-      "subsystem": "MEASure",
-      "unverified": true,
-      "returns": {
-        "count": 3,
-        "separator": ",",
-        "fields": [
-          {
-            "name": "status",
-            "type": "NR1"
-          },
-          {
-            "name": "r",
-            "type": "NR3"
-          },
-          {
-            "name": "x",
-            "type": "NR3"
-          }
-        ]
-      },
-      "notes": "Friends: Rig_All_R once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_R as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the REAL/IMAG spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_R first — the reading is whatever the meter is set to"
-    },
-    "Nab_All_S": {
-      "scpi": "*TRG;*WAI;:FETCh?",
-      "scpiFast": "*TRG;*WAI;:FETC?",
-      "description": "One S reading on the rigged setup: triggers and reads status, y, theta.",
-      "group": "All S",
-      "subsystem": "MEASure",
-      "unverified": true,
-      "returns": {
-        "count": 3,
-        "separator": ",",
-        "fields": [
-          {
-            "name": "status",
-            "type": "NR1"
-          },
-          {
-            "name": "y",
-            "type": "NR3"
-          },
-          {
-            "name": "theta",
-            "type": "NR3"
-          }
-        ]
-      },
-      "notes": "Friends: Rig_All_S once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_S as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the MLIN/PHAS spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); S read as admittance |Y| (siemens) — the owner said \"S\"; run Rig_All_S first — the reading is whatever the meter is set to"
-    },
-    "Nab_All_Z": {
-      "scpi": "*TRG;*WAI;:FETCh?",
-      "scpiFast": "*TRG;*WAI;:FETC?",
-      "description": "One Z reading on the rigged setup: triggers and reads status, z, theta.",
-      "group": "All Z",
-      "subsystem": "MEASure",
-      "unverified": true,
-      "returns": {
-        "count": 3,
-        "separator": ",",
-        "fields": [
-          {
-            "name": "status",
-            "type": "NR1"
-          },
-          {
-            "name": "z",
-            "type": "NR3"
-          },
-          {
-            "name": "theta",
-            "type": "NR3"
-          }
-        ]
-      },
-      "notes": "Friends: Rig_All_Z once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_Z as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the MLIN/PHAS spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_Z first — the reading is whatever the meter is set to"
-    },
     "Self_Test": {
       "scpi": "*TST?",
       "description": "Runs the internal self-test; 0 = pass, else an error code.",
@@ -886,32 +724,6 @@
       "group": "Readback Queries",
       "subsystem": "CALCulate",
       "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:CALCulate2:FORMat?` answered D"
-    },
-    "Measure_Reading": {
-      "scpi": "*TRG;*WAI;:FETCh?",
-      "scpiFast": "*TRG;*WAI;:FETC?",
-      "description": "Triggers one measurement on the present setup and reads it: status, primary, secondary.",
-      "returns": {
-        "count": 3,
-        "separator": ",",
-        "fields": [
-          {
-            "name": "status",
-            "type": "NR1"
-          },
-          {
-            "name": "primary",
-            "type": "NR3"
-          },
-          {
-            "name": "secondary",
-            "type": "NR3"
-          }
-        ]
-      },
-      "subsystem": "MEASure",
-      "unverified": true,
-      "notes": "Replaces Fetch_Existing (retired and removed, SOURCES.md) on the LCR panel's FETCH READING button (owner 2026-11-12). Same stack as the Nab_All_* reads, without a rig. Unverified as a GUI command: under TRIG:SOUR INT the unit answers *TRG with -211 \"Trigger ignored\" (certificate 2026-11-12, Trigger_Bus)."
     },
     "Get_Init_Continuous": {
       "scpi": ":INITiate:CONTinuous?",
@@ -1007,13 +819,201 @@
       "group": "Readback Queries",
       "subsystem": "TRIGger",
       "notes": "Bench 2026-11-12 03:07–03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11 (asked alone through /api/instrument/send, SYST:ERR? after: +0): `:TRIGger:SOURce?` answered INT"
+    },
+    "Measure_Reading": {
+      "scpi": ":TRIGger;*WAI;:FETCh?",
+      "scpiFast": ":TRIG;*WAI;:FETC?",
+      "description": "Triggers one measurement on the present setup (whatever the trigger source) and reads it: status, primary, secondary.",
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "primary",
+            "type": "NR3"
+          },
+          {
+            "name": "secondary",
+            "type": "NR3"
+          }
+        ]
+      },
+      "subsystem": "MEASure",
+      "unverified": true,
+      "notes": "Replaces Fetch_Existing (retired and removed, SOURCES.md) on the LCR panel's FETCH READING button (owner 2026-11-12). Same stack as the Nab_All_* reads, without a rig. Unverified as a GUI command: under TRIG:SOUR INT the unit answers *TRG with -211 \"Trigger ignored\" (certificate 2026-11-12, Trigger_Bus).; bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: under TRIG:SOUR INT with INIT:CONT ON it answers (the *TRG draws -211, understood); under BUS it needs the meter armed (a rig, or INIT:CONT ON); with INIT:CONT OFF (after *RST) it answers nothing until a trigger cycle runs — Certify's fresh sequence (:INIT, *TRG, *OPC?) runs one. Kept *TRG;*WAI;:FETCh?: a stacked :INIT;*TRG;*WAI;:FETCh? hung under INT with INIT:CONT OFF (the fetch outran the measurement).; bench 2026-11-12 06:20 UTC: *TRG became :TRIGger — under BUS the 4263A answers *TRG with the reading itself, so *TRG;*WAI;:FETCh? came back twice (SDK says 3 values, the unit answered 2; an unread one is -410 on the next query). :TRIGger;*WAI;:FETCh? answered one reading under BUS, under INT and with INIT:CONT OFF (after *RST)."
+    },
+    "Nab_All_C": {
+      "scpi": ":TRIGger;*WAI;:FETCh?",
+      "scpiFast": ":TRIG;*WAI;:FETC?",
+      "description": "One C reading on the rigged setup: triggers and reads status, cp, d.",
+      "group": "All C",
+      "subsystem": "MEASure",
+      "unverified": true,
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "cp",
+            "type": "NR3"
+          },
+          {
+            "name": "d",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "Friends: Rig_All_C once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_C as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the CP/D spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_C first — the reading is whatever the meter is set to; bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: answered at once on its rig (now arming INIT:CONT ON); Certify makes the rig first (same group), then puts every setting back.; bench 2026-11-12 06:20 UTC: *TRG became :TRIGger — under BUS the 4263A answers *TRG with the reading itself, so *TRG;*WAI;:FETCh? came back twice (SDK says 3 values, the unit answered 2; an unread one is -410 on the next query). :TRIGger;*WAI;:FETCh? answered one reading under BUS, under INT and with INIT:CONT OFF (after *RST)."
+    },
+    "Nab_All_G": {
+      "scpi": ":TRIGger;*WAI;:FETCh?",
+      "scpiFast": ":TRIG;*WAI;:FETC?",
+      "description": "One G reading on the rigged setup: triggers and reads status, g, b.",
+      "group": "All G",
+      "subsystem": "MEASure",
+      "unverified": true,
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "g",
+            "type": "NR3"
+          },
+          {
+            "name": "b",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "Friends: Rig_All_G once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_G as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the REAL/IMAG spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_G first — the reading is whatever the meter is set to; bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: answered at once on its rig (now arming INIT:CONT ON); Certify makes the rig first (same group), then puts every setting back.; bench 2026-11-12 06:20 UTC: *TRG became :TRIGger — under BUS the 4263A answers *TRG with the reading itself, so *TRG;*WAI;:FETCh? came back twice (SDK says 3 values, the unit answered 2; an unread one is -410 on the next query). :TRIGger;*WAI;:FETCh? answered one reading under BUS, under INT and with INIT:CONT OFF (after *RST)."
+    },
+    "Nab_All_L": {
+      "scpi": ":TRIGger;*WAI;:FETCh?",
+      "scpiFast": ":TRIG;*WAI;:FETC?",
+      "description": "One L reading on the rigged setup: triggers and reads status, ls, q.",
+      "group": "All L",
+      "subsystem": "MEASure",
+      "unverified": true,
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "ls",
+            "type": "NR3"
+          },
+          {
+            "name": "q",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "Friends: Rig_All_L once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_L as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the LS/Q spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_L first — the reading is whatever the meter is set to; bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: answered at once on its rig (now arming INIT:CONT ON); Certify makes the rig first (same group), then puts every setting back.; bench 2026-11-12 06:20 UTC: *TRG became :TRIGger — under BUS the 4263A answers *TRG with the reading itself, so *TRG;*WAI;:FETCh? came back twice (SDK says 3 values, the unit answered 2; an unread one is -410 on the next query). :TRIGger;*WAI;:FETCh? answered one reading under BUS, under INT and with INIT:CONT OFF (after *RST)."
+    },
+    "Nab_All_R": {
+      "scpi": ":TRIGger;*WAI;:FETCh?",
+      "scpiFast": ":TRIG;*WAI;:FETC?",
+      "description": "One R reading on the rigged setup: triggers and reads status, r, x.",
+      "group": "All R",
+      "subsystem": "MEASure",
+      "unverified": true,
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "r",
+            "type": "NR3"
+          },
+          {
+            "name": "x",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "Friends: Rig_All_R once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_R as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the REAL/IMAG spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_R first — the reading is whatever the meter is set to; bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: answered at once on its rig (now arming INIT:CONT ON); Certify makes the rig first (same group), then puts every setting back.; bench 2026-11-12 06:20 UTC: *TRG became :TRIGger — under BUS the 4263A answers *TRG with the reading itself, so *TRG;*WAI;:FETCh? came back twice (SDK says 3 values, the unit answered 2; an unread one is -410 on the next query). :TRIGger;*WAI;:FETCh? answered one reading under BUS, under INT and with INIT:CONT OFF (after *RST)."
+    },
+    "Nab_All_S": {
+      "scpi": ":TRIGger;*WAI;:FETCh?",
+      "scpiFast": ":TRIG;*WAI;:FETC?",
+      "description": "One S reading on the rigged setup: triggers and reads status, y, theta.",
+      "group": "All S",
+      "subsystem": "MEASure",
+      "unverified": true,
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "y",
+            "type": "NR3"
+          },
+          {
+            "name": "theta",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "Friends: Rig_All_S once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_S as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the MLIN/PHAS spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); S read as admittance |Y| (siemens) — the owner said \"S\"; run Rig_All_S first — the reading is whatever the meter is set to; bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: answered at once on its rig (now arming INIT:CONT ON); Certify makes the rig first (same group), then puts every setting back.; bench 2026-11-12 06:20 UTC: *TRG became :TRIGger — under BUS the 4263A answers *TRG with the reading itself, so *TRG;*WAI;:FETCh? came back twice (SDK says 3 values, the unit answered 2; an unread one is -410 on the next query). :TRIGger;*WAI;:FETCh? answered one reading under BUS, under INT and with INIT:CONT OFF (after *RST)."
+    },
+    "Nab_All_Z": {
+      "scpi": ":TRIGger;*WAI;:FETCh?",
+      "scpiFast": ":TRIG;*WAI;:FETC?",
+      "description": "One Z reading on the rigged setup: triggers and reads status, z, theta.",
+      "group": "All Z",
+      "subsystem": "MEASure",
+      "unverified": true,
+      "returns": {
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "z",
+            "type": "NR3"
+          },
+          {
+            "name": "theta",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "Friends: Rig_All_Z once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_Z as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the MLIN/PHAS spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); run Rig_All_Z first — the reading is whatever the meter is set to; bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: answered at once on its rig (now arming INIT:CONT ON); Certify makes the rig first (same group), then puts every setting back.; bench 2026-11-12 06:20 UTC: *TRG became :TRIGger — under BUS the 4263A answers *TRG with the reading itself, so *TRG;*WAI;:FETCh? came back twice (SDK says 3 values, the unit answered 2; an unread one is -410 on the next query). :TRIGger;*WAI;:FETCh? answered one reading under BUS, under INT and with INIT:CONT OFF (after *RST)."
     }
   },
   "rig": {
     "Rig_All_C": {
-      "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-      "scpiFast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:CALC1:FORM CP;:CALC2:FORM D;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
-      "description": "Sets the meter up to measure capacitance (parallel C and its D): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+      "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+      "scpiFast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM CP;:CALC2:FORM D;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+      "description": "Sets the meter up to measure capacitance (parallel C and its D): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
       "arg": {
         "kind": "numeric"
       },
@@ -1024,12 +1024,12 @@
       "group": "All C",
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "Friends: Rig_All_C once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_C as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the CP/D spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ)"
+      "notes": "Friends: Rig_All_C once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_C as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the CP/D spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: the rig sets :INITiate:CONTinuous ON — with it OFF (as *RST leaves it) the trigger system is idle, *TRG is ignored and the nab's :FETCh? answers nothing for 30 s; with it, every rig + nab answered at once with the queue at 0 (C, G, L, R, S, Z)."
     },
     "Rig_All_S": {
-      "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-      "scpiFast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:CALC1:FORM MLIN;:CALC2:FORM PHAS;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
-      "description": "Sets the meter up to measure admittance in siemens (|Y| and its phase θ): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+      "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+      "scpiFast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM MLIN;:CALC2:FORM PHAS;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+      "description": "Sets the meter up to measure admittance in siemens (|Y| and its phase θ): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
       "arg": {
         "kind": "numeric"
       },
@@ -1040,12 +1040,12 @@
       "group": "All S",
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "Friends: Rig_All_S once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_S as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the MLIN/PHAS spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); S read as admittance |Y| (siemens) — the owner said \"S\""
+      "notes": "Friends: Rig_All_S once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_S as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the MLIN/PHAS spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); S read as admittance |Y| (siemens) — the owner said \"S\"; bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: the rig sets :INITiate:CONTinuous ON — with it OFF (as *RST leaves it) the trigger system is idle, *TRG is ignored and the nab's :FETCh? answers nothing for 30 s; with it, every rig + nab answered at once with the queue at 0 (C, G, L, R, S, Z)."
     },
     "Rig_All_G": {
-      "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-      "scpiFast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
-      "description": "Sets the meter up to measure conductance (G and its susceptance B): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+      "scpi": ":SENSe:FUNCtion \"FADM\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+      "scpiFast": ":SENS:FUNC \"FADM\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+      "description": "Sets the meter up to measure conductance (G and its susceptance B): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
       "arg": {
         "kind": "numeric"
       },
@@ -1056,12 +1056,12 @@
       "group": "All G",
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "Friends: Rig_All_G once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_G as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the REAL/IMAG spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ)"
+      "notes": "Friends: Rig_All_G once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_G as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the REAL/IMAG spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: the rig sets :INITiate:CONTinuous ON — with it OFF (as *RST leaves it) the trigger system is idle, *TRG is ignored and the nab's :FETCh? answers nothing for 30 s; with it, every rig + nab answered at once with the queue at 0 (C, G, L, R, S, Z)."
     },
     "Rig_All_L": {
-      "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-      "scpiFast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:CALC1:FORM LS;:CALC2:FORM Q;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
-      "description": "Sets the meter up to measure inductance (series L and its Q): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+      "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+      "scpiFast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM LS;:CALC2:FORM Q;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+      "description": "Sets the meter up to measure inductance (series L and its Q): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
       "arg": {
         "kind": "numeric"
       },
@@ -1072,12 +1072,12 @@
       "group": "All L",
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "Friends: Rig_All_L once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_L as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the LS/Q spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ)"
+      "notes": "Friends: Rig_All_L once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_L as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the LS/Q spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: the rig sets :INITiate:CONTinuous ON — with it OFF (as *RST leaves it) the trigger system is idle, *TRG is ignored and the nab's :FETCh? answers nothing for 30 s; with it, every rig + nab answered at once with the queue at 0 (C, G, L, R, S, Z)."
     },
     "Rig_All_Z": {
-      "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-      "scpiFast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:CALC1:FORM MLIN;:CALC2:FORM PHAS;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
-      "description": "Sets the meter up to measure impedance (|Z| and its phase θ): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+      "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+      "scpiFast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM MLIN;:CALC2:FORM PHAS;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+      "description": "Sets the meter up to measure impedance (|Z| and its phase θ): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
       "arg": {
         "kind": "numeric"
       },
@@ -1088,12 +1088,12 @@
       "group": "All Z",
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "Friends: Rig_All_Z once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_Z as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the MLIN/PHAS spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ)"
+      "notes": "Friends: Rig_All_Z once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_Z as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the MLIN/PHAS spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: the rig sets :INITiate:CONTinuous ON — with it OFF (as *RST leaves it) the trigger system is idle, *TRG is ignored and the nab's :FETCh? answers nothing for 30 s; with it, every rig + nab answered at once with the queue at 0 (C, G, L, R, S, Z)."
     },
     "Rig_All_R": {
-      "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
-      "scpiFast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
-      "description": "Sets the meter up to measure resistance (R and its reactance X): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
+      "scpi": ":SENSe:FUNCtion \"FIMP\";:TRIGger:SOURce BUS;:INITiate:CONTinuous ON;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>",
+      "scpiFast": ":SENS:FUNC \"FIMP\";:TRIG:SOUR BUS;:INIT:CONT ON;:CALC1:FORM REAL;:CALC2:FORM IMAG;:SOUR:FREQ <freq>;:SOUR:VOLT <level>",
+      "description": "Sets the meter up to measure resistance (R and its reactance X): bus trigger armed (continuous initiation on), test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).",
       "arg": {
         "kind": "numeric"
       },
@@ -1104,7 +1104,7 @@
       "group": "All R",
       "subsystem": "CALCulate",
       "unverified": true,
-      "notes": "Friends: Rig_All_R once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_R as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the REAL/IMAG spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ)"
+      "notes": "Friends: Rig_All_R once at the beginning (impedance/admittance function, the parameter pair, bus trigger, frequency, level), then Nab_All_R as many times as wanted — each nab one bus trigger and its reading. Authored 2026-11-12 on the owner's ask — unverified on the bench. The unit's *LRN? confirms :FUNC \"FADM\" with CALC1 CP / CALC2 D; \"FIMP\" and the REAL/IMAG spellings are recalled from the 4263B guide (REAL/IMAG read R/X under FIMP and G/B under FADM; MLIN/PHAS read |Z| or |Y| and θ); bench 2026-11-12 ~06:00 UTC, 3145J01840 fw 02.00 on gpib7,11: the rig sets :INITiate:CONTinuous ON — with it OFF (as *RST leaves it) the trigger system is idle, *TRG is ignored and the nab's :FETCh? answers nothing for 30 s; with it, every rig + nab answered at once with the queue at 0 (C, G, L, R, S, Z)."
     }
   }
 }
