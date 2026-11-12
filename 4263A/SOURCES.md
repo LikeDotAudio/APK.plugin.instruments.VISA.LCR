@@ -94,7 +94,7 @@ Every `retired` entry left the table on the owner's word; the reasons stay above
 
 ## All L / All C / All R (owner, 2026-11-12)
 
-Friends, by name and group: `Rig_All_<X>` once at the beginning — `:TRIG:SOUR BUS;:CALC1:FORM <p>;:CALC2:FORM <s>;:SOUR:FREQ <freq>;:SOUR:VOLT <level>` — then `Nab_All_<X>` (`*TRG;*WAI;:FETC?`) over and over, each one reading (status, primary, secondary). L = LS/Q, C = CP/D, R = REAL/IMAG (R/X; spelling recalled from the 4263B guide, unconfirmed). All unverified until Certify tries them.
+Friends, by name and group: `Rig_All_<X>` once at the beginning — `:TRIG:SOUR BUS;:CALC1:FORM <p>;:CALC2:FORM <s>;:SOUR:FREQ <freq>;:SOUR:VOLT <level>` — then `Nab_All_<X>` (`*TRG;*WAI;:FETC?`) over and over, each one reading (status, primary, secondary). Each rig also sets `:SENS:FUNC` — "FIMP" (impedance) or "FADM" (admittance; the unit's *LRN? shows it in FADM with CP/D). L = FIMP LS/Q, C = FADM CP/D, R = FIMP REAL/IMAG (R/X), Z = FIMP MLIN/PHAS (|Z|/θ), G = FADM REAL/IMAG (G/B), S = FADM MLIN/PHAS (|Y|/θ, siemens). FIMP and the REAL/IMAG/MLIN/PHAS spellings are recalled from the 4263B guide, unconfirmed. All unverified until Certify tries them.
 
 ## Paths against the 4263B Operation Manual (2026-11-11, nothing sent)
 

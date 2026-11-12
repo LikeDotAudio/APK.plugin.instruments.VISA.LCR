@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**45 commands** — SET 19 · RIG 3 · NAB 17 · DO 6 · 27 unverified (60%)
+**51 commands** — SET 19 · RIG 6 · NAB 20 · DO 6 · 33 unverified (64%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -12,18 +12,30 @@ Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the ta
 
 Several statements in one message, so they hang off no single branch. Every statement after the first carries a leading colon — without it the parser reads it relative to the previous header's path and the instrument answers `-113`.
 
-- **NAB** `Nab_All_C` · → status, cp, d · †<br>One C reading on the rigged setup: triggers and reads status, CP, D.
+- **NAB** `Nab_All_C` · → status, cp, d · †<br>One C reading on the rigged setup: triggers and reads status, cp, d.
   - `*TRG;*WAI;:FETCh?`
-- **NAB** `Nab_All_L` · → status, ls, q · †<br>One L reading on the rigged setup: triggers and reads status, LS, Q.
+- **NAB** `Nab_All_G` · → status, g, b · †<br>One G reading on the rigged setup: triggers and reads status, g, b.
   - `*TRG;*WAI;:FETCh?`
-- **NAB** `Nab_All_R` · → status, r, x · †<br>One R reading on the rigged setup: triggers and reads status, REAL, IMAG.
+- **NAB** `Nab_All_L` · → status, ls, q · †<br>One L reading on the rigged setup: triggers and reads status, ls, q.
+  - `*TRG;*WAI;:FETCh?`
+- **NAB** `Nab_All_R` · → status, r, x · †<br>One R reading on the rigged setup: triggers and reads status, r, x.
+  - `*TRG;*WAI;:FETCh?`
+- **NAB** `Nab_All_S` · → status, y, theta · †<br>One S reading on the rigged setup: triggers and reads status, y, theta.
+  - `*TRG;*WAI;:FETCh?`
+- **NAB** `Nab_All_Z` · → status, z, theta · †<br>One Z reading on the rigged setup: triggers and reads status, z, theta.
   - `*TRG;*WAI;:FETCh?`
 - **RIG** `Rig_All_C` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure capacitance (parallel C and its D): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
-  - `:TRIGger:SOURce BUS;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+  - `:SENSe:FUNCtion "FADM";:TRIGger:SOURce BUS;:CALCulate1:FORMat CP;:CALCulate2:FORMat D;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+- **RIG** `Rig_All_G` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure conductance (G and its susceptance B): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
+  - `:SENSe:FUNCtion "FADM";:TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
 - **RIG** `Rig_All_L` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure inductance (series L and its Q): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
-  - `:TRIGger:SOURce BUS;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+  - `:SENSe:FUNCtion "FIMP";:TRIGger:SOURce BUS;:CALCulate1:FORMat LS;:CALCulate2:FORMat Q;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
 - **RIG** `Rig_All_R` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure resistance (R and its reactance X): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
-  - `:TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+  - `:SENSe:FUNCtion "FIMP";:TRIGger:SOURce BUS;:CALCulate1:FORMat REAL;:CALCulate2:FORMat IMAG;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+- **RIG** `Rig_All_S` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure admittance in siemens (|Y| and its phase θ): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
+  - `:SENSe:FUNCtion "FADM";:TRIGger:SOURce BUS;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
+- **RIG** `Rig_All_Z` · args: `freq`, `level` · numeric · †<br>Sets the meter up to measure impedance (|Z| and its phase θ): bus trigger, test frequency (100, 120, 1k, 10k, 100k Hz) and level (V).
+  - `:SENSe:FUNCtion "FIMP";:TRIGger:SOURce BUS;:CALCulate1:FORMat MLIN;:CALCulate2:FORMat PHAS;:SOURce:FREQuency <freq>;:SOURce:VOLTage <level>`
 - **NAB** `lcr_reading` · → function, measurement<br>What the meter is measuring, and its last measurement, together.
   - `:SENSe:FUNCtion?;:FETCh?`
 
