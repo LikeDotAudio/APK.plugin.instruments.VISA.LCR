@@ -911,34 +911,7 @@
       },
       "subsystem": "MEASure",
       "unverified": true,
-      "notes": "Replaces the retired Fetch_Existing on the LCR panel's FETCH READING button (owner 2026-11-12). Same stack as the Nab_All_* reads, without a rig. Unverified as a GUI command: under TRIG:SOUR INT the unit answers *TRG with -211 \"Trigger ignored\" (certificate 2026-11-12, Trigger_Bus)."
-    },
-    "Fetch_Existing": {
-      "scpi": ":FETCh?",
-      "scpiFast": ":FETC?",
-      "description": "Retrieves the most recent measurement data.",
-      "returns": {
-        "count": 3,
-        "separator": ",",
-        "fields": [
-          {
-            "name": "status",
-            "type": "NR1"
-          },
-          {
-            "name": "primary",
-            "type": "NR3"
-          },
-          {
-            "name": "secondary",
-            "type": "NR3"
-          }
-        ]
-      },
-      "subsystem": "MEASure",
-      "notes": "Bench 2026-11-07 03:12 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed, answered +0,+1.01820E-11,+4.18142E-03 (status, primary, secondary)",
-      "retired": true,
-      "retired_because": "Owner 2026-11-12, after the GUI certificate of 2026-11-12 04:54–04:56 on 3145J01840 fw 02.00 (gpib7,11): a bare :FETCh? reads the last result without making one, so with no fresh measurement (after *TST?, *RST or an idle trigger) it answers nothing for 30 s and the queue says -230,\"Data corrupt\" | -420,\"Query UNTERMINATED\". A reading is triggered first: Measure_Reading (*TRG;*WAI;:FETCh?) or the Nab_All_* reads."
+      "notes": "Replaces Fetch_Existing (retired and removed, SOURCES.md) on the LCR panel's FETCH READING button (owner 2026-11-12). Same stack as the Nab_All_* reads, without a rig. Unverified as a GUI command: under TRIG:SOUR INT the unit answers *TRG with -211 \"Trigger ignored\" (certificate 2026-11-12, Trigger_Bus)."
     },
     "Get_Init_Continuous": {
       "scpi": ":INITiate:CONTinuous?",
