@@ -143,4 +143,4 @@ Measure_Reading carries `"utopia": "reading"`, which makes it the 4263A's fresh 
 
 So the reading and every setting it was taken under come back from one instant. Its `utopia.ladder` (10, 5, 3, 2, 1, 0) is the owner's unchanged rule for whoever schedules it.
 
-**Not yet sent to the unit.** The gateway's GPIB bus (44.44.44.222 gpib7) hung at 02:00 and waits for a power cycle. The parts were each proven on the bench: `:TRIGger;*WAI;:FETCh?` gave one reading in every trigger state, and each setting query passed Certify alone.
+**Bench, 2026-11-12 ~07:20 UTC** (after the gpib7 bus came back), sent once over VXI-11 while Plugin-VISA held no link: answered in 0.10 s, 9 `;`-parts — `+0,+4.57002E-06,+1.23244E-01;CP;D;1;"FADM";+1.00000E+03;+1.00000E+00;INT;HEWLETT-PACKARD,4263A,3145J01840,02.00`. The queue held -211 "Trigger ignored" (TRIG:SOUR INT: the :TRIGger is understood, the reading is the free-running one). Then Plugin-VISA reconnected and locked the link, so it has not yet been through Certify.
