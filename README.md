@@ -16,7 +16,7 @@ The **LCR** instruments of the APK.audio bench, as one thing: 1 models, their co
 
 | Model | Maker | What | Commands | Table | API |
 |---|---|---|---:|:---:|---|
-| [4263A](Documentation/%F0%9F%A7%A9Manual%20and%20Artifacts/SDK/4263A.md) | HP / Agilent / Keysight | LCR Meter (100 Hz - 100 kHz test signal) | 39 | ✅ | :15800 |
+| [4263A](Documentation/%F0%9F%A7%A9Manual%20and%20Artifacts/SDK/4263A.md) | HP / Agilent / Keysight | LCR Meter (100 Hz - 100 kHz test signal) | 59 | ✅ | :15800 |
 
 ## Layout
 

@@ -42,3 +42,22 @@ The tree: `4263A.scpi.json`, read off no 4263A manual obtainable (SOURCES.md); r
 | `set/Set_Tran_Freq` | left as is, unverified — unresolved |  |
 | `set/Set_Tran_Stat` | left as is, unverified — unresolved |  |
 | `set/Set_Volt` | left as is, unverified — unresolved |  |
+
+## Owner's expected parameters (2026-11-11)
+
+Added from the owner's pasted list of expected LCR commands and a pasted pyvisa nab script — neither is a manual, so every entry is `unverified` until the unit answers it alone (REMOTE first, one exchange in flight, `SYST:ERR?` after each). Nothing was sent.
+
+| Command | Change | Source |
+|---|---|---|
+| `set/Set_Test_Frequency` | `:SENSe:FREQuency` → `:SOURce:FREQuency` | the test oscillator is a SOURce setting (4263B 04263-90040 ch. 8 `:SOURce:FREQuency[:CW]`, recalled) |
+| `set/Primary_Parameter`, `set/Secondary_Parameter` + `Get_` twins | added `:CALCulate1/2:FORMat` | 4263B ch. 8, recalled, not confirmed |
+| `set/Impedance_Type` + `nab/Get_Impedance_Type` | added `:SENSe:FUNCtion:IMPedance:TYPE` | owner's list — 4284A/E4980A-style, may answer -113 |
+| `set/Set_Test_Current` + `Get_Test_Current` | added `:SOURce:CURRent` | owner's list |
+| `set/Init_Continuous` + `Get_Init_Continuous` | added `:INITiate:CONTinuous` | owner's list |
+| `set/Correction_Open_State`, `set/Correction_Short_State` + `Get_` twins | added `:SENSe:CORRection:OPEN/SHORt:STATe` | owner's list |
+| `nab/Get_Measurement_Function`, `Get_Test_Frequency`, `Get_Test_Level`, `Get_Trigger_Source` | added readbacks of existing sets | owner's nab script |
+| `nab/Learn_Settings` | added `*LRN?` | owner's nab script — if it answers alone it is the whole-state nab |
+| `nab/Self_Test` | added `*TST?` | owner's list — runs a self-test; never stacked into a GRAB or asked on open |
+| `nab/Measure_Impedance` | added **retired** `:MEASure:IMPedance?` | bench 2026-11-07: MEASure answers -113 and is no root in `4263A.scpi.json`; read with `:READ?` / `:FETCh?` |
+
+Not added: `FUNCtion:IMPedance:AUTO` (no such header on either family; autorange is a RANGe:AUTO), bare `FREQ`/`VOLT` (ambiguous; the SOURce forms above). The panel's electronic-load bindings (`unresolved` in `4263A.scpi.json`) are untouched.
