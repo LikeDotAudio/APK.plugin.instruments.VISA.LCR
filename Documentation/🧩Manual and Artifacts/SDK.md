@@ -14,4 +14,4 @@ Every LCR model this library drives, and how to drive it. Each model answers the
 
 | Model | Maker | get | set | nab | rig | do | Port |
 |---|---|---:|---:|---:|---:|---:|---:|
-| [4263A](SDK/4263A.md) | HP / Agilent / Keysight | 12 | 50 | 21 | 6 | 6 | 15800 |
+| [4263A](SDK/4263A.md) | HP / Agilent / Keysight | 12 | 50 | 22 | 6 | 6 | 15800 |

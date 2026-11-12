@@ -72,10 +72,10 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 83,
+    "total_commands": 84,
     "get_count": 12,
     "set_count": 50,
-    "nab_count": 21,
+    "nab_count": 22,
     "rig_count": 6,
     "do_count": 6
   },
@@ -2145,7 +2145,8 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Measure_Reading",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": true,
+        "utopia": "reading"
       },
       "Nab_All_C": {
         "command": "Nab_All_C",
@@ -2440,6 +2441,93 @@
             "*IDN?"
           ],
           "chunks": [],
+          "max_command_bytes": 240,
+          "qualified": {
+            "compiled": "2026-11-12T03:09:45Z",
+            "units": [
+              "visa/LCR/4263A/Dev711"
+            ],
+            "source": "4263A.qualified.json"
+          }
+        }
+      },
+      "UTOPIA": {
+        "command": "UTOPIA",
+        "verb": "nab",
+        "description": "UTOPIA \u2014 the pinnacle of simultaneous capture: asks for a fresh reading and reads it (Measure_Reading), then reads all 8 settings this model answered alone, in one message; the answers come back `;`-separated in the order of utopia.commands",
+        "scpi": ":TRIGger;*WAI;:FETCh?;:CALC1:FORM?;:CALC2:FORM?;:INIT:CONT?;:SENS:FUNC?;:SOUR:FREQ?;:SOUR:VOLT?;:TRIG:SOUR?;*IDN?",
+        "subsystem": "UTOPIA",
+        "group": "UTOPIA",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 9,
+          "type": "LIST",
+          "separator": ";",
+          "first": {
+            "command": "Measure_Reading",
+            "fields": [
+              {
+                "name": "status",
+                "type": "NR1"
+              },
+              {
+                "name": "primary",
+                "type": "NR3"
+              },
+              {
+                "name": "secondary",
+                "type": "NR3"
+              }
+            ]
+          }
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/UTOPIA",
+          "direction": "in",
+          "payload_format": {
+            "command": "UTOPIA"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/UTOPIA",
+          "reading_direction": "out"
+        },
+        "unverified": true,
+        "utopia": {
+          "reading": "Measure_Reading",
+          "ask": ":TRIGger;*WAI;:FETCh?",
+          "commands": [
+            "Measure_Reading",
+            "Get_Primary_Parameter",
+            "Get_Secondary_Parameter",
+            "Get_Init_Continuous",
+            "Get_Measurement_Function",
+            "Get_Test_Frequency",
+            "Get_Test_Level",
+            "Get_Trigger_Source",
+            "Read_IDN"
+          ],
+          "queries": [
+            ":TRIGger;*WAI;:FETCh?",
+            ":CALC1:FORM?",
+            ":CALC2:FORM?",
+            ":INIT:CONT?",
+            ":SENS:FUNC?",
+            ":SOUR:FREQ?",
+            ":SOUR:VOLT?",
+            ":TRIG:SOUR?",
+            "*IDN?"
+          ],
+          "left_out": [],
+          "ladder": [
+            10,
+            5,
+            3,
+            2,
+            1,
+            0
+          ],
           "max_command_bytes": 240,
           "qualified": {
             "compiled": "2026-11-12T03:09:45Z",

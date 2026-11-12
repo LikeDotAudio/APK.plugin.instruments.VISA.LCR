@@ -134,3 +134,13 @@ The owner asked that every command be tried ("let's be complete"). Bench work on
 - **The function is string data.** `:SENS:FUNC FIMP` without quotes is -148 "Character data not allowed". Certify's put-back used to write it bare.
 - **An idle trigger system answers nothing.** `*RST` leaves `:INIT:CONT 0`. Then `*TRG` is ignored (-211) and `:FETCh?` hangs 30 s (-230 | -420): this is what killed Fetch_Existing and failed Nab_All_C / Measure_Reading. With `:INIT:CONT ON` every rig + nab (C, G, L, R, S, Z) answered at once with the queue at 0. So every Rig_All_* now sets `:INITiate:CONTinuous ON` after `:TRIGger:SOURce BUS`. **`*TRG` answers by itself under BUS:** the unit puts the reading in its output buffer, so `*TRG;*WAI;:FETCh?` came back as two readings (Certify: "SDK says 3 values, the unit answered 2"). An unread one is the -410 "Query INTERRUPTED" the next query meets, which includes the panel's Trigger_Bus button under BUS. Every Nab_All_* and Measure_Reading are now `:TRIGger;*WAI;:FETCh?`, which gave one reading under BUS, under INT, and with INIT:CONT OFF. Certify's fresh sequence is `:INIT`, `:TRIG`, `*OPC?` for the same reason. Stacked as `:INIT;*TRG;*WAI;:FETC?` it hung under INT with INIT:CONT OFF: the fetch outran the measurement.
 - **Still withheld by policy, not by fault:** `Key_Lock` (`:SYST:KLOCk`, the guard's KLOC/LOCK), and `Correction_Open` / `Correction_Short` (`:SENS:CORR:COLL STAN1/2`). The corrections overwrite the stored fixture correction and need the fixture open or shorted by hand, so a certificate never runs them.
+
+## UTOPIA: the pinnacle of simultaneous capture (owner, 2026-11-12)
+
+Measure_Reading carries `"utopia": "reading"`, which makes it the 4263A's fresh reading: it asks for a measurement (`:TRIGger`, whatever the trigger source) and reads it. `_komand/generate_device_apis.py` compiles the nab **UTOPIA** from that mark and `4263A.qualified.json`: the reading first, then every query the bench answered alone, in one 113-byte message (`*IDN?` last):
+
+`:TRIGger;*WAI;:FETCh?;:CALC1:FORM?;:CALC2:FORM?;:INIT:CONT?;:SENS:FUNC?;:SOUR:FREQ?;:SOUR:VOLT?;:TRIG:SOUR?;*IDN?`
+
+So the reading and every setting it was taken under come back from one instant. Its `utopia.ladder` (10, 5, 3, 2, 1, 0) is the owner's unchanged rule for whoever schedules it.
+
+**Not yet sent to the unit.** The gateway's GPIB bus (44.44.44.222 gpib7) hung at 02:00 and waits for a power cycle. The parts were each proven on the bench: `:TRIGger;*WAI;:FETCh?` gave one reading in every trigger state, and each setting query passed Certify alone.
