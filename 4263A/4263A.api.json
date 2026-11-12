@@ -72,10 +72,10 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 52,
-    "get_count": 14,
+    "total_commands": 51,
+    "get_count": 12,
     "set_count": 30,
-    "nab_count": 16,
+    "nab_count": 15,
     "rig_count": 0,
     "do_count": 6
   },
@@ -157,7 +157,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Operation_Complete",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Self_Test": {
         "command": "Self_Test",
@@ -183,7 +183,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Self_Test",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Primary_Parameter": {
         "command": "Get_Primary_Parameter",
@@ -239,32 +239,6 @@
         },
         "unverified": false
       },
-      "Fetch_Existing": {
-        "command": "Fetch_Existing",
-        "verb": "get",
-        "description": "Retrieves the most recent measurement data.",
-        "scpi": ":FETCh?",
-        "scpi_fast": ":FETC?",
-        "subsystem": "MEASure",
-        "group": "MEASure",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Fetch_Existing",
-          "direction": "in",
-          "payload_format": {
-            "command": "Fetch_Existing"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Fetch_Existing",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Init_Continuous": {
         "command": "Get_Init_Continuous",
         "verb": "get",
@@ -291,31 +265,6 @@
           "reading_direction": "out"
         },
         "unverified": false
-      },
-      "Read_Measurement": {
-        "command": "Read_Measurement",
-        "verb": "get",
-        "description": "Triggers a measurement and retrieves the results.",
-        "scpi": ":READ?",
-        "subsystem": "MEASure",
-        "group": "MEASure",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Read_Measurement",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_Measurement"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Measurement",
-          "reading_direction": "out"
-        },
-        "unverified": true
       },
       "Get_Measurement_Function": {
         "command": "Get_Measurement_Function",
@@ -1337,7 +1286,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Operation_Complete",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Self_Test": {
         "command": "Self_Test",
@@ -1363,7 +1312,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Self_Test",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Primary_Parameter": {
         "command": "Get_Primary_Parameter",
@@ -1432,7 +1381,22 @@
           "kind": "none"
         },
         "returns": {
-          "count": 1
+          "count": 3,
+          "separator": ",",
+          "fields": [
+            {
+              "name": "status",
+              "type": "NR1"
+            },
+            {
+              "name": "primary",
+              "type": "NR3"
+            },
+            {
+              "name": "secondary",
+              "type": "NR3"
+            }
+          ]
         },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/LCR/Fetch_Existing",
@@ -1443,7 +1407,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Fetch_Existing",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Init_Continuous": {
         "command": "Get_Init_Continuous",
@@ -1471,31 +1435,6 @@
           "reading_direction": "out"
         },
         "unverified": false
-      },
-      "Read_Measurement": {
-        "command": "Read_Measurement",
-        "verb": "nab",
-        "description": "Triggers a measurement and retrieves the results.",
-        "scpi": ":READ?",
-        "subsystem": "MEASure",
-        "group": "MEASure",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Read_Measurement",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_Measurement"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Measurement",
-          "reading_direction": "out"
-        },
-        "unverified": true
       },
       "Get_Measurement_Function": {
         "command": "Get_Measurement_Function",
@@ -1559,7 +1498,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/lcr_reading",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Get_Test_Frequency": {
         "command": "Get_Test_Frequency",
@@ -1752,7 +1691,7 @@
             "command": "Clear_Status"
           }
         },
-        "unverified": true
+        "unverified": false
       },
       "Reset_Device": {
         "command": "Reset_Device",
@@ -1773,7 +1712,7 @@
             "command": "Reset_Device"
           }
         },
-        "unverified": true
+        "unverified": false
       },
       "Trigger_Bus": {
         "command": "Trigger_Bus",
@@ -1794,7 +1733,7 @@
             "command": "Trigger_Bus"
           }
         },
-        "unverified": true
+        "unverified": false
       },
       "Correction_Open": {
         "command": "Correction_Open",
@@ -1860,7 +1799,7 @@
             "command": "Trigger_Immediate"
           }
         },
-        "unverified": true
+        "unverified": false
       }
     }
   }

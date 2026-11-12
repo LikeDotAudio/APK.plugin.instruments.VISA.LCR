@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**51 commands** — SET 30 · RIG 0 · NAB 15 · DO 6 · 41 unverified (80%)
+**50 commands** — SET 30 · RIG 0 · NAB 14 · DO 6 · 32 unverified (64%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -12,7 +12,7 @@ Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the ta
 
 Several statements in one message, so they hang off no single branch. Every statement after the first carries a leading colon — without it the parser reads it relative to the previous header's path and the instrument answers `-113`.
 
-- **NAB** `lcr_reading` · → function, measurement · †<br>What the meter is measuring, and its last measurement, together.
+- **NAB** `lcr_reading` · → function, measurement<br>What the meter is measuring, and its last measurement, together.
   - `:SENSe:FUNCtion?;:FETCh?`
 
 ## Tree
@@ -22,9 +22,8 @@ Several statements in one message, so they hang off no single branch. Every stat
 - `MODE` — **SET** `Set_Mode` · `<value>` · per-instance: `value` · †<br>Authored from a panel literal in LCR.json; never executed before.
 - `RES` — **SET** `Set_Res` · `<value>` · numeric (Ohm) · per-instance: `value` · †<br>Authored from a panel literal in LCR.json; never executed before.
 - `VOLT` — **SET** `Set_Volt` · `<value>` · numeric (V) · per-instance: `value` · †<br>Authored from a panel literal in LCR.json; never executed before.
-- `FETCh?` — **NAB** `Fetch_Existing` · → 1 value · †<br>Retrieves the most recent measurement data.
-- `READ?` — **NAB** `Read_Measurement` · → 1 value · †<br>Triggers a measurement and retrieves the results.
-- `TRIGger` — **DO** `Trigger_Immediate` · †<br>Manually triggers a measurement.
+- `FETCh?` — **NAB** `Fetch_Existing` · → status, primary, secondary<br>Retrieves the most recent measurement data.
+- `TRIGger` — **DO** `Trigger_Immediate`<br>Manually triggers a measurement.
 - **`CALCulate`**
   - **`LIMit`**
     - `LOWer` — **SET** `Limit_Lower` · `<limit>` · args: `limit` · numeric · †<br>Sets the lower limit for the comparator.
@@ -82,12 +81,12 @@ Several statements in one message, so they hang off no single branch. Every stat
 
 ## Common commands (IEEE 488.2)
 
-- `*CLS` — **DO** `Clear_Status` · †<br>Clears the status byte and error queue.
-- `*OPC?` — **NAB** `Get_Operation_Complete` · → NR1 · †<br>Returns '1' once all pending operations are completed.
+- `*CLS` — **DO** `Clear_Status`<br>Clears the status byte and error queue.
+- `*OPC?` — **NAB** `Get_Operation_Complete` · → NR1<br>Returns '1' once all pending operations are completed.
 - `*LRN?` — **NAB** `Learn_Settings` · → AARD<br>Reads the learn string: every current setting in one reply.
 - `*IDN?` — **NAB** `Read_IDN` · → AARD<br>Queries the instrument identification (Manufacturer, Model, Serial, Firmware).
-- `*RST` — **DO** `Reset_Device` · †<br>Resets the unit to its factory default settings.
-- `*TST?` — **NAB** `Self_Test` · → NR1 · †<br>Runs the internal self-test; 0 = pass, else an error code.
-- `*TRG` — **DO** `Trigger_Bus` · †<br>Triggers the unit (equivalent to the Bus trigger).
+- `*RST` — **DO** `Reset_Device`<br>Resets the unit to its factory default settings.
+- `*TST?` — **NAB** `Self_Test` · → NR1<br>Runs the internal self-test; 0 = pass, else an error code.
+- `*TRG` — **DO** `Trigger_Bus`<br>Triggers the unit (equivalent to the Bus trigger).
 
 <!-- END GENERATED -->

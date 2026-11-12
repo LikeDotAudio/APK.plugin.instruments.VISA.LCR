@@ -501,19 +501,19 @@
       "scpi": "*CLS",
       "description": "Clears the status byte and error queue.",
       "subsystem": "Common",
-      "unverified": true
+      "notes": "Bench 2026-11-12 02:55 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed"
     },
     "Reset_Device": {
       "scpi": "*RST",
       "description": "Resets the unit to its factory default settings.",
       "subsystem": "Common",
-      "unverified": true
+      "notes": "Bench 2026-11-07 04:20 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed"
     },
     "Trigger_Bus": {
       "scpi": "*TRG",
       "description": "Triggers the unit (equivalent to the Bus trigger).",
       "subsystem": "Common",
-      "unverified": true
+      "notes": "Bench 2026-11-12 02:55 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed"
     },
     "Correction_Open": {
       "scpi": ":SENSe:CORRection:OPEN",
@@ -534,7 +534,7 @@
       "scpiFast": ":TRIG",
       "description": "Manually triggers a measurement.",
       "subsystem": "TRIGger",
-      "unverified": true
+      "notes": "Bench 2026-11-12 02:54 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed"
     }
   },
   "nab": {
@@ -566,7 +566,7 @@
         "type": "NR1"
       },
       "subsystem": "Common",
-      "unverified": true
+      "notes": "Bench 2026-11-07 03:12 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed, answered 1"
     },
     "Self_Test": {
       "scpi": "*TST?",
@@ -576,8 +576,7 @@
         "type": "NR1"
       },
       "subsystem": "Common",
-      "unverified": true,
-      "notes": "Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); runs a self-test (seconds, measurement interrupted) — an action that answers, never stacked into a GRAB or asked by a panel on open"
+      "notes": "Bench 2026-11-12 03:07 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed, answered +0; Added 2026-11-11 from the owner's expected-parameters list (pasted, not a manual); runs a self-test (seconds, measurement interrupted) — an action that answers, never stacked into a GRAB or asked by a panel on open"
     },
     "Get_Primary_Parameter": {
       "scpi": ":CALCulate1:FORMat?",
@@ -608,10 +607,25 @@
       "scpiFast": ":FETC?",
       "description": "Retrieves the most recent measurement data.",
       "returns": {
-        "count": 1
+        "count": 3,
+        "separator": ",",
+        "fields": [
+          {
+            "name": "status",
+            "type": "NR1"
+          },
+          {
+            "name": "primary",
+            "type": "NR3"
+          },
+          {
+            "name": "secondary",
+            "type": "NR3"
+          }
+        ]
       },
       "subsystem": "MEASure",
-      "unverified": true
+      "notes": "Bench 2026-11-07 03:12 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed, answered +0,+1.01820E-11,+4.18142E-03 (status, primary, secondary)"
     },
     "Get_Init_Continuous": {
       "scpi": ":INITiate:CONTinuous?",
@@ -684,7 +698,9 @@
         "count": 1
       },
       "subsystem": "MEASure",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "Bench 2026-11-12 03:08 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify, 3 tries — `:READ?` answered -113,\"Undefined header\" then -420,\"Query UNTERMINATED\"; the unit has no READ query — trigger (*TRG or :TRIGger) then :FETCh?"
     },
     "Get_Correction_Open_State": {
       "scpi": ":SENSe:CORRection:OPEN:STATe?",
@@ -763,8 +779,7 @@
           }
         ]
       },
-      "unverified": true,
-      "notes": "The LCR's reading for the capture recorder's READ ALWAYS (2026-11-04). No HP 4263A manual was obtainable (owner, 2026-10-31), so nothing is claimed about the answer's inner layout: `measurement` is the whole :FETCh? answer as the meter gives it. :FETCh? returns the last result without triggering one. Unverified: the bench qualifies :SENS:FUNC? and :FETC? each ALONE before this stack is ever asked; if :SENS:FUNC? loses, :FETC? is asked alone."
+      "notes": "Bench 2026-11-12 02:54 UTC, HP 4263A 3145J01840 fw 02.00 on gpib7,11: the instrument page's Certify passed, answered \"FADM\";+0,+9.83875E-12,+7.14722E-03; The LCR's reading for the capture recorder's READ ALWAYS (2026-11-04). No HP 4263A manual was obtainable (owner, 2026-10-31), so nothing is claimed about the answer's inner layout: `measurement` is the whole :FETCh? answer as the meter gives it. :FETCh? returns the last result without triggering one. Unverified: the bench qualifies :SENS:FUNC? and :FETC? each ALONE before this stack is ever asked; if :SENS:FUNC? loses, :FETC? is asked alone."
     },
     "Get_Test_Current": {
       "scpi": ":SOURce:CURRent?",

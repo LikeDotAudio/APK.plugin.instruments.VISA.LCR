@@ -83,3 +83,7 @@ HP 4263A 3145J01840 fw 02.00 on gpib7,11. Each query asked alone through `/api/i
 The unit's own `*LRN?` (its settings as headers): `:FUNC:CONC 0;:FUNC "FADM";:CAL:CABL +0;:SOUR:FREQ +1.00000E+03;VOLT +1.00000E+00;VOLT:OFFS:STAT 0;:AVER 1;:AVER:COUN +1;:FIMP:APER +6.50000E-02;RANG:AUTO 1;:FIMP:CONT:VER 0;:TRIG:DEL +0.00000E+00;SOUR INT;:CALC1:FORM CP;:CALC2:FORM D;:CALC1:MATH:STAT 0;:CALC2:MATH:STAT 0;:CALC1:LIM:STAT 0`. Autorange is `:SENS:FIMP:RANG:AUTO`, so `Voltage_Range_Auto` (`:SENS:VOLT:RANG:AUTO`) is probably wrong — noted, not changed.
 
 GRAB compiled from `4263A.qualified.json` (Nabber evidence + this probe): `:CALC1:FORM?;:CALC2:FORM?;:FETC?;:INIT:CONT?;:SENS:FUNC?;:SOUR:FREQ?;:SOUR:VOLT?;:TRIG:SOUR?;*IDN?` — `qualify_grab.py --model 4263A`: Dev711 9/9 ok.
+
+## The owner's CERTIFY ALL (2026-11-12, instrument page)
+
+From the page's certificate book on 3145J01840: `:READ?` **failed 3/3** with -113,"Undefined header" / -420 — `Read_Measurement` retired; read a measurement as `*TRG` (or `:TRIGger`) then `:FETCh?`. `:FETCh?` answers three values — status, primary, secondary (`+0,+1.01820E-11,+4.18142E-03`) — and its `returns` now says so. Verified by passing tries: `*OPC?` (1), `*TST?` (+0), `:FETCh?`, `lcr_reading`, `*RST`, `*CLS`, `*TRG`, `:TRIGger`. Pass 1 aborted at `Secondary_Parameter` when WEB.OsApi was rebuilt mid-run (HTTP 502) — not the unit's doing.
