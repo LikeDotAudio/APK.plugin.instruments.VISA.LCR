@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**51 commands** — SET 19 · RIG 6 · NAB 20 · DO 6 · 33 unverified (64%)
+**84 commands** — SET 52 · RIG 6 · NAB 20 · DO 6 · 66 unverified (78%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -44,22 +44,43 @@ Several statements in one message, so they hang off no single branch. Every stat
 - `FETCh?` — **NAB** `Fetch_Existing` · → status, primary, secondary<br>Retrieves the most recent measurement data.
 - `TRIGger` — **DO** `Trigger_Immediate`<br>Manually triggers a measurement.
 - **`CALCulate1`**
-  - `FORMat` — **SET** `Primary_Parameter` · `<param>` · args: `param` · enum · †<br>Selects the primary measurement parameter (e.g. CP, CS, LP, LS, R, Z).
+  - `FORMat` — **SET** `Primary_Parameter` · `<param>` · args: `param` · enum: `CP` | `CS` | `LP` | `LS` | `REAL` | `MLIN` · †<br>Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).
+  - `FORMat` — **SET** `Primary_Parameter_CP` · `CP` · †<br>Primary_Parameter → CP (parallel capacitance). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).
+  - `FORMat` — **SET** `Primary_Parameter_CS` · `CS` · †<br>Primary_Parameter → CS (series capacitance). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).
+  - `FORMat` — **SET** `Primary_Parameter_LP` · `LP` · †<br>Primary_Parameter → LP (parallel inductance). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).
+  - `FORMat` — **SET** `Primary_Parameter_LS` · `LS` · †<br>Primary_Parameter → LS (series inductance). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).
+  - `FORMat` — **SET** `Primary_Parameter_MLIN` · `MLIN` · †<br>Primary_Parameter → MLIN (|Z| under FIMP, |Y| under FADM). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).
+  - `FORMat` — **SET** `Primary_Parameter_REAL` · `REAL` · †<br>Primary_Parameter → REAL (R under impedance FIMP, G under admittance FADM). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).
   - `FORMat?` — **NAB** `Get_Primary_Parameter` · → CRD<br>Reads the primary measurement parameter.
   - **`LIMit`**
     - `LOWer` — **SET** `Limit_Lower` · `<limit>` · args: `limit` · numeric · †<br>Sets the lower limit for the comparator.
     - `STATe` — **SET** `Limit_State` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Enables or disables the comparator function.
+    - `STATe` — **SET** `Limit_State_OFF` · `OFF` · †<br>Limit_State → OFF. Enables or disables the comparator function.
+    - `STATe` — **SET** `Limit_State_ON` · `ON` · †<br>Limit_State → ON. Enables or disables the comparator function.
     - `UPPer` — **SET** `Limit_Upper` · `<limit>` · args: `limit` · numeric · †<br>Sets the higher limit for the comparator.
 - **`CALCulate2`**
-  - `FORMat` — **SET** `Secondary_Parameter` · `<param>` · args: `param` · enum · †<br>Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter` · `<param>` · args: `param` · enum: `IMAG` | `PHAS` | `D` | `Q` | `REAL` | `LP` | `RP` · †<br>Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter_D` · `D` · †<br>Secondary_Parameter → D (dissipation factor). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter_IMAG` · `IMAG` · †<br>Secondary_Parameter → IMAG (X under FIMP, B under FADM). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter_LP` · `LP` · †<br>Secondary_Parameter → LP (Lp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter_PHAS` · `PHAS` · †<br>Secondary_Parameter → PHAS (θ). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter_Q` · `Q` · †<br>Secondary_Parameter → Q (quality factor). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter_REAL` · `REAL` · †<br>Secondary_Parameter → REAL (Rs/G). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
+  - `FORMat` — **SET** `Secondary_Parameter_RP` · `RP` · †<br>Secondary_Parameter → RP (Rp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).
   - `FORMat?` — **NAB** `Get_Secondary_Parameter` · → CRD<br>Reads the secondary measurement parameter.
 - **`DISPlay`**
   - `STATe` — **SET** `Display_State` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Turns the display ON or OFF.
+  - `STATe` — **SET** `Display_State_OFF` · `OFF` · †<br>Display_State → OFF. Turns the display ON or OFF.
+  - `STATe` — **SET** `Display_State_ON` · `ON` · †<br>Display_State → ON. Turns the display ON or OFF.
 - **`INITiate`**
   - `CONTinuous` — **SET** `Init_Continuous` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Enables or disables continuous triggering.
+  - `CONTinuous` — **SET** `Init_Continuous_OFF` · `OFF` · †<br>Init_Continuous → OFF. Enables or disables continuous triggering.
+  - `CONTinuous` — **SET** `Init_Continuous_ON` · `ON` · †<br>Init_Continuous → ON. Enables or disables continuous triggering.
   - `CONTinuous?` — **NAB** `Get_Init_Continuous` · → NR1<br>Reads whether continuous triggering is on.
 - **`SENSe`**
-  - `FUNCtion` — **SET** `Measurement_Function` · `<function>` · args: `function` · enum · †<br>Selects measurement parameters (e.g., CP-D, LS-Q).
+  - `FUNCtion` — **SET** `Measurement_Function` · `<function>` · args: `function` · enum: `"FIMP"` | `"FADM"` · †<br>Selects the measurement: impedance (FIMP) or admittance (FADM).
+  - `FUNCtion` — **SET** `Measurement_Function_FADM` · `"FADM"` · †<br>Measurement_Function → "FADM" (admittance). Selects the measurement: impedance (FIMP) or admittance (FADM).
+  - `FUNCtion` — **SET** `Measurement_Function_FIMP` · `"FIMP"` · †<br>Measurement_Function → "FIMP" (impedance). Selects the measurement: impedance (FIMP) or admittance (FADM).
   - `FUNCtion?` — **NAB** `Get_Measurement_Function` · → CRD<br>Reads what the meter is measuring.
   - **`AVERage`**
     - `COUNt` — **SET** `Average_Count` · `<count>` · args: `count` · integer · †<br>Sets the number of measurement averages (1 to 256).
@@ -70,6 +91,8 @@ Several statements in one message, so they hang off no single branch. Every stat
     - **`RANGe`**
       - `UPPer` — **SET** `Current_Range` · `<range>` · args: `range` · numeric · †<br>Sets the impedance measurement range in ohms (0.1 to 1M, or UP/DOWN); the name is kept for the panels that bind it.
       - `AUTO` — **SET** `Voltage_Range_Auto` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Turns impedance auto-ranging ON or OFF (OFF = hold range); the name is kept for the panels that bind it.
+      - `AUTO` — **SET** `Voltage_Range_Auto_OFF` · `OFF` · †<br>Voltage_Range_Auto → OFF. Turns impedance auto-ranging ON or OFF (OFF = hold range); the name is kept for the panels that bind it.
+      - `AUTO` — **SET** `Voltage_Range_Auto_ON` · `ON` · †<br>Voltage_Range_Auto → ON. Turns impedance auto-ranging ON or OFF (OFF = hold range); the name is kept for the panels that bind it.
 - **`SOURce`**
   - `FREQuency` — **SET** `Set_Test_Frequency` · `<freq>` · args: `freq` · numeric (Hz) · †<br>Sets the test signal frequency (100, 120, 1k, 10k, 100k Hz).
   - `VOLTage` — **SET** `Set_Test_Level` · `<level>` · args: `level` · numeric (V) · †<br>Sets the test signal level (e.g., 100m, 500m, 1V).
@@ -79,14 +102,24 @@ Several statements in one message, so they hang off no single branch. Every stat
     - `OFFSet` — **SET** `Set_Bias_Voltage` · `<volt>` · args: `volt` · numeric (V) · †<br>Sets the internal DC bias voltage level.
     - **`OFFSet`**
       - `STATe` — **SET** `Set_Bias_State` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Turns the DC bias ON or OFF.
+      - `STATe` — **SET** `Set_Bias_State_OFF` · `OFF` · †<br>Set_Bias_State → OFF. Turns the DC bias ON or OFF.
+      - `STATe` — **SET** `Set_Bias_State_ON` · `ON` · †<br>Set_Bias_State → ON. Turns the DC bias ON or OFF.
 - **`SYSTem`**
   - `KLOCk` — **SET** `Key_Lock` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Locks or unlocks the front-panel keys.
+  - `KLOCk` — **SET** `Key_Lock_OFF` · `OFF` · †<br>Key_Lock → OFF. Locks or unlocks the front-panel keys.
+  - `KLOCk` — **SET** `Key_Lock_ON` · `ON` · †<br>Key_Lock → ON. Locks or unlocks the front-panel keys.
   - `ERRor?` — **NAB** `Get_Error_Queue` · → ERROR<br>Queries the next entry in the error queue.
   - **`BEEPer`**
     - `STATe` — **SET** `Set_Beeper` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Turns the front-panel beeper ON or OFF.
+    - `STATe` — **SET** `Set_Beeper_OFF` · `OFF` · †<br>Set_Beeper → OFF. Turns the front-panel beeper ON or OFF.
+    - `STATe` — **SET** `Set_Beeper_ON` · `ON` · †<br>Set_Beeper → ON. Turns the front-panel beeper ON or OFF.
 - **`TRIGger`**
   - `DELay` — **SET** `Trigger_Delay` · `<seconds>` · args: `seconds` · numeric (s) · †<br>Sets the delay time before measurement starts.
-  - `SOURce` — **SET** `Trigger_Source` · `<source>` · args: `source` · enum · †<br>Selects trigger source (INT, MAN, EXT, or BUS).
+  - `SOURce` — **SET** `Trigger_Source` · `<source>` · args: `source` · enum: `BUS` | `EXT` | `MAN` | `INT` · †<br>Selects trigger source (INT, MAN, EXT, or BUS).
+  - `SOURce` — **SET** `Trigger_Source_BUS` · `BUS` · †<br>Trigger_Source → BUS (*TRG / GET). Selects trigger source (INT, MAN, EXT, or BUS).
+  - `SOURce` — **SET** `Trigger_Source_EXT` · `EXT` · †<br>Trigger_Source → EXT (rear trigger input). Selects trigger source (INT, MAN, EXT, or BUS).
+  - `SOURce` — **SET** `Trigger_Source_INT` · `INT` · †<br>Trigger_Source → INT (free run). Selects trigger source (INT, MAN, EXT, or BUS).
+  - `SOURce` — **SET** `Trigger_Source_MAN` · `MAN` · †<br>Trigger_Source → MAN (front-panel key). Selects trigger source (INT, MAN, EXT, or BUS).
   - `SOURce?` — **NAB** `Get_Trigger_Source` · → CRD<br>Reads the trigger source.
 
 ## Common commands (IEEE 488.2)

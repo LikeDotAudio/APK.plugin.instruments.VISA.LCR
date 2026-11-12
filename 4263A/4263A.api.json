@@ -72,9 +72,9 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 52,
+    "total_commands": 85,
     "get_count": 12,
-    "set_count": 19,
+    "set_count": 52,
     "nab_count": 21,
     "rig_count": 6,
     "do_count": 6
@@ -408,7 +408,7 @@
       "Primary_Parameter": {
         "command": "Primary_Parameter",
         "verb": "set",
-        "description": "Selects the primary measurement parameter (e.g. CP, CS, LP, LS, R, Z).",
+        "description": "Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).",
         "scpi": ":CALCulate1:FORMat <param>",
         "scpi_fast": ":CALC1:FORM <param>",
         "subsystem": "CALCulate",
@@ -417,7 +417,23 @@
           "param"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "CP",
+            "CS",
+            "LP",
+            "LS",
+            "REAL",
+            "MLIN"
+          ],
+          "labels": {
+            "CP": "parallel capacitance",
+            "CS": "series capacitance",
+            "LP": "parallel inductance",
+            "LS": "series inductance",
+            "REAL": "R under impedance FIMP, G under admittance FADM",
+            "MLIN": "|Z| under FIMP, |Y| under FADM"
+          }
         },
         "returns": null,
         "mqtt": {
@@ -427,6 +443,150 @@
             "command": "Primary_Parameter",
             "value": "<value>",
             "input_name": "param"
+          }
+        },
+        "unverified": true
+      },
+      "Primary_Parameter_CP": {
+        "command": "Primary_Parameter_CP",
+        "verb": "set",
+        "description": "Primary_Parameter \u2192 CP (parallel capacitance). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).",
+        "scpi": ":CALCulate1:FORMat CP",
+        "scpi_fast": ":CALC1:FORM CP",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Primary_Parameter_CP",
+          "direction": "in",
+          "payload_format": {
+            "command": "Primary_Parameter_CP",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Primary_Parameter_CS": {
+        "command": "Primary_Parameter_CS",
+        "verb": "set",
+        "description": "Primary_Parameter \u2192 CS (series capacitance). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).",
+        "scpi": ":CALCulate1:FORMat CS",
+        "scpi_fast": ":CALC1:FORM CS",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Primary_Parameter_CS",
+          "direction": "in",
+          "payload_format": {
+            "command": "Primary_Parameter_CS",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Primary_Parameter_LP": {
+        "command": "Primary_Parameter_LP",
+        "verb": "set",
+        "description": "Primary_Parameter \u2192 LP (parallel inductance). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).",
+        "scpi": ":CALCulate1:FORMat LP",
+        "scpi_fast": ":CALC1:FORM LP",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Primary_Parameter_LP",
+          "direction": "in",
+          "payload_format": {
+            "command": "Primary_Parameter_LP",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Primary_Parameter_LS": {
+        "command": "Primary_Parameter_LS",
+        "verb": "set",
+        "description": "Primary_Parameter \u2192 LS (series inductance). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).",
+        "scpi": ":CALCulate1:FORMat LS",
+        "scpi_fast": ":CALC1:FORM LS",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Primary_Parameter_LS",
+          "direction": "in",
+          "payload_format": {
+            "command": "Primary_Parameter_LS",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Primary_Parameter_MLIN": {
+        "command": "Primary_Parameter_MLIN",
+        "verb": "set",
+        "description": "Primary_Parameter \u2192 MLIN (|Z| under FIMP, |Y| under FADM). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).",
+        "scpi": ":CALCulate1:FORMat MLIN",
+        "scpi_fast": ":CALC1:FORM MLIN",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Primary_Parameter_MLIN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Primary_Parameter_MLIN",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Primary_Parameter_REAL": {
+        "command": "Primary_Parameter_REAL",
+        "verb": "set",
+        "description": "Primary_Parameter \u2192 REAL (R under impedance FIMP, G under admittance FADM). Selects the primary measurement parameter (Cp, Cs, Lp, Ls, R/G, |Z|/|Y|).",
+        "scpi": ":CALCulate1:FORMat REAL",
+        "scpi_fast": ":CALC1:FORM REAL",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Primary_Parameter_REAL",
+          "direction": "in",
+          "payload_format": {
+            "command": "Primary_Parameter_REAL",
+            "value": "<value>",
+            "input_name": "value"
           }
         },
         "unverified": true
@@ -487,6 +647,54 @@
         },
         "unverified": true
       },
+      "Limit_State_OFF": {
+        "command": "Limit_State_OFF",
+        "verb": "set",
+        "description": "Limit_State \u2192 OFF. Enables or disables the comparator function.",
+        "scpi": ":CALCulate1:LIMit:STATe OFF",
+        "scpi_fast": ":CALC1:LIM:STAT OFF",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Limit_State_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Limit_State_OFF",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Limit_State_ON": {
+        "command": "Limit_State_ON",
+        "verb": "set",
+        "description": "Limit_State \u2192 ON. Enables or disables the comparator function.",
+        "scpi": ":CALCulate1:LIMit:STATe ON",
+        "scpi_fast": ":CALC1:LIM:STAT ON",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Limit_State_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Limit_State_ON",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
       "Limit_Upper": {
         "command": "Limit_Upper",
         "verb": "set",
@@ -525,7 +733,25 @@
           "param"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "IMAG",
+            "PHAS",
+            "D",
+            "Q",
+            "REAL",
+            "LP",
+            "RP"
+          ],
+          "labels": {
+            "IMAG": "X under FIMP, B under FADM",
+            "PHAS": "\u03b8",
+            "D": "dissipation factor",
+            "Q": "quality factor",
+            "REAL": "Rs/G",
+            "LP": "Lp",
+            "RP": "Rp"
+          }
         },
         "returns": null,
         "mqtt": {
@@ -535,6 +761,174 @@
             "command": "Secondary_Parameter",
             "value": "<value>",
             "input_name": "param"
+          }
+        },
+        "unverified": true
+      },
+      "Secondary_Parameter_D": {
+        "command": "Secondary_Parameter_D",
+        "verb": "set",
+        "description": "Secondary_Parameter \u2192 D (dissipation factor). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+        "scpi": ":CALCulate2:FORMat D",
+        "scpi_fast": ":CALC2:FORM D",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter_D",
+          "direction": "in",
+          "payload_format": {
+            "command": "Secondary_Parameter_D",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Secondary_Parameter_IMAG": {
+        "command": "Secondary_Parameter_IMAG",
+        "verb": "set",
+        "description": "Secondary_Parameter \u2192 IMAG (X under FIMP, B under FADM). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+        "scpi": ":CALCulate2:FORMat IMAG",
+        "scpi_fast": ":CALC2:FORM IMAG",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter_IMAG",
+          "direction": "in",
+          "payload_format": {
+            "command": "Secondary_Parameter_IMAG",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Secondary_Parameter_LP": {
+        "command": "Secondary_Parameter_LP",
+        "verb": "set",
+        "description": "Secondary_Parameter \u2192 LP (Lp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+        "scpi": ":CALCulate2:FORMat LP",
+        "scpi_fast": ":CALC2:FORM LP",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter_LP",
+          "direction": "in",
+          "payload_format": {
+            "command": "Secondary_Parameter_LP",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Secondary_Parameter_PHAS": {
+        "command": "Secondary_Parameter_PHAS",
+        "verb": "set",
+        "description": "Secondary_Parameter \u2192 PHAS (\u03b8). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+        "scpi": ":CALCulate2:FORMat PHAS",
+        "scpi_fast": ":CALC2:FORM PHAS",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter_PHAS",
+          "direction": "in",
+          "payload_format": {
+            "command": "Secondary_Parameter_PHAS",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Secondary_Parameter_Q": {
+        "command": "Secondary_Parameter_Q",
+        "verb": "set",
+        "description": "Secondary_Parameter \u2192 Q (quality factor). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+        "scpi": ":CALCulate2:FORMat Q",
+        "scpi_fast": ":CALC2:FORM Q",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter_Q",
+          "direction": "in",
+          "payload_format": {
+            "command": "Secondary_Parameter_Q",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Secondary_Parameter_REAL": {
+        "command": "Secondary_Parameter_REAL",
+        "verb": "set",
+        "description": "Secondary_Parameter \u2192 REAL (Rs/G). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+        "scpi": ":CALCulate2:FORMat REAL",
+        "scpi_fast": ":CALC2:FORM REAL",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter_REAL",
+          "direction": "in",
+          "payload_format": {
+            "command": "Secondary_Parameter_REAL",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Secondary_Parameter_RP": {
+        "command": "Secondary_Parameter_RP",
+        "verb": "set",
+        "description": "Secondary_Parameter \u2192 RP (Rp). Selects the secondary measurement parameter (e.g. D, Q, X, theta).",
+        "scpi": ":CALCulate2:FORMat RP",
+        "scpi_fast": ":CALC2:FORM RP",
+        "subsystem": "CALCulate",
+        "group": "CALCulate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Secondary_Parameter_RP",
+          "direction": "in",
+          "payload_format": {
+            "command": "Secondary_Parameter_RP",
+            "value": "<value>",
+            "input_name": "value"
           }
         },
         "unverified": true
@@ -569,6 +963,54 @@
         },
         "unverified": true
       },
+      "Display_State_OFF": {
+        "command": "Display_State_OFF",
+        "verb": "set",
+        "description": "Display_State \u2192 OFF. Turns the display ON or OFF.",
+        "scpi": ":DISPlay:STATe OFF",
+        "scpi_fast": ":DISP:STAT OFF",
+        "subsystem": "DISPlay",
+        "group": "DISPlay",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Display_State_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Display_State_OFF",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Display_State_ON": {
+        "command": "Display_State_ON",
+        "verb": "set",
+        "description": "Display_State \u2192 ON. Turns the display ON or OFF.",
+        "scpi": ":DISPlay:STATe ON",
+        "scpi_fast": ":DISP:STAT ON",
+        "subsystem": "DISPlay",
+        "group": "DISPlay",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Display_State_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Display_State_ON",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
       "Init_Continuous": {
         "command": "Init_Continuous",
         "verb": "set",
@@ -595,6 +1037,54 @@
             "command": "Init_Continuous",
             "value": "<value>",
             "input_name": "state"
+          }
+        },
+        "unverified": true
+      },
+      "Init_Continuous_OFF": {
+        "command": "Init_Continuous_OFF",
+        "verb": "set",
+        "description": "Init_Continuous \u2192 OFF. Enables or disables continuous triggering.",
+        "scpi": ":INITiate:CONTinuous OFF",
+        "scpi_fast": ":INIT:CONT OFF",
+        "subsystem": "INITiate",
+        "group": "INITiate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Init_Continuous_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Init_Continuous_OFF",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Init_Continuous_ON": {
+        "command": "Init_Continuous_ON",
+        "verb": "set",
+        "description": "Init_Continuous \u2192 ON. Enables or disables continuous triggering.",
+        "scpi": ":INITiate:CONTinuous ON",
+        "scpi_fast": ":INIT:CONT ON",
+        "subsystem": "INITiate",
+        "group": "INITiate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Init_Continuous_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Init_Continuous_ON",
+            "value": "<value>",
+            "input_name": "value"
           }
         },
         "unverified": true
@@ -655,6 +1145,54 @@
         },
         "unverified": true
       },
+      "Voltage_Range_Auto_OFF": {
+        "command": "Voltage_Range_Auto_OFF",
+        "verb": "set",
+        "description": "Voltage_Range_Auto \u2192 OFF. Turns impedance auto-ranging ON or OFF (OFF = hold range); the name is kept for the panels that bind it.",
+        "scpi": ":SENSe:FIMPedance:RANGe:AUTO OFF",
+        "scpi_fast": ":SENS:FIMP:RANG:AUTO OFF",
+        "subsystem": "SENSe",
+        "group": "SENSe",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Voltage_Range_Auto_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Voltage_Range_Auto_OFF",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Voltage_Range_Auto_ON": {
+        "command": "Voltage_Range_Auto_ON",
+        "verb": "set",
+        "description": "Voltage_Range_Auto \u2192 ON. Turns impedance auto-ranging ON or OFF (OFF = hold range); the name is kept for the panels that bind it.",
+        "scpi": ":SENSe:FIMPedance:RANGe:AUTO ON",
+        "scpi_fast": ":SENS:FIMP:RANG:AUTO ON",
+        "subsystem": "SENSe",
+        "group": "SENSe",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Voltage_Range_Auto_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Voltage_Range_Auto_ON",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
       "Current_Range": {
         "command": "Current_Range",
         "verb": "set",
@@ -681,10 +1219,58 @@
         },
         "unverified": true
       },
+      "Measurement_Function_FADM": {
+        "command": "Measurement_Function_FADM",
+        "verb": "set",
+        "description": "Measurement_Function \u2192 \"FADM\" (admittance). Selects the measurement: impedance (FIMP) or admittance (FADM).",
+        "scpi": ":SENSe:FUNCtion \"FADM\"",
+        "scpi_fast": ":SENS:FUNC \"FADM\"",
+        "subsystem": "SENSe",
+        "group": "SENSe",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Measurement_Function_FADM",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measurement_Function_FADM",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Measurement_Function_FIMP": {
+        "command": "Measurement_Function_FIMP",
+        "verb": "set",
+        "description": "Measurement_Function \u2192 \"FIMP\" (impedance). Selects the measurement: impedance (FIMP) or admittance (FADM).",
+        "scpi": ":SENSe:FUNCtion \"FIMP\"",
+        "scpi_fast": ":SENS:FUNC \"FIMP\"",
+        "subsystem": "SENSe",
+        "group": "SENSe",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Measurement_Function_FIMP",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measurement_Function_FIMP",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
       "Measurement_Function": {
         "command": "Measurement_Function",
         "verb": "set",
-        "description": "Selects measurement parameters (e.g., CP-D, LS-Q).",
+        "description": "Selects the measurement: impedance (FIMP) or admittance (FADM).",
         "scpi": ":SENSe:FUNCtion <function>",
         "scpi_fast": ":SENS:FUNC <function>",
         "subsystem": "SENSe",
@@ -693,7 +1279,15 @@
           "function"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "\"FIMP\"",
+            "\"FADM\""
+          ],
+          "labels": {
+            "\"FIMP\"": "impedance",
+            "\"FADM\"": "admittance"
+          }
         },
         "returns": null,
         "mqtt": {
@@ -818,6 +1412,54 @@
         },
         "unverified": true
       },
+      "Set_Bias_State_OFF": {
+        "command": "Set_Bias_State_OFF",
+        "verb": "set",
+        "description": "Set_Bias_State \u2192 OFF. Turns the DC bias ON or OFF.",
+        "scpi": ":SOURce:VOLTage:OFFSet:STATe OFF",
+        "scpi_fast": ":SOUR:VOLT:OFFS:STAT OFF",
+        "subsystem": "SOURce",
+        "group": "SOURce",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_State_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Bias_State_OFF",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Bias_State_ON": {
+        "command": "Set_Bias_State_ON",
+        "verb": "set",
+        "description": "Set_Bias_State \u2192 ON. Turns the DC bias ON or OFF.",
+        "scpi": ":SOURce:VOLTage:OFFSet:STATe ON",
+        "scpi_fast": ":SOUR:VOLT:OFFS:STAT ON",
+        "subsystem": "SOURce",
+        "group": "SOURce",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_State_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Bias_State_ON",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
       "Set_Beeper": {
         "command": "Set_Beeper",
         "verb": "set",
@@ -848,6 +1490,54 @@
         },
         "unverified": true
       },
+      "Set_Beeper_OFF": {
+        "command": "Set_Beeper_OFF",
+        "verb": "set",
+        "description": "Set_Beeper \u2192 OFF. Turns the front-panel beeper ON or OFF.",
+        "scpi": ":SYSTem:BEEPer:STATe OFF",
+        "scpi_fast": ":SYST:BEEP:STAT OFF",
+        "subsystem": "SYSTem",
+        "group": "SYSTem",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Beeper_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Beeper_OFF",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Beeper_ON": {
+        "command": "Set_Beeper_ON",
+        "verb": "set",
+        "description": "Set_Beeper \u2192 ON. Turns the front-panel beeper ON or OFF.",
+        "scpi": ":SYSTem:BEEPer:STATe ON",
+        "scpi_fast": ":SYST:BEEP:STAT ON",
+        "subsystem": "SYSTem",
+        "group": "SYSTem",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Beeper_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Beeper_ON",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
       "Key_Lock": {
         "command": "Key_Lock",
         "verb": "set",
@@ -874,6 +1564,54 @@
             "command": "Key_Lock",
             "value": "<value>",
             "input_name": "state"
+          }
+        },
+        "unverified": true
+      },
+      "Key_Lock_OFF": {
+        "command": "Key_Lock_OFF",
+        "verb": "set",
+        "description": "Key_Lock \u2192 OFF. Locks or unlocks the front-panel keys.",
+        "scpi": ":SYSTem:KLOCk OFF",
+        "scpi_fast": ":SYST:KLOC OFF",
+        "subsystem": "SYSTem",
+        "group": "SYSTem",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Key_Lock_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Key_Lock_OFF",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Key_Lock_ON": {
+        "command": "Key_Lock_ON",
+        "verb": "set",
+        "description": "Key_Lock \u2192 ON. Locks or unlocks the front-panel keys.",
+        "scpi": ":SYSTem:KLOCk ON",
+        "scpi_fast": ":SYST:KLOC ON",
+        "subsystem": "SYSTem",
+        "group": "SYSTem",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Key_Lock_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Key_Lock_ON",
+            "value": "<value>",
+            "input_name": "value"
           }
         },
         "unverified": true
@@ -917,7 +1655,19 @@
           "source"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "BUS",
+            "EXT",
+            "MAN",
+            "INT"
+          ],
+          "labels": {
+            "BUS": "*TRG / GET",
+            "EXT": "rear trigger input",
+            "MAN": "front-panel key",
+            "INT": "free run"
+          }
         },
         "returns": null,
         "mqtt": {
@@ -927,6 +1677,102 @@
             "command": "Trigger_Source",
             "value": "<value>",
             "input_name": "source"
+          }
+        },
+        "unverified": true
+      },
+      "Trigger_Source_BUS": {
+        "command": "Trigger_Source_BUS",
+        "verb": "set",
+        "description": "Trigger_Source \u2192 BUS (*TRG / GET). Selects trigger source (INT, MAN, EXT, or BUS).",
+        "scpi": ":TRIGger:SOURce BUS",
+        "scpi_fast": ":TRIG:SOUR BUS",
+        "subsystem": "TRIGger",
+        "group": "TRIGger",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Trigger_Source_BUS",
+          "direction": "in",
+          "payload_format": {
+            "command": "Trigger_Source_BUS",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Trigger_Source_EXT": {
+        "command": "Trigger_Source_EXT",
+        "verb": "set",
+        "description": "Trigger_Source \u2192 EXT (rear trigger input). Selects trigger source (INT, MAN, EXT, or BUS).",
+        "scpi": ":TRIGger:SOURce EXT",
+        "scpi_fast": ":TRIG:SOUR EXT",
+        "subsystem": "TRIGger",
+        "group": "TRIGger",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Trigger_Source_EXT",
+          "direction": "in",
+          "payload_format": {
+            "command": "Trigger_Source_EXT",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Trigger_Source_INT": {
+        "command": "Trigger_Source_INT",
+        "verb": "set",
+        "description": "Trigger_Source \u2192 INT (free run). Selects trigger source (INT, MAN, EXT, or BUS).",
+        "scpi": ":TRIGger:SOURce INT",
+        "scpi_fast": ":TRIG:SOUR INT",
+        "subsystem": "TRIGger",
+        "group": "TRIGger",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Trigger_Source_INT",
+          "direction": "in",
+          "payload_format": {
+            "command": "Trigger_Source_INT",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Trigger_Source_MAN": {
+        "command": "Trigger_Source_MAN",
+        "verb": "set",
+        "description": "Trigger_Source \u2192 MAN (front-panel key). Selects trigger source (INT, MAN, EXT, or BUS).",
+        "scpi": ":TRIGger:SOURce MAN",
+        "scpi_fast": ":TRIG:SOUR MAN",
+        "subsystem": "TRIGger",
+        "group": "TRIGger",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Trigger_Source_MAN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Trigger_Source_MAN",
+            "value": "<value>",
+            "input_name": "value"
           }
         },
         "unverified": true
